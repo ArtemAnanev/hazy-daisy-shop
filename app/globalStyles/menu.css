@@ -51,7 +51,7 @@
     height: 0;
     padding-bottom: 100%;
     border-radius: 100%;
-    transform: scale(0.04) translateY(9999px);
+    transform: scale(0.04), translateY(9999px);
     overflow: hidden;
 }
 
@@ -71,7 +71,7 @@
     opacity: 0;
     position: absolute;
     top: 0;
-    right: -100px;
+    right: -130px;
 }
 
 .nav-menu__close {
