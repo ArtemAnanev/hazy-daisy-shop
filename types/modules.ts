@@ -1,4 +1,5 @@
 import { IProduct } from "@/types/common"
+import React, { JSX } from "react"
 
 export interface IAccordionProps {
   children: React.ReactNode
