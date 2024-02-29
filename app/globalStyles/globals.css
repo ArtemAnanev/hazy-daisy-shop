@@ -3,7 +3,7 @@
 }
 
 body {
-    font-family: Rostelecom Basis, sans-serif;
+    font-family: Rostelecom Basis;
     font-weight: 400;
     background-color: #1D2533;
     color: #E8E9EA;
@@ -68,7 +68,8 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .site-title {
-    margin: 0 0 40px;
+    margin: 0;
+    margin-bottom: 40px;
     color: #E8E9EA;
     font-size: 42px;
     font-weight: 700;
