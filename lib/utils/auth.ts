@@ -1,5 +1,4 @@
-
-
+import toast from "react-hot-toast"
 
 export const onAuthSuccess = <T>(message: string, data: T) => {
   localStorage.setItem('auth', JSON.stringify(data))

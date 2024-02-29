@@ -3,7 +3,7 @@ import toast from 'react-hot-toast'
 import api from './apiInstance'
 import { onAuthSuccess } from '@/lib/utils/auth'
 import { ISignUpFx } from '@/types/authPopup'
-import { setIsAuth } from '@/context/auth'
+// import { setIsAuth } from '@/context/auth'
 import { handleJWTError } from '@/lib/utils/errors'
 
 export const oauthFx = createEffect(
