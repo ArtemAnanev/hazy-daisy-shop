@@ -81,15 +81,15 @@
       "privacy_policy": "Privacy policy"
     },
     "footer": {
-      "copyright": "«Rostelecom» All rights reserved",
+      "copyright": "«Hazy Daisy» All rights reserved",
       "policy": "Data processing policy",
       "privacy": "Privacy policy",
       "mobile_version": "Mobile version",
       "full_version": "Full version of the site"
     },
     "main_page": {
-      "hero_hidden_title": "Clothing store Rostelecom",
-      "hero_title": "Rostelecom",
+      "hero_hidden_title": "Clothing store Hazy Daisy",
+      "hero_title": "Hazy Daisy",
       "hero_description": "Be in style",
       "hero_subtitle": "with the new “Line” collection",
       "catalog_btn": "Catalog",
@@ -253,7 +253,7 @@
       "loading": "Загрузка...",
       "ad": "Реклама",
       "accept": "Принять",
-      "cookie_text": "ПАО «Ростелеком» обрабатывает <a href=\"https://support.google.com/accounts/answer/61416\">Cookies</a> для корректной работы сайта и персонализации сервисов, в т.ч. с использованием метрических программ и систем аналитик. Вы можете запретить обработку <a href=\"https://support.google.com/accounts/answer/61416\">Cookies</a> в настройках браузера.",
+      "cookie_text": "Hazy Daisy обрабатывает <a href=\"https://support.google.com/accounts/answer/61416\">Cookies</a> для корректной работы сайта и персонализации сервисов, в т.ч. с использованием метрических программ и систем аналитик. Вы можете запретить обработку <a href=\"https://support.google.com/accounts/answer/61416\">Cookies</a> в настройках браузера.",
       "not_found_title": "Кажется кто то украл страницу!",
       "ops": "Упс...",
       "not_found_subtitle": "Наша <a href=\"/\">секретная служба</a> уже ведет расследование",
@@ -314,15 +314,15 @@
       "privacy_policy": "Политика конфиденциальности"
     },
     "footer": {
-      "copyright": "«Ростелеком» Все права защищены",
+      "copyright": "«Hazy Daisy» Все права защищены",
       "policy": "Политика обработки данных",
       "privacy": "Политика конфиденциальности",
       "mobile_version": "Мобильная версия",
       "full_version": "Полная версия сайта"
     },
     "main_page": {
-      "hero_hidden_title": "Магазин одежды Ростелеком",
-      "hero_title": "Ростелеком",
+      "hero_hidden_title": "Магазин одежды Hazy Daisy",
+      "hero_title": "Hazy Daisy",
       "hero_description": "Будь на стиле",
       "hero_subtitle": "с новой коллекцией «Line»",
       "catalog_btn": "Каталог",

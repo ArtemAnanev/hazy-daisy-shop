@@ -9,6 +9,7 @@ import SearchModal from "@/components/modules/Header/SearchModal"
 import { handleCloseSearchModal } from "@/lib/utils/common"
 import { $searchModal } from "@/context/modals"
 import { useUnit } from "effector-react"
+import Footer from "@/components/modules/Footer/Footer"
 
 
 const Layout = ({children}: { children: React.ReactNode}) => {
@@ -34,7 +35,9 @@ const Layout = ({children}: { children: React.ReactNode}) => {
     <div className={`header__search-overlay ${
       searchModal ? 'overlay-active' : ''
     }`}
-         onClick={handleCloseSearchModal} />
+         onClick={handleCloseSearchModal}
+    />
+    <Footer/>
   </>
   )
 }
