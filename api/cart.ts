@@ -1,6 +1,6 @@
 import { createEffect } from 'effector'
 import toast from 'react-hot-toast'
-import { handleJWTError } from '@/lib/utils/errors'
+// import { handleJWTError } from '@/lib/utils/errors'
 import {
   IAddProductToCartFx,
   ICartItem,
@@ -15,12 +15,12 @@ export const getCartItemsFx = createEffect(async ({ jwt }: { jwt: string }) => {
       headers: { Authorization: `Bearer ${jwt}` },
     })
 
-    if (data?.error) {
-      const newData: ICartItem[] = await handleJWTError(data.error.name, {
-        repeatRequestMethodName: 'getCartItemsFx',
-      })
-      return newData
-    }
+    // if (data?.error) {
+    //   const newData: ICartItem[] = await handleJWTError(data.error.name, {
+    //     repeatRequestMethodName: 'getCartItemsFx',
+    //   })
+    //   return newData
+    // }
 
     return data
   } catch (error) {
@@ -36,16 +36,16 @@ export const addProductToCartFx = createEffect(
         headers: { Authorization: `Bearer ${jwt}` },
       })
 
-      if (data?.error) {
-        const newData: { newCartItem: ICartItem } = await handleJWTError(
-          data.error.name,
-          {
-            repeatRequestMethodName: 'addProductToCartFx',
-            payload: { ...dataFields, setSpinner },
-          }
-        )
-        return newData
-      }
+      // if (data?.error) {
+      //   // const newData: { newCartItem: ICartItem } = await handleJWTError(
+      //   //   data.error.name,
+      //   //   {
+      //   //     repeatRequestMethodName: 'addProductToCartFx',
+      //   //     payload: { ...dataFields, setSpinner },
+      //   //   }
+      //   // )
+      //   return newData
+      // }
 
       toast.success('Добавлено в корзину!')
       return data
@@ -69,16 +69,16 @@ export const updateCartItemCountFx = createEffect(
         }
       )
 
-      if (data?.error) {
-        const newData: { count: string; id: string } = await handleJWTError(
-          data.error.name,
-          {
-            repeatRequestMethodName: 'updateCartItemCountFx',
-            payload: { id, setSpinner, count },
-          }
-        )
-        return newData
-      }
+      // if (data?.error) {
+      //   const newData: { count: string; id: string } = await handleJWTError(
+      //     data.error.name,
+      //     {
+      //       repeatRequestMethodName: 'updateCartItemCountFx',
+      //       payload: { id, setSpinner, count },
+      //     }
+      //   )
+      //   return newData
+      // }
 
       return data
     } catch (error) {
@@ -97,13 +97,13 @@ export const deleteCartItemFx = createEffect(
         headers: { Authorization: `Bearer ${jwt}` },
       })
 
-      if (data?.error) {
-        const newData: { id: string } = await handleJWTError(data.error.name, {
-          repeatRequestMethodName: 'deleteCartItemFx',
-          payload: { id, setSpinner },
-        })
-        return newData
-      }
+      // if (data?.error) {
+      //   const newData: { id: string } = await handleJWTError(data.error.name, {
+      //     repeatRequestMethodName: 'deleteCartItemFx',
+      //     payload: { id, setSpinner },
+      //   })
+      //   return newData
+      // }
 
       toast.success('Удалено из корзины!')
       return data

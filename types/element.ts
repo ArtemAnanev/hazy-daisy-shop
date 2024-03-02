@@ -1,4 +1,4 @@
-
+import { CustomArrowProps } from "react-slick"
 
 export interface IProductSubtitleProps {
   subtitleClassName?: string

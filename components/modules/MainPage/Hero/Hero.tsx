@@ -1,15 +1,15 @@
 'use client'
-import { Swiper ,SwiperSlide } from "swiper/swiper-react"
-import { EffectCoverflow } from "swiper/modules"
-import { Swiper as SwiperType } from "swiper/types"
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { EffectCoverflow } from 'swiper/modules'
+import { Swiper as SwiperType } from 'swiper/types'
 import 'swiper/css'
 import 'swiper/css/effect-coverflow'
-import { useLang } from "@/hooks/useLang"
+import { useLang } from '@/hooks/useLang'
 import img1 from '@/public/img/black-t.png'
 import img2 from '@/public/img/orange-t.png'
 import img3 from '@/public/img/violet-t.png'
+import HeroSlide from './HeroSlide'
 import styles from '@/styles/main-page/index.module.scss'
-import HeroSlide from "@/components/modules/MainPage/Hero/HeroSlide"
 import stylesForAd from '@/styles/ad/index.module.scss'
 
 const Hero = () => {
