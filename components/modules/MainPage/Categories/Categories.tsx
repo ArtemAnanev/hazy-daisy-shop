@@ -18,11 +18,11 @@ const Categories = () => {
 
   const images = [
     { src: img1, id: 1, title: translations[lang].main_page.category_cloth },
-    {
-      src: img2,
-      id: 2,
-      title: translations[lang].main_page.category_accessories,
-    },
+    // {
+    //   src: img2,
+    //   id: 2,
+    //   title: translations[lang].main_page.category_accessories,
+    // },
   ]
 
 
@@ -48,24 +48,24 @@ const Categories = () => {
                 />
                 <span>{translations[lang].main_page.category_cloth}</span>
               </Link>
-              <div className={styles.categories__left}>
-                <div className={styles.categories__left__top}>
-                  <Link
-                    href='/catalog/accessories'
-                    className={`${styles.categories__left__top__right} ${styles.categories__img} ${imgSpinnerClass}`}
-                  >
-                    <Image
-                      src={img2}
-                      alt='Accessories'
-                      className='transition-opacity opacity-0 duration'
-                      onLoad={handleLoadingImageComplete}
-                    />
-                    <span>
-                      {translations[lang].main_page.category_accessories}
-                    </span>
-                  </Link>
-                </div>
-              </div>
+              {/*<div className={styles.categories__left}>*/}
+              {/*  <div className={styles.categories__left__top}>*/}
+              {/*    <Link*/}
+              {/*      href='/catalog/accessories'*/}
+              {/*      className={`${styles.categories__left__top__right} ${styles.categories__img} ${imgSpinnerClass}`}*/}
+              {/*    >*/}
+              {/*      <Image*/}
+              {/*        src={img2}*/}
+              {/*        alt='Accessories'*/}
+              {/*        className='transition-opacity opacity-0 duration'*/}
+              {/*        onLoad={handleLoadingImageComplete}*/}
+              {/*      />*/}
+              {/*      <span>*/}
+              {/*        {translations[lang].main_page.category_accessories}*/}
+              {/*      </span>*/}
+              {/*    </Link>*/}
+              {/*  </div>*/}
+              {/*</div>*/}
             </>
           )}
           {isMedia490 && <MainSlider images={images} />}

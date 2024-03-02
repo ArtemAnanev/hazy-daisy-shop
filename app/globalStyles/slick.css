@@ -82,6 +82,10 @@
     float: right;
 }
 
+.slick-slide {
+    margin: 0 9px;
+}
+
 .slick-slide img {
     display: block;
 }
