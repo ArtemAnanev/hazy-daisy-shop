@@ -9,6 +9,7 @@ import img1 from '@/public/img/black-t.png'
 import img2 from '@/public/img/orange-t.png'
 import img3 from '@/public/img/violet-t.png'
 import HeroSlide from './HeroSlide'
+import ProductSubtitle from "@/components/elements/ProductSubtitle/ProductSubtitle"
 import styles from '@/styles/main-page/index.module.scss'
 import stylesForAd from '@/styles/ad/index.module.scss'
 
@@ -66,7 +67,7 @@ const Hero = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-        {/*<ProductSubtitle />*/}
+        <ProductSubtitle />
         <h2 className={styles.hero__title}>
           <span
             className={`${styles.hero__title__subtitle} ${
