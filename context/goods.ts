@@ -19,5 +19,5 @@ const goodsSampleInstance = (effect: Effect<void, [], Error>, gate: Gate<unknown
 export const $newProducts = goodsStoreInstance(getNewProductsFx)
 export const $bestsellerProducts = goodsStoreInstance(getBestsellerProductsFx)
 
-goodsStoreInstance(getNewProductsFx, MainPageGate)
-goodsStoreInstance(getBestsellerProductsFx, MainPageGate)
+goodsSampleInstance(getNewProductsFx, MainPageGate)
+goodsSampleInstance(getBestsellerProductsFx, MainPageGate)

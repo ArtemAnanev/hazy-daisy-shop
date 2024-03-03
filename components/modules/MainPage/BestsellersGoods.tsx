@@ -5,7 +5,7 @@ const BestsellersGoods = () => {
   const goods = useUnit($bestsellerProducts)
   console.log(goods)
 
-  return (<div/>)
+  return <div/>
 }
 
 export default BestsellersGoods
