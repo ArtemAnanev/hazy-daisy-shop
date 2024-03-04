@@ -1,7 +1,6 @@
 import { IProductsListItemProps } from "@/types/modules"
 import { useLang } from "@/hooks/useLang"
-import styles from "@/styles/product-list-item/index.module.scss"
-import stylesForAd from '@/styles/ad/index.module.scss'
+
 import Link from "next/link"
 import Image from  'next/image'
 import ProductSubtitle from "@/components/elements/ProductSubtitle/ProductSubtitle"
@@ -10,14 +9,19 @@ import ProductLabel from "@/components/modules/ProductListItem/ProductLabel"
 import ProductItemActionBtn from "@/components/elements/ProductItemActionBtn/ProductItemActionBtn"
 import ProductAvailable from "@/components/elements/ProductAvailable/ProductAvailable"
 
+import styles from "@/styles/product-list-item/index.module.scss"
+import stylesForAd from '@/styles/ad/index.module.scss'
+import { useMediaQuery } from "@/hooks/useMediaQuery"
+
 const ProductListItem = ({item, title}: IProductsListItemProps) => {
   const { lang, translations } = useLang()
   const isTitleForNew = title === translations[lang].main_page.new_title
+  const isMedia800 = useMediaQuery(800)
 
   return (
     <>
-      {item.characteristics.collections === 'line'
-        && item.type === 't-shirts' ? (
+      {item.characteristics.collections === 'line' &&
+      item.type === 't-shirts' ? (
           <li className={styles.list__item_ad}>
             <Link
               className={styles.list__item__inner}
@@ -72,16 +76,18 @@ const ProductListItem = ({item, title}: IProductsListItemProps) => {
          <div className={styles.list__item__actions}>
            <ProductItemActionBtn
              text={translations[lang].product.add_to_favorites}
-             iconClass='action__btn_favorite'
+             iconClass='actions__btn_favorite'
            />
            <ProductItemActionBtn
              text={translations[lang].product.add_to_comparison}
-             iconClass='action__btn_comparison'
+             iconClass='actions__btn_comparison'
            />
-           <ProductItemActionBtn
-             text={translations[lang].product.quick_view}
-             iconClass='action__btn_quick_view'
-           />
+           {!isMedia800 && (
+             <ProductItemActionBtn
+               text={translations[lang].product.quick_view}
+               iconClass='actions__btn_quick_view'
+             />
+           )}
          </div>
          <Link
            href={`/catalog/${item.category}/${item._id}`}

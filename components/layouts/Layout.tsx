@@ -11,7 +11,6 @@ import { $searchModal } from "@/context/modals"
 import { useUnit } from "effector-react"
 import Footer from "@/components/modules/Footer/Footer"
 
-
 const Layout = ({children}: { children: React.ReactNode}) => {
   const isMedia800 = useMediaQuery(800)
   const searchModal = useUnit($searchModal)
