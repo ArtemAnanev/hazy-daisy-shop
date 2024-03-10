@@ -1,5 +1,5 @@
 
-import { IProductAvailableProps } from "@/types/element"
+import { IProductAvailableProps } from "@/types/elements"
 import styles from "@/styles/product-list-item/index.module.scss"
 import { useLang } from "@/hooks/useLang"
 

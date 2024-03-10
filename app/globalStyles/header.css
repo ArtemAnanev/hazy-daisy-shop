@@ -6,8 +6,8 @@
 }
 
 .header__container {
-    padding-top: 48px !important;
-    padding-bottom: 28px !important;
+    padding-top: 28px !important;
+    padding-bottom: 18px !important;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -16,7 +16,7 @@
 .header__logo {
     position: absolute;
     left: 50%;
-    top: 4px;
+    top: 8px;
     transform: translateX(-65%);
 }
 

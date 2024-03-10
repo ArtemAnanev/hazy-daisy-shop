@@ -16,7 +16,6 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@types/mongodb": "^4.0.7",
     "axios": "^1.6.5",
-    "bootstrap": "^4.6.2",
     "dotenv": "^16.4.5",
     "effector": "^23.2.0",
     "effector-react": "^23.2.0",

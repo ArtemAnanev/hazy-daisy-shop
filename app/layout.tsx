@@ -1,17 +1,17 @@
-import type { Metadata } from "next"
-import "./globalStyles/normalize.css"
-import "./globalStyles/globals.css"
-import "./globalStyles/header.css"
-import "./globalStyles/menu.css"
-import "./globalStyles/mobile-navbar.css"
-import "./globalStyles/catalog-menu.css"
-import "./globalStyles/search-modal.css"
-import "./globalStyles/cart-popup.css"
-import "./globalStyles/footer.css"
-import "./globalStyles/slick-theme.css"
-import "./globalStyles/slick.css"
-import Layout from "@/components/layouts/Layout";
-import React from "react";
+import type { Metadata, Viewport } from 'next'
+import PagesLayout from '@/components/layouts/PagesLayout'
+import './globalStyles/normalize.css'
+import './globalStyles/globals.css'
+import './globalStyles/header.css'
+import './globalStyles/menu.css'
+import './globalStyles/mobile-navbar.css'
+import './globalStyles/catalog-menu.css'
+import './globalStyles/search-modal.css'
+import './globalStyles/cart-popup.css'
+import './globalStyles/footer.css'
+import './globalStyles/slick-theme.css'
+import './globalStyles/slick.css'
+import './globalStyles/header-profile.css'
 
 export const metadata: Metadata = {
   title: "Hazy Daisy Shop",
@@ -23,11 +23,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  return (
-    <html lang='en'>
-      <body>
-        <Layout>{children}</Layout>
-      </body>
-    </html>
-  )
+  return <PagesLayout>{children}</PagesLayout>
 }

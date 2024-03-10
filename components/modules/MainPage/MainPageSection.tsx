@@ -4,7 +4,7 @@ import AllLink from "@/components/elements/AllLink/AllLink"
 import styles from '@/styles/main-page/index.module.scss'
 import skeletonStyles from '@/styles/skeleton/index.module.scss'
 import { basePropsForMotion } from "@/constants/motion"
-import ProductListItem from "@/components/modules/ProductListItem/ProductListItem"
+import ProductListItem from "@/components/modules/ProductsListItem/ProductListItem"
 
 const MainPageSection = ({ title, goods, spinner }: IMainPageSectionProps) =>  (
     <section className={styles.main_section}>

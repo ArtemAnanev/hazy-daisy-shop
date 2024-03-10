@@ -1,7 +1,7 @@
 import { MutableRefObject, useEffect, useRef, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import Tooltip from "@/components/elements/Tooltip/Tooltip"
-import { IProductItemActionBtnProps } from "@/types/element"
+import { IProductItemActionBtnProps } from "@/types/elements"
 import styles from "@/styles/product-item-action-btn/index.module.scss"
 import tooltipStyles from "@/styles/tooltip/index.module.scss"
 
