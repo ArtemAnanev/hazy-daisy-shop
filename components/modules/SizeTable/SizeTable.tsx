@@ -100,9 +100,9 @@ const SizeTable = () => {
 
   return (
     <div
-      className={`${styles.size_table} ${
-        isHeaddressType ? styles.size_table_headdress : ''
-      }`}
+      // className={`${styles.size_table}
+      // ${ isHeaddressType ? styles.size_table_headdress : ''}
+      // `}
     >
 
     </div>

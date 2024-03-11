@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from 'next'
+import type { Metadata } from 'next'
 import PagesLayout from '@/components/layouts/PagesLayout'
 import './globalStyles/normalize.css'
 import './globalStyles/globals.css'
@@ -11,7 +11,7 @@ import './globalStyles/cart-popup.css'
 import './globalStyles/footer.css'
 import './globalStyles/slick-theme.css'
 import './globalStyles/slick.css'
-import './globalStyles/header-profile.css'
+import './globalStyles/auth-popup.css'
 
 export const metadata: Metadata = {
   title: "Hazy Daisy Shop",

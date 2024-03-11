@@ -4,7 +4,7 @@ import {useLang} from "@/hooks/useLang";
 import Logo from "@/components/elements/Logo/Logo";
 import Menu from "@/components/modules/Header/Menu"
 import { openMenu, openSearchModal } from "@/context/modals"
-import { addOverflowHiddenFromBody } from "@/lib/utils/common"
+import { addOverflowHiddenFromBody, handleOpenAuthPopup } from "@/lib/utils/common"
 import CartPopup from "@/components/modules/Header/CartPopup/CartPopup"
 
 const Header = () => {
@@ -52,10 +52,14 @@ const Header = () => {
                         <CartPopup />
                     </li>
                     <li className='header__links__item header__links__item--profile'>
-                        <Link
-                            className='header__links__item__btn header__links__item__btn--profile'
-                            href='/profile'
-                        />
+                        {/*<Link*/}
+                        {/*    className='header__links__item__btn header__links__item__btn--profile'*/}
+                        {/*    href='/profile'*/}
+                        {/*/>*/}
+                      <button
+                        className='btn-reset header__links__item__btn header__links__item__btn--profile'
+                        onClick={handleOpenAuthPopup}
+                      />
                     </li>
                 </ul>
             </div>
