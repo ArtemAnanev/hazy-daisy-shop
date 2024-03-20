@@ -129,7 +129,7 @@ export const isItemInList = (array: ICartItem[], productId: string) =>
 export const handleShowSizeTable = (product: IProduct) => {
   setCurrentProduct(product)
   setSizeTableSizes({ sizes: product.sizes, type: product.type })
-  addOverflowHiddenToBody()
+  addOverflowHiddenFromBody()
   showSizeTable()
 }
 

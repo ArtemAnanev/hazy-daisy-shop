@@ -84,7 +84,7 @@ export const loginCheckFx = createEffect(async ({ jwt }: { jwt: string }) => {
     })
 
     if (data?.error) {
-      handleJWTError(data.error.name, {
+      await handleJWTError(data.error.name, {
         repeatRequestMethodName: 'loginCheckFx',
       })
       return

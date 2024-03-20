@@ -29,11 +29,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const openAuthPopup = useUnit($openAuthPopup)
   const authWrapperRef = useRef() as MutableRefObject<HTMLDivElement>
 
-  const handleCloseAuthPopupByTarget = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => {
+  const handleCloseAuthPopupByTarget = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const target = e.target as Element
-
     if (target === authWrapperRef.current) {
       handleCloseAuthPopup()
     }

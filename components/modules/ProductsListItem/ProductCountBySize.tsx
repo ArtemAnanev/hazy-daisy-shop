@@ -12,7 +12,9 @@ const ProductCountBySize = ({
       <span
         className={`${styles.count} ${withCartIcon ? styles.with_icon : ''}`}
       >
-        <span>{getCartItemCountBySize(products, size)}</span>
+        <span>
+          {getCartItemCountBySize(products, size)}
+        </span>
       </span>
     )}
   </>

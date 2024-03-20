@@ -2,7 +2,6 @@ import Image from 'next/image'
 import { ICartItem } from "@/types/cart"
 import Link from "next/link"
 import DeleteCartItemBtn from "@/components/elements/DeleteCartItemBtn/DeleteCartItemBtn"
-import { useCartItemAction } from "@/hooks/useCartItemAction"
 
 const CartPopupItem = ({ item }: { item: ICartItem }) => {
   // const {

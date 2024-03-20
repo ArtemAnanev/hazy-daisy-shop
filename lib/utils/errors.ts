@@ -1,5 +1,6 @@
 import { JWTError } from "@/constants/jwt"
 import { IAddProductsFromLSToCartFx, IAddProductToCartFx, IDeleteCartItemsFx } from "@/types/cart"
+import { refreshTokenFx } from "@/api/auth"
 
 export const handleJWTError = async (errorName: string, repeatRequestAfterRefreshData?: {
   repeatRequestMethodName: string
@@ -8,7 +9,7 @@ export const handleJWTError = async (errorName: string, repeatRequestAfterRefres
 )=>{
   if (errorName === JWTError.EXPIRED_JWT_TOKEN) {
     const auth = JSON.parse(localStorage.getItem('auth') as string)
-    const newTokens = await refreshToken({jwt: auth.refreshToken})
+    const newTokens = await refreshTokenFx({jwt: auth.refreshToken})
     if (repeatRequestAfterRefreshData) {
       const {repeatRequestMethodName, payload} = repeatRequestAfterRefreshData
       switch (repeatRequestMethodName) {

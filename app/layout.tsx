@@ -12,6 +12,7 @@ import './globalStyles/footer.css'
 import './globalStyles/slick-theme.css'
 import './globalStyles/slick.css'
 import './globalStyles/auth-popup.css'
+import './globalStyles/header-profile.css'
 
 export const metadata: Metadata = {
   title: "Hazy Daisy Shop",

@@ -14,6 +14,18 @@
   dependencies:
     regenerator-runtime "^0.14.0"
 
+"@eartho/one-client-js@^1.2.1":
+  version "1.3.6"
+  resolved "https://registry.yarnpkg.com/@eartho/one-client-js/-/one-client-js-1.3.6.tgz#14ff4861ba3e7820c0cb69691b3c5c80d6014fb0"
+  integrity sha512-RzKKFVfhtJZqzlaeymVXL7PLuJXfy3NyI0A5nDQhlMhhCy3poBs0LeT942DQoCFis+OWf332pUUwIGzCCUM7Gg==
+
+"@eartho/one-client-react@^1.1.6":
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/@eartho/one-client-react/-/one-client-react-1.1.6.tgz#51ba39f24e0468d381c51dc0e9f38c6124cac0cb"
+  integrity sha512-0UEFgtMO7eOaBNlNSSfeWHQ7ClFtSlL0tmxzSOB7SSs4NyC1jlPeS9TFkKELgC3UyHHoXzRDRgkE21EBORQ2UQ==
+  dependencies:
+    "@eartho/one-client-js" "^1.2.1"
+
 "@emnapi/runtime@^0.45.0":
   version "0.45.0"
   resolved "https://registry.yarnpkg.com/@emnapi/runtime/-/runtime-0.45.0.tgz#e754de04c683263f34fd0c7f32adfe718bbe4ddd"
@@ -2290,6 +2302,11 @@ next@14.1.0:
     "@next/swc-win32-arm64-msvc" "14.1.0"
     "@next/swc-win32-ia32-msvc" "14.1.0"
     "@next/swc-win32-x64-msvc" "14.1.0"
+
+nodemailer@^6.9.12:
+  version "6.9.12"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.9.12.tgz#48560eaf3575f8b0215eb38a45ca9025ffad2314"
+  integrity sha512-pnLo7g37Br3jXbF0bl5DekBJihm2q+3bB3l2o/B060sWmb5l+VqeScAQCBqaQ+5ezRZFzW5SciZNGdRDEbq89w==
 
 normalize-path@^3.0.0, normalize-path@~3.0.0:
   version "3.0.0"

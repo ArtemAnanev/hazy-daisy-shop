@@ -15,15 +15,16 @@ import {
 import { $openAuthPopup } from '@/context/auth'
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import { EarthoOneProvider } from "@eartho/one-client-react"
 
 const PagesLayout = ({ children }: { children: React.ReactNode }) => {
-  // const [isClient, setIsClient] = useState(false)
+  const [isClient, setIsClient] = useState(false)
   // const [cookieAlertOpen, setCookieAlertOpen] = useState(false)
   const showQuickViewModal = useUnit($showQuickViewModal)
   const showSizeTable = useUnit($showSizeTable)
   const openAuthPopup = useUnit($openAuthPopup)
 
-  // useEffect(() => setIsClient(true), [])
+  useEffect(() => setIsClient(true), [])
 
   const handleCloseQuickViewModal = () => {
     removeOverflowHiddenFromBody()
@@ -41,6 +42,8 @@ const PagesLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
+      { isClient ? (
+        <EarthoOneProvider clientId={`${process.env.NEXT_PUBLIC_OAUTH_CLIENT_ID}`}>
           <html lang='en'>
           <body>
           <Layout>{children}</Layout>
@@ -74,12 +77,15 @@ const PagesLayout = ({ children }: { children: React.ReactNode }) => {
           <Toaster position='top-center' reverseOrder={false} />
           </body>
           </html>
-      {/*) : (*/}
-      {/*  <html lang='en'>*/}
-      {/*  <body>*/}
-      {/*  <></>*/}
-      {/*  </body>*/}
-      {/*  </html>*/}
+        </EarthoOneProvider>
+
+      ) : (
+        <html lang='en'>
+          <body>
+            <></>
+          </body>
+        </html>
+      )}
     </>
   )
 }
