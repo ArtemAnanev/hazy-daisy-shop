@@ -4,7 +4,7 @@ import { showSizeTable, $showQuickViewModal } from '@/context/modals'
 import { ISelectedSizes } from '@/types/common'
 import { setSizeTableSizes } from '@/context/sizeTable'
 import { useLang } from '@/hooks/useLang'
-import { addOverflowHiddenFromBody } from "@/lib/utils/common"
+import { addOverflowHiddenToBody } from "@/lib/utils/common"
 
 const ProductSizeTableBtn = ({ sizes, type, className }: ISelectedSizes) => {
   const { lang, translations } = useLang()
@@ -12,7 +12,7 @@ const ProductSizeTableBtn = ({ sizes, type, className }: ISelectedSizes) => {
 
   const handleShowSizeTable = () => {
     if (!showQuickViewModal) {
-      addOverflowHiddenFromBody()
+      addOverflowHiddenToBody()
     }
 
     setSizeTableSizes({ sizes, type })

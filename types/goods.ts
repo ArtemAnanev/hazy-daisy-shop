@@ -10,7 +10,6 @@ export interface IProductSizesItemProps {
   selectedSize: string
   setSelectedSize: (arg0: string) => void
   currentCartItems: ICartItem[]
-  // currentCartItems: []
 }
 
 export interface IProductCounterProps {
@@ -38,3 +37,4 @@ export interface IProductCountBySizeProps {
   size: string
   withCartIcon?: boolean
 }
+

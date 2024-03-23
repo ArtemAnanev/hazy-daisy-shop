@@ -1,34 +1,34 @@
-import React, { useState } from "react"
-import { useCartAction } from "@/hooks/useCartAction"
-import { useUnit } from "effector-react"
-import { $sizeTableSizes } from "@/context/sizeTable"
-
-import { $showQuickViewModal } from "@/context/modals"
-import { useLang } from "@/hooks/useLang"
-
+/* eslint-disable prettier/prettier */
+/* eslint-disable indent */
+import toast from 'react-hot-toast'
+import { useUnit } from 'effector-react'
+import { $sizeTableSizes } from '@/context/sizeTable'
+import { useCartAction } from '@/hooks/useCartAction'
+import { $showQuickViewModal } from '@/context/modals'
+import { closeSizeTableByCheck, isUserAuth } from '@/lib/utils/common'
+import { useLang } from '@/hooks/useLang'
+import AddToCartBtn from '../ProductsListItem/AddToCartBtn'
+import ProductCountBySize from '../ProductsListItem/ProductCountBySize'
+import { $favorites, $favoritesFromLS, $isAddToFavorites, addProductToFavorites } from '@/context/favorites'
+import { useGoodsByAuth } from '@/hooks/useGoodsByAuth'
+import { addFavoriteItemToLS } from '@/lib/utils/favorites'
+import { useFavoritesAction } from '@/hooks/useFavoritesAction'
 import styles from '@/styles/size-table/index.module.scss'
-import { closeSizeTableByCheck } from "@/lib/utils/common"
-import { number } from "prop-types"
-import AddToCartBtn from "@/components/modules/ProductsListItem/AddToCartBtn"
-
-
+import React from "react"
 
 const SizeTable = () => {
   const { lang, translations } = useLang()
   const showQuickViewModal = useUnit($showQuickViewModal)
-
-  const [sSize, setSSize] = useState(false)
-  const [mSize, setMSize] = useState(false)
-  const [lSize, setLSize] = useState(false)
-  const [xlSize, setXLSize] = useState(false)
-  const [xxlSize, setXXLSize] = useState(false)
-  const {
-    selectedSize,
-    setSelectedSize,
-    product } = useCartAction()
+  // const [sSize, setSSize] = useState(false)
+  // const [mSize, setMSize] = useState(false)
+  // const [lSize, setLSize] = useState(false)
+  // const [xlSize, setXLSize] = useState(false)
+  // const [xxlSize, setXXLSize] = useState(false)
+  const { selectedSize, setSelectedSize, handleAddToCart, cartItemBySize, addToCartSpinner,
+  currentCartItems, updateCountSpinner} = useCartAction(true)
   const productSizes = useUnit($sizeTableSizes)
   const isHeaddressType = productSizes.type === 'headdress'
-
+  const isAnySizeSelected = sSize || lSize || mSize || xlSize || xxlSize || selectedSize
 
 
   const handleSelectSSize = () => setSelectedSize('s')
@@ -163,6 +163,8 @@ const SizeTable = () => {
 
   const handleCloseSizeTable = () => closeSizeTableByCheck(showQuickViewModal)
 
+  const addToCart = () => handleAddToCart(+(cartItemBySize?.count || 1))
+
   const trProps = (
     item:
       | {
@@ -236,7 +238,13 @@ const SizeTable = () => {
                   headdressSizesItem as React.HTMLAttributes<HTMLTableRowElement>))}
             >
               <td>{headdressSizesItem.headCircumference}</td>
-              <td>{headdressSizesItem.manufacturerSize}</td>
+              <td>
+                <ProductCountBySize
+                  products={currentCartItems}
+                  size={headdressSizesItem.manufacturerSize}
+                />
+                {headdressSizesItem.manufacturerSize}
+              </td>
             </tr>
           ))
             : dressSizes.map((item)=>(
@@ -250,7 +258,13 @@ const SizeTable = () => {
               <td>{item.manufacturerSize}</td>
               <td>{item.bust}</td>
               <td>{item.waist}</td>
-              <td>{item.hipGirth}</td>
+              <td>
+                <ProductCountBySize
+                  products={currentCartItems}
+                  size={item.manufacturerSize}
+                />
+                {item.hipGirth}
+              </td>
             </tr>
           ))}
           </tbody>
@@ -258,6 +272,9 @@ const SizeTable = () => {
       </div>
       <AddToCartBtn
         className={styles.size_table__btn}
+        handleAddToCart={addToCart}
+        addToCartSpinner={addToCartSpinner || updateCountSpinner}
+        btnDisabled={!isAnySizeSelected || addToCartSpinner || updateCountSpinner}
         text={translations[lang].product.to_cart}
       />
     </div>

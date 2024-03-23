@@ -2,11 +2,7 @@ import { EventCallable } from 'effector'
 import toast from 'react-hot-toast'
 import { closeAuthPopup, openAuthPopup, setIsAuth } from '@/context/auth'
 import { setCurrentProduct } from '@/context/goods'
-import {
-  closeSearchModal,
-  closeSizeTable,
-  showSizeTable,
-} from '@/context/modals'
+import { closeSearchModal, closeSizeTable, showSizeTable } from '@/context/modals'
 import { setSizeTableSizes } from '@/context/sizeTable'
 import { loginCheck } from '@/context/user'
 import { ICartItem } from '@/types/cart'
@@ -17,7 +13,7 @@ export const removeOverflowHiddenFromBody = () => {
   body.classList.remove('overflow-hidden')
 }
 
-export const addOverflowHiddenFromBody = (paddingRight = '') => {
+export const addOverflowHiddenToBody = (paddingRight = '') => {
   const body = document.querySelector('body') as HTMLBodyElement
   body.classList.add('overflow-hidden')
   paddingRight && (body.style.paddingRight = paddingRight)
@@ -81,7 +77,7 @@ export const closeSizeTableByCheck = (showQuickViewModal: boolean) => {
 }
 
 export const handleOpenAuthPopup = () => {
-  addOverflowHiddenFromBody()
+  addOverflowHiddenToBody()
   openAuthPopup()
 }
 
@@ -98,7 +94,6 @@ export const closeAuthPopupWhenSomeModalOpened = (
     closeAuthPopup()
     return
   }
-
   handleCloseAuthPopup()
 }
 
@@ -109,7 +104,6 @@ export const isUserAuth = () => {
     setIsAuth(false)
     return false
   }
-
   return true
 }
 
@@ -129,15 +123,12 @@ export const isItemInList = (array: ICartItem[], productId: string) =>
 export const handleShowSizeTable = (product: IProduct) => {
   setCurrentProduct(product)
   setSizeTableSizes({ sizes: product.sizes, type: product.type })
-  addOverflowHiddenFromBody()
+  addOverflowHiddenToBody()
   showSizeTable()
 }
 
-export const getCartItemCountBySize = (
-  cartItems: [],
-  currentSize: string
-) =>
-{}
+export const getCartItemCountBySize = (cartItems: ICartItem[], currentSize: string) =>
+  cartItems.find((item)=> item.size === currentSize.toLocaleLowerCase()) ?.count || 0
 
 export const deleteProductFromLS = <T>(
   id: string,

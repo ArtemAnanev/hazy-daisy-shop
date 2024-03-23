@@ -33,6 +33,16 @@ const QuickViewModal = () => {
     count,
   } = useCartAction()
   const images = useProductImages(product)
+  // const {
+  //   handleAddToComparison,
+  //   isProductInComparison,
+  //   addToComparisonSpinner,
+  // } = useComparisonAction(product)
+  // const {
+  //   handleAddProductToFavorites,
+  //   addToFavoritesSpinner,
+  //   isProductInFavorites,
+  // } = useFavoritesAction(product)
 
   const handleCloseModal = () => {
     removeOverflowHiddenFromBody()
@@ -40,6 +50,7 @@ const QuickViewModal = () => {
   }
 
   const addToCart = () => handleAddToCart(count)
+
 
   return (
     <div className={styles.modal}>

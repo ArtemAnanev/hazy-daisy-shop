@@ -4,7 +4,7 @@ import {useLang} from "@/hooks/useLang";
 import Logo from "@/components/elements/Logo/Logo";
 import Menu from "@/components/modules/Header/Menu"
 import { openMenu, openSearchModal } from "@/context/modals"
-import { addOverflowHiddenFromBody, handleOpenAuthPopup, triggerLoginCheck } from "@/lib/utils/common"
+import { addOverflowHiddenToBody, handleOpenAuthPopup, triggerLoginCheck } from "@/lib/utils/common"
 import CartPopup from "@/components/modules/Header/CartPopup/CartPopup"
 import HeaderProfile from "@/components/modules/Header/HeaderProfile"
 import { useUnit } from "effector-react"
@@ -14,28 +14,54 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 import { loginCheckFx } from "@/api/auth"
 import { useEffect } from "react"
 import { $user } from "@/context/user"
+import { useCartByAuth } from "@/hooks/useCartByAuth"
+import { setLang } from "@/context/lang"
+import { addProductsFromLSToCart, setCartFromLS } from "@/context/cart"
 
 const Header = () => {
   const { lang, translations } = useLang()
-  const loginCheckSpinner = useUnit(loginCheckFx)
+  const loginCheckSpinner = useUnit(loginCheckFx.pending)
   const isAuth = useUnit($isAuth)
   const user = useUnit($user)
+  const currentCartByAuth = useCartByAuth()
 
-  console.log(user)
+  console.log(currentCartByAuth)
 
   const handleOpenMenu = () => {
-      addOverflowHiddenFromBody()
+      addOverflowHiddenToBody()
       openMenu()
     }
 
   const handleOpenSearchModal = () => {
     openSearchModal()
-    addOverflowHiddenFromBody()
+    addOverflowHiddenToBody()
   }
 
   useEffect(() => {
+    const lang  = JSON.parse(localStorage.getItem('lang') as string)
+    const cart  = JSON.parse(localStorage.getItem('cart') as string)
+
+    if (lang) {
+      if (lang === 'ru' || lang === 'en') { setLang(lang)}
+    }
+
+    if (cart) { setCartFromLS(cart) }
+
     triggerLoginCheck()
   }, [])
+
+  useEffect(() => {
+    if (isAuth) {
+      const cartFromLS = JSON.parse(localStorage.getItem('cart') as string)
+
+      if (cartFromLS && Array.isArray(cartFromLS)){
+        addProductsFromLSToCart({
+          jwt: auth.accessToken,
+          cartItems: cartFromLS,
+        })
+      }
+    }
+  }, [isAuth])
 
     return (
         <header className="header">
@@ -79,10 +105,10 @@ const Header = () => {
                         onClick={handleOpenAuthPopup}
                       />
                       )}
-                        {/*<Link*/}
-                        {/*    className='header__links__item__btn header__links__item__btn--profile'*/}
-                        {/*    href='/profile'*/}
-                        {/*/>*/}
+                        <Link
+                            className='header__links__item__btn header__links__item__btn--profile'
+                            href='/profile'
+                        />
 
                     </li>
                 </ul>

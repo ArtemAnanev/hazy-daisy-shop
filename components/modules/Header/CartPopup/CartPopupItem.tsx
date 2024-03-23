@@ -2,24 +2,27 @@ import Image from 'next/image'
 import { ICartItem } from "@/types/cart"
 import Link from "next/link"
 import DeleteCartItemBtn from "@/components/elements/DeleteCartItemBtn/DeleteCartItemBtn"
+import ProductCounter from "@/components/modules/ProductsListItem/ProductCounter"
+import { useCartItemAction } from "@/hooks/useCartItemAction"
+import { formatPrice } from "@/lib/utils/common"
 
 const CartPopupItem = ({ item }: { item: ICartItem }) => {
-  // const {
-    // deleteSpinner,
-    // increasePriceWithAnimation,
-    // decreasePriceWithAnimation,
-    // count,
-    // setCount,
-    // animatedPrice,
-    // handleDeleteCartItem,
-  // } = useCartItemAction(item)
+  const {
+    deleteSpinner,
+    increasePriceWithAnimation,
+    decreasePriceWithAnimation,
+    count,
+    setCount,
+    animatedPrice,
+    handleDeleteCartItem,
+  } = useCartItemAction(item)
 
   return (
     <>
-      {/*<DeleteCartItemBtn*/}
-      {/*  // btnDisabled={deleteSpinner}*/}
-      {/*  // callback={handleDeleteCartItem}*/}
-      {/*/>*/}
+      <DeleteCartItemBtn
+        btnDisabled={deleteSpinner}
+        callback={()=>''}
+      />
       <div className='cart-list__item__img'>
         <Image src={item.image} alt={item.name} width={96} height={96} />
       </div>
@@ -35,17 +38,17 @@ const CartPopupItem = ({ item }: { item: ICartItem }) => {
           <span>{item.size.toLocaleUpperCase()}</span>
         </Link>
         <div className='cart-list__item__bottom'>
-          {/*<ProductCounter*/}
-          {/*  className='cart-list__item__counter'*/}
-          {/*  count={count}*/}
-          {/*  setCount={setCount}*/}
-          {/*  increasePrice={increasePriceWithAnimation}*/}
-          {/*  decreasePrice={decreasePriceWithAnimation}*/}
-          {/*  cartItem={item}*/}
-          {/*  updateCountAsync*/}
-          {/*/>*/}
+          <ProductCounter
+            className='cart-list__item__counter'
+            count={count}
+            setCount={setCount}
+            increasePrice={increasePriceWithAnimation}
+            decreasePrice={decreasePriceWithAnimation}
+            cartItem={item}
+            updateCountAsync
+          />
           <span className='cart-list__item__price'>
-            {/*{formatPrice(animatedPrice)} ₽*/}
+            {formatPrice(animatedPrice)} ₽
           </span>
         </div>
       </div>

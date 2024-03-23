@@ -2,7 +2,7 @@
 import Link from "next/link"
 import { useLang } from "@/hooks/useLang"
 import { closeCatalogMenu, closeMenu, openCatalogMenu, openMenu } from "@/context/modals"
-import { addOverflowHiddenFromBody } from "@/lib/utils/common"
+import { addOverflowHiddenToBody } from "@/lib/utils/common"
 import CatalogMenu from '../Header/CatalogMenu'
 
 const MobileNavbar = () => {
@@ -14,7 +14,7 @@ const MobileNavbar = () => {
   }
 
   const handleOpenCatalogMenu = () => {
-    addOverflowHiddenFromBody()
+    addOverflowHiddenToBody()
     openCatalogMenu()
     closeMenu()
   }
