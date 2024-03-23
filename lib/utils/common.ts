@@ -46,8 +46,7 @@ export const shuffle = <T>(array: T[]) => {
   return array
 }
 
-export const formatPrice = (x: number) =>
-  x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+export const formatPrice = (x: number) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
 
 export const idGenerator = () => {
   const S4 = () =>
@@ -86,10 +85,7 @@ export const handleCloseAuthPopup = () => {
   closeAuthPopup()
 }
 
-export const closeAuthPopupWhenSomeModalOpened = (
-  showQuickViewModal: boolean,
-  showSizeTable: boolean
-) => {
+export const closeAuthPopupWhenSomeModalOpened = (showQuickViewModal: boolean, showSizeTable: boolean) => {
   if (showQuickViewModal || showSizeTable) {
     closeAuthPopup()
     return
@@ -99,7 +95,6 @@ export const closeAuthPopupWhenSomeModalOpened = (
 
 export const isUserAuth = () => {
   const auth = JSON.parse(localStorage.getItem('auth') as string)
-
   if (!auth?.accessToken) {
     setIsAuth(false)
     return false
@@ -111,14 +106,11 @@ export const triggerLoginCheck = () => {
   if (!isUserAuth()) {
     return
   }
-
   const auth = JSON.parse(localStorage.getItem('auth') as string)
-
   loginCheck({ jwt: auth.accessToken })
 }
 
-export const isItemInList = (array: ICartItem[], productId: string) =>
-  array.some((item) => item.productId === productId)
+export const isItemInList = (array: ICartItem[], productId: string) => array.some((item) => item.productId === productId)
 
 export const handleShowSizeTable = (product: IProduct) => {
   setCurrentProduct(product)
@@ -130,14 +122,8 @@ export const handleShowSizeTable = (product: IProduct) => {
 export const getCartItemCountBySize = (cartItems: ICartItem[], currentSize: string) =>
   cartItems.find((item)=> item.size === currentSize.toLocaleLowerCase()) ?.count || 0
 
-export const deleteProductFromLS = <T>(
-  id: string,
-  key: string,
-  event: EventCallable<T>,
-  setShouldShowEmpty: (arg0: boolean) => void,
-  message: string,
-  withToast = true
-) => {
+export const deleteProductFromLS = <T>(id: string, key: string, event: EventCallable<T>,
+  setShouldShowEmpty: (arg0: boolean) => void, message: string, withToast = true) => {
   let items = JSON.parse(localStorage.getItem(key) as string)
 
   if (!items) {

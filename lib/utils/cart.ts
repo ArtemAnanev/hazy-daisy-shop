@@ -5,12 +5,7 @@ import { IProduct } from '@/types/common'
 import { handleShowSizeTable, idGenerator, isUserAuth } from './common'
 import { addProductToCart, setCartFromLS, setShouldShowEmpty } from '@/context/cart'
 
-export const addItemToCart = (
-  product: IProduct,
-  setSpinner: (arg0: boolean) => void,
-  count: number,
-  selectedSize = ''
-) => {
+export const addItemToCart = (product: IProduct, setSpinner: (arg0: boolean) => void, count: number, selectedSize = '') => {
   if (!isUserAuth()) {
     addCartItemToLS(product, selectedSize, count)
     return
@@ -30,16 +25,10 @@ export const addItemToCart = (
   })
 }
 
-export const addCartItemToLS = (
-  product: IProduct,
-  selectedSize: string,
-  count: number,
-  withToast = true) => {
+export const addCartItemToLS = (product: IProduct, selectedSize: string, count: number, withToast = true) => {
   let cartFromLS: ICartItem[] = JSON.parse( localStorage.getItem('cart') as string )
   const clientId = idGenerator()
-  if (!cartFromLS) {
-    cartFromLS = []
-  }
+  if (!cartFromLS) { cartFromLS = [] }
   setShouldShowEmpty(false)
 
   const existingItem = cartFromLS.find(
@@ -85,12 +74,7 @@ export const addCartItemToLS = (
   return clientId
 }
 
-export const addProductToCartBySizeTable = (
-  product: IProduct,
-  setSpinner: (arg0: boolean) => void,
-  count: number,
-  selectedSize = ''
-) => {
+export const addProductToCartBySizeTable = (product: IProduct, setSpinner: (arg0: boolean) => void, count: number, selectedSize = '') => {
   if (productsWithoutSizes.includes(product.type)) {
     addItemToCart(product, setSpinner, count)
     return
@@ -117,5 +101,4 @@ export const updateCartItemCountInLS = (cartItemId: string, count: number) => {
   setCartFromLS(updatedCart as ICartItem[])
 }
 
-export const countWholeCartItemsAmount = (cart: ICartItem[]) =>
-  cart.reduce((defaultCount, item) => defaultCount + +item.count, 0)
+export const countWholeCartItemsAmount = (cart: ICartItem[]) => cart.reduce((defaultCount, item) => defaultCount + +item.count, 0)

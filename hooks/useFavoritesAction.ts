@@ -15,10 +15,7 @@ import { addFavoriteItemToLS } from '@/lib/utils/favorites'
 export const useFavoritesAction = (product: IProduct) => {
   const [addToFavoritesSpinner, setAddToFavoritesSpinner] = useState(false)
   const currentFavoritesByAuth = useGoodsByAuth($favorites, $favoritesFromLS)
-  const existingItem = currentFavoritesByAuth.find(
-    (item) => item.productId === product._id
-  )
-
+  const existingItem = currentFavoritesByAuth.find((item) => item.productId === product._id)
   const handleAddProductToFavorites = () => {
     if (productsWithoutSizes.includes(product.type)) {
       if (existingItem) {

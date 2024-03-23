@@ -5,15 +5,8 @@ import { deleteProductFromCart, setCartFromLS } from "@/context/cart"
 export const useCartItemAction = (cartItem: ICartItem) => {
   const [deleteSpinner, setDeleteSpinner] = useState(false)
   const [count, setCount] = useState(+cartItem.count)
-  const { price, increasePrice, decreasePrice } = usePriceAction(
-    +cartItem.count,
-    +cartItem.price
-  )
-  const {
-    setFrom,
-    setTo,
-    value: animatedPrice,
-  } = usePriceAnimation(+cartItem.price, +cartItem.price * +cartItem.count)
+  const { price, increasePrice, decreasePrice } = usePriceAction(+cartItem.count, +cartItem.price)
+  const { setFrom, setTo, value: animatedPrice, } = usePriceAnimation(+cartItem.price, +cartItem.price * +cartItem.count)
 
   const increasePriceWithAnimation = () => {
     setFrom(price)
@@ -29,12 +22,7 @@ export const useCartItemAction = (cartItem: ICartItem) => {
 
   const handleDeleteCartItem = () => {
     if (!isUserAuth()) {
-      deleteProductFromLS(
-        cartItem.clientId,
-        'cart',
-        setCartFromLS,
-        'Удалено из карзины!'
-      )
+      deleteProductFromLS(cartItem.clientId, 'cart', setCartFromLS, 'Удалено из карзины!')
       return
     }
 

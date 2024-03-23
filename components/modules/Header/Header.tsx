@@ -40,15 +40,10 @@ const Header = () => {
   useEffect(() => {
     const lang  = JSON.parse(localStorage.getItem('lang') as string)
     const cart  = JSON.parse(localStorage.getItem('cart') as string)
-
-    if (lang) {
-      if (lang === 'ru' || lang === 'en') { setLang(lang)}
+    if (lang) {if (lang === 'ru' || lang === 'en') { setLang(lang)}
     }
-
     if (cart) { setCartFromLS(cart) }
-
-    triggerLoginCheck()
-  }, [])
+    triggerLoginCheck()}, [])
 
   useEffect(() => {
     if (isAuth) {
@@ -97,7 +92,7 @@ const Header = () => {
                     <li className='header__links__item header__links__item--profile'>
                       {isAuth ? (
                         <HeaderProfile />
-                      ): !loginCheckSpinner ? (
+                      ): loginCheckSpinner ? (
                         <FontAwesomeIcon icon={faSpinner} spin />
                       ): (
                         <button
@@ -105,11 +100,6 @@ const Header = () => {
                         onClick={handleOpenAuthPopup}
                       />
                       )}
-                        <Link
-                            className='header__links__item__btn header__links__item__btn--profile'
-                            href='/profile'
-                        />
-
                     </li>
                 </ul>
             </div>

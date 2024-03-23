@@ -35,10 +35,7 @@ export const generateTokens = (name: string, email: string) => {
   return { accessToken, refreshToken }
 }
 
-export const createUserAndGenerateTokens = async (
-  db: Db,
-  reqBody: { name: string; password: string; email: string }
-) => {
+export const createUserAndGenerateTokens = async (db: Db, reqBody: { name: string; password: string; email: string }) => {
   const salt = bcrypt.genSaltSync(10)
   const hash = bcrypt.hashSync(reqBody.password, salt)
   await db.collection('users').insertOne({
@@ -80,8 +77,7 @@ export const isValidAccessToken = async (token: string | undefined) => {
 export const parseJwt = (token: string) =>
   JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString())
 
-export const getDataFromDBByCollection = async (clientPromise: Promise<MongoClient>, req: Request, collection: string
-) => {
+export const getDataFromDBByCollection = async (clientPromise: Promise<MongoClient>, req: Request, collection: string) => {
   const { db, validatedTokenResult, token } = await getAuthRouteData(clientPromise, req, false)
 
   if (validatedTokenResult.status !== 200) {
@@ -97,20 +93,11 @@ export const getDataFromDBByCollection = async (clientPromise: Promise<MongoClie
   return NextResponse.json(items)
 }
 
-export const replaceProductsInCollection = async (
-  clientPromise: Promise<MongoClient>,
-  req: Request,
-  collection: string
-) => {
-  const { db, validatedTokenResult, reqBody, token } = await getAuthRouteData(
-    clientPromise,
-    req
-  )
-
+export const replaceProductsInCollection = async (clientPromise: Promise<MongoClient>, req: Request, collection: string) => {
+  const { db, validatedTokenResult, reqBody, token } = await getAuthRouteData(clientPromise, req)
   if (validatedTokenResult.status !== 200) {
     return NextResponse.json(validatedTokenResult)
   }
-
   if (!reqBody.items) {
     return NextResponse.json({
       message: 'items fields is required',
@@ -143,24 +130,12 @@ export const replaceProductsInCollection = async (
   })
 }
 
-export const deleteProduct = async (
-  clientPromise: Promise<MongoClient>,
-  req: Request,
-  id: string,
-  collection: string
-) => {
-  const { db, validatedTokenResult } = await getAuthRouteData(
-    clientPromise,
-    req,
-    false
-  )
-
+export const deleteProduct = async (clientPromise: Promise<MongoClient>, req: Request, id: string, collection: string) => {
+  const { db, validatedTokenResult } = await getAuthRouteData( clientPromise, req, false)
   if (validatedTokenResult.status !== 200) {
     return NextResponse.json(validatedTokenResult)
   }
-
   await db.collection(collection).deleteOne({ _id: new ObjectId(id) })
-
   return NextResponse.json({ status: 204, id })
 }
 
