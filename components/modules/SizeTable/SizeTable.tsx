@@ -19,11 +19,11 @@ import React from "react"
 const SizeTable = () => {
   const { lang, translations } = useLang()
   const showQuickViewModal = useUnit($showQuickViewModal)
-  // const [sSize, setSSize] = useState(false)
-  // const [mSize, setMSize] = useState(false)
-  // const [lSize, setLSize] = useState(false)
-  // const [xlSize, setXLSize] = useState(false)
-  // const [xxlSize, setXXLSize] = useState(false)
+  const [sSize, setSSize] = useState(false)
+  const [mSize, setMSize] = useState(false)
+  const [lSize, setLSize] = useState(false)
+  const [xlSize, setXLSize] = useState(false)
+  const [xxlSize, setXXLSize] = useState(false)
   const { selectedSize, setSelectedSize, handleAddToCart, cartItemBySize, addToCartSpinner,
   currentCartItems, updateCountSpinner} = useCartAction(true)
   const productSizes = useUnit($sizeTableSizes)
