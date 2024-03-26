@@ -1,6 +1,11 @@
 import { useState } from "react"
 import { ICartItem } from "@/types/cart"
 import { deleteProductFromCart, setCartFromLS } from "@/context/cart"
+import {usePriceAction} from "@/hooks/usePriceAction"
+import {usePriceAnimation} from "@/hooks/usePriceAnimation"
+import {isUserAuth, deleteProductFromLS} from "@/lib/utils/common"
+import { setShouldShowEmpty } from "@/context/cart"
+
 
 export const useCartItemAction = (cartItem: ICartItem) => {
   const [deleteSpinner, setDeleteSpinner] = useState(false)
@@ -40,6 +45,7 @@ export const useCartItemAction = (cartItem: ICartItem) => {
     deleteSpinner,
     price,
     count,
+    setShouldShowEmpty,
     setCount,
     increasePrice,
     decreasePrice,

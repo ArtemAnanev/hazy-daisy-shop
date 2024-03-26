@@ -4,6 +4,7 @@ import { ICartItem } from '@/types/cart'
 import { IProduct } from '@/types/common'
 import { handleShowSizeTable, idGenerator, isUserAuth } from './common'
 import { addProductToCart, setCartFromLS, setShouldShowEmpty } from '@/context/cart'
+import { productsWithoutSizes } from "@/constants/product"
 
 export const addItemToCart = (product: IProduct, setSpinner: (arg0: boolean) => void, count: number, selectedSize = '') => {
   if (!isUserAuth()) {

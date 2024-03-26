@@ -1,7 +1,6 @@
 import QuickViewModalSliderArrow from "@/components/elements/QuickViewModalSliderArrow/QuickViewModalSliderArrow"
 import Slider from "react-slick"
 import { useMediaQuery } from "@/hooks/useMediaQuery"
-import { inspect } from "util"
 import styles from '@/styles/quick-view-modal/index.module.scss'
 import React from "react"
 

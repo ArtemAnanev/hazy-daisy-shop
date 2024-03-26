@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
 import { forwardRef } from 'react'
 import { getCartItemsFx } from '@/api/cart'
-import { withClickOutside } from '@/components/modules/hocs/withClickOutside'
+import { withClickOutside } from '@/components/hocs/withClickOutside'
 import { useLang } from '@/hooks/useLang'
 import { IWrappedComponentProps } from '@/types/hocs'
 import CartPopupItem from './CartPopupItem'
@@ -13,13 +13,14 @@ import { useTotalPrice } from '@/hooks/useTotalPrice'
 import { formatPrice } from '@/lib/utils/common'
 import { $cart, $cartFromLs } from '@/context/cart'
 import { useGoodsByAuth } from '@/hooks/useGoodsByAuth'
+import { useCartByAuth } from "@/hooks/useCartByAuth"
 
 const CartPopup = forwardRef<HTMLDivElement, IWrappedComponentProps>(
   ({ open, setOpen }, ref) => {
     const { lang, translations } = useLang()
     const handleShowPopup = () => setOpen(true)
     const spinner = useUnit(getCartItemsFx.pending)
-    const currentCartByAuth = useGoodsByAuth($cart, $cartFromLs)
+    const currentCartByAuth = useCartByAuth()
     const { animatedPrice } = useTotalPrice()
 
     const handleHidePopup = () => setOpen(false)
@@ -27,7 +28,8 @@ const CartPopup = forwardRef<HTMLDivElement, IWrappedComponentProps>(
     return (
       <div className='cart-popup' ref={ref}>
         <Link
-          className='header__links__item__btn header__links__item__btn--cart'
+          className={`header__links__item__btn header__links__item__btn--cart
+           ${currentCartByAuth.length ? 'not-empty' : '' }`}
           href='/cart'
           onMouseEnter={handleShowPopup}
         >

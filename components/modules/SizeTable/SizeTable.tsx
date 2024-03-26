@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable indent */
 import toast from 'react-hot-toast'
 import { useUnit } from 'effector-react'
 import { $sizeTableSizes } from '@/context/sizeTable'
@@ -14,7 +12,7 @@ import { useGoodsByAuth } from '@/hooks/useGoodsByAuth'
 import { addFavoriteItemToLS } from '@/lib/utils/favorites'
 import { useFavoritesAction } from '@/hooks/useFavoritesAction'
 import styles from '@/styles/size-table/index.module.scss'
-import React from "react"
+import {useState} from "react"
 
 const SizeTable = () => {
   const { lang, translations } = useLang()
@@ -164,6 +162,10 @@ const SizeTable = () => {
   const handleCloseSizeTable = () => closeSizeTableByCheck(showQuickViewModal)
 
   const addToCart = () => handleAddToCart(+(cartItemBySize?.count || 1))
+
+  const auth = JSON.parse(localStorage.getItem('auth') as string)
+
+  // const clientId = addFavoriteItemToLS(product, selectedSize, false)
 
   const trProps = (
     item:

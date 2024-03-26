@@ -1,6 +1,6 @@
 import { forwardRef } from "react"
 import { IWrappedComponentProps } from "@/types/hocs"
-import { withClickOutside } from "@/components/modules/hocs/withClickOutside"
+import { withClickOutside } from "@/components/hocs/withClickOutside"
 import { useUserLogout } from "@/hooks/useLogout"
 import { useUserAvatar } from "@/hooks/useUserAvatar"
 import Image from "next/image"

@@ -17,6 +17,7 @@ import ProductSizesItem from "@/components/modules/ProductsListItem/ProductSizes
 import ProductCounter from "@/components/modules/ProductsListItem/ProductCounter"
 import AddToCartBtn from "@/components/modules/ProductsListItem/AddToCartBtn"
 
+
 const QuickViewModal = () => {
   const { lang, translations } = useLang()
   const {

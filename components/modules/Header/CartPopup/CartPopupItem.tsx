@@ -14,7 +14,8 @@ const CartPopupItem = ({ item }: { item: ICartItem }) => {
     count,
     setCount,
     animatedPrice,
-    handleDeleteCartItem
+    handleDeleteCartItem,
+    useP
   } = useCartItemAction(item)
 
   return (

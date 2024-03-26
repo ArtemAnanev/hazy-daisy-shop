@@ -16,7 +16,7 @@ import { useEffect } from "react"
 import { $user } from "@/context/user"
 import { useCartByAuth } from "@/hooks/useCartByAuth"
 import { setLang } from "@/context/lang"
-import { addProductsFromLSToCart, setCartFromLS } from "@/context/cart"
+import { addProductsFromLSToCart, setCartFromLS, setShouldShowEmpty } from "@/context/cart"
 
 const Header = () => {
   const { lang, translations } = useLang()
@@ -40,13 +40,24 @@ const Header = () => {
   useEffect(() => {
     const lang  = JSON.parse(localStorage.getItem('lang') as string)
     const cart  = JSON.parse(localStorage.getItem('cart') as string)
-    if (lang) {if (lang === 'ru' || lang === 'en') { setLang(lang)}
+    if (lang) {
+      if (lang === 'ru' || lang === 'en') {
+        setLang(lang)
+      }
     }
-    if (cart) { setCartFromLS(cart) }
-    triggerLoginCheck()}, [])
+    if (cart && Array.isArray(cart)) {
+      if (!cart.length){
+        setShouldShowEmpty(true)
+        return
+      }
+      setCartFromLS(cart)
+    }
+    triggerLoginCheck()
+  }, [])
 
   useEffect(() => {
     if (isAuth) {
+      const auth = JSON.parse(localStorage.getItem('auth') as string)
       const cartFromLS = JSON.parse(localStorage.getItem('cart') as string)
 
       if (cartFromLS && Array.isArray(cartFromLS)){
