@@ -3,10 +3,19 @@ import toast from 'react-hot-toast'
 import { ICartItem } from '@/types/cart'
 import { IProduct } from '@/types/common'
 import { handleShowSizeTable, idGenerator, isUserAuth } from './common'
-import { addProductToCart, setCartFromLS, setShouldShowEmpty } from '@/context/cart'
-import { productsWithoutSizes } from "@/constants/product"
+import {
+  addProductToCart,
+  setCartFromLS,
+  setShouldShowEmpty,
+} from '@/context/cart'
+import { productsWithoutSizes } from '@/constants/product'
 
-export const addItemToCart = (product: IProduct, setSpinner: (arg0: boolean) => void, count: number, selectedSize = '') => {
+export const addItemToCart = (
+  product: IProduct,
+  setSpinner: (arg0: boolean) => void,
+  count: number,
+  selectedSize = ''
+) => {
   if (!isUserAuth()) {
     addCartItemToLS(product, selectedSize, count)
     return
@@ -26,28 +35,41 @@ export const addItemToCart = (product: IProduct, setSpinner: (arg0: boolean) => 
   })
 }
 
-export const addCartItemToLS = (product: IProduct, selectedSize: string, count: number, withToast = true) => {
-  let cartFromLS: ICartItem[] = JSON.parse( localStorage.getItem('cart') as string )
+export const addCartItemToLS = (
+  product: IProduct,
+  selectedSize: string,
+  count: number,
+  withToast = true
+) => {
+  let cartFromLS: ICartItem[] = JSON.parse(
+    localStorage.getItem('cart') as string
+  )
   const clientId = idGenerator()
-  if (!cartFromLS) { cartFromLS = [] }
+
+  if (!cartFromLS) {
+    cartFromLS = []
+  }
+
   setShouldShowEmpty(false)
 
   const existingItem = cartFromLS.find(
     (item) => item.productId === product._id && item.size === selectedSize
   )
-  if (existingItem) {
 
+  if (existingItem) {
     const updatedCountWithSize =
       existingItem.count !== count ? count : +existingItem.count + 1
-
     const updatedCart = cartFromLS.map((item) =>
       item.productId === existingItem.productId && item.size === selectedSize
-        ? { ...existingItem, count: selectedSize.length
+        ? {
+          ...existingItem,
+          count: selectedSize.length
             ? updatedCountWithSize
             : +existingItem.count + 1,
         }
         : item
     )
+
     localStorage.setItem('cart', JSON.stringify(updatedCart))
     setCartFromLS(updatedCart)
     toast.success('Добавлено в корзину')
@@ -72,18 +94,26 @@ export const addCartItemToLS = (product: IProduct, selectedSize: string, count: 
   localStorage.setItem('cart', JSON.stringify(cart))
   setCartFromLS(cart as ICartItem[])
   withToast && toast.success('Добавлено в корзину')
+
   return clientId
 }
 
-export const addProductToCartBySizeTable = (product: IProduct, setSpinner: (arg0: boolean) => void, count: number, selectedSize = '') => {
+export const addProductToCartBySizeTable = (
+  product: IProduct,
+  setSpinner: (arg0: boolean) => void,
+  count: number,
+  selectedSize = ''
+) => {
   if (productsWithoutSizes.includes(product.type)) {
     addItemToCart(product, setSpinner, count)
     return
   }
+
   if (selectedSize) {
     addItemToCart(product, setSpinner, count, selectedSize)
     return
   }
+
   handleShowSizeTable(product)
 }
 
@@ -102,4 +132,5 @@ export const updateCartItemCountInLS = (cartItemId: string, count: number) => {
   setCartFromLS(updatedCart as ICartItem[])
 }
 
-export const countWholeCartItemsAmount = (cart: ICartItem[]) => cart.reduce((defaultCount, item) => defaultCount + +item.count, 0)
+export const countWholeCartItemsAmount = (cart: ICartItem[]) =>
+  cart.reduce((defaultCount, item) => defaultCount + +item.count, 0)

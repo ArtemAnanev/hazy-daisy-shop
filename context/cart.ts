@@ -1,8 +1,18 @@
 import { createDomain, createEffect, sample } from 'effector'
 import toast from 'react-hot-toast'
-import { addProductToCartFx, deleteCartItemFx, getCartItemsFx, updateCartItemCountFx } from '@/api/cart'
+import {
+  addProductToCartFx,
+  deleteCartItemFx,
+  getCartItemsFx,
+  updateCartItemCountFx,
+} from '@/api/cart'
 import { handleJWTError } from '@/lib/utils/errors'
-import { IAddProductToCartFx, IAddProductsFromLSToCartFx, ICartItem, IDeleteCartItemsFx, IUpdateCartItemCountFx
+import {
+  IAddProductToCartFx,
+  IAddProductsFromLSToCartFx,
+  ICartItem,
+  IDeleteCartItemsFx,
+  IUpdateCartItemCountFx,
 } from '@/types/cart'
 import api from '../api/apiInstance'
 
@@ -41,7 +51,8 @@ const cart = createDomain()
 export const loadCartItems = cart.createEvent<{ jwt: string }>()
 export const setCartFromLS = cart.createEvent<ICartItem[]>()
 export const addProductToCart = cart.createEvent<IAddProductToCartFx>()
-export const addProductsFromLSToCart = cart.createEvent<IAddProductsFromLSToCartFx>()
+export const addProductsFromLSToCart =
+  cart.createEvent<IAddProductsFromLSToCartFx>()
 export const updateCartItemCount = cart.createEvent<IUpdateCartItemCountFx>()
 export const setTotalPrice = cart.createEvent<number>()
 export const deleteProductFromCart = cart.createEvent<IDeleteCartItemsFx>()

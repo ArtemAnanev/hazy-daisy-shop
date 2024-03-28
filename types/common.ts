@@ -19,7 +19,7 @@ export interface IProduct {
   errorMessage?: string
 }
 
-interface ISizes {
+export interface ISizes {
   s: boolean
   m: boolean
   l: boolean

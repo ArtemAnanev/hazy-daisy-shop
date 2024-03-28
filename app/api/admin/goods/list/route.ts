@@ -23,16 +23,16 @@ export async function GET(req: Request) {
 
     const [clothes, accessories] = await Promise.allSettled([
       getFilteredCollection('clothes'),
-      // getFilteredCollection('accessories')
+      getFilteredCollection('accessories')
     ])
     if (clothes.status !== 'fulfilled'
-      // || accessories.status !== 'fulfilled'
+      || accessories.status !== 'fulfilled'
     ) {
       return NextResponse.json({count: 0, items: []}, corsHeaders)
     }
 
     const allGoods = [...clothes.value,
-      // ...accessories.value
+      ...accessories.value
     ]
 
     return NextResponse.json({
@@ -45,3 +45,5 @@ export async function GET(req: Request) {
     throw new Error((error as Error).message )
   }
 }
+
+export const dynamic = 'force-dynamic'

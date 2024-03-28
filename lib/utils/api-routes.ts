@@ -78,10 +78,10 @@ export const parseJwt = (token: string) =>
   JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString())
 
 export const getDataFromDBByCollection = async (clientPromise: Promise<MongoClient>, req: Request, collection: string) => {
-  const { db, validatedTokenResult, token } = await getAuthRouteData(clientPromise, req, false)
+  const { db, validateTokenResult, token } = await getAuthRouteData(clientPromise, req, false)
 
-  if (validatedTokenResult.status !== 200) {
-    return NextResponse.json(validatedTokenResult)
+  if (validateTokenResult.status !== 200) {
+    return NextResponse.json(validateTokenResult)
   }
 
   const user = await findUserByEmail(db, parseJwt(token as string).email)
@@ -94,9 +94,9 @@ export const getDataFromDBByCollection = async (clientPromise: Promise<MongoClie
 }
 
 export const replaceProductsInCollection = async (clientPromise: Promise<MongoClient>, req: Request, collection: string) => {
-  const { db, validatedTokenResult, reqBody, token } = await getAuthRouteData(clientPromise, req)
-  if (validatedTokenResult.status !== 200) {
-    return NextResponse.json(validatedTokenResult)
+  const { db, validateTokenResult, reqBody, token } = await getAuthRouteData(clientPromise, req)
+  if (validateTokenResult.status !== 200) {
+    return NextResponse.json(validateTokenResult)
   }
   if (!reqBody.items) {
     return NextResponse.json({
@@ -131,9 +131,9 @@ export const replaceProductsInCollection = async (clientPromise: Promise<MongoCl
 }
 
 export const deleteProduct = async (clientPromise: Promise<MongoClient>, req: Request, id: string, collection: string) => {
-  const { db, validatedTokenResult } = await getAuthRouteData( clientPromise, req, false)
-  if (validatedTokenResult.status !== 200) {
-    return NextResponse.json(validatedTokenResult)
+  const { db, validateTokenResult } = await getAuthRouteData( clientPromise, req, false)
+  if (validateTokenResult.status !== 200) {
+    return NextResponse.json(validateTokenResult)
   }
   await db.collection(collection).deleteOne({ _id: new ObjectId(id) })
   return NextResponse.json({ status: 204, id })

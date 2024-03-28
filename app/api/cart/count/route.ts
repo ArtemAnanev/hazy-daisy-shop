@@ -5,9 +5,9 @@ import { ObjectId } from "mongodb"
 
 export async function PATCH(req: Request) {
   try {
-    const { db, reqBody, validatedTokenResult } = await getAuthRouteData(clientPromise, req)
-    if (validatedTokenResult.status !== 200) {
-      return NextResponse.json(validatedTokenResult)
+    const { db, reqBody, validateTokenResult } = await getAuthRouteData(clientPromise, req)
+    if (validateTokenResult.status !== 200) {
+      return NextResponse.json(validateTokenResult)
     }
     const id = req.url.split('id=')[1]
     const count = reqBody.count

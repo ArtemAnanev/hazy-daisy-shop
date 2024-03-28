@@ -1,4 +1,4 @@
-import { IBaseEffectProps } from "@/types/common"
+import { IBaseEffectProps } from './common'
 
 export interface ICartItem {
   _id: string

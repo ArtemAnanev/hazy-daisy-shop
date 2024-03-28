@@ -1,17 +1,17 @@
-import { ObjectId } from 'mongodb'
+import { ObjectId, Db } from 'mongodb'
 import { NextResponse } from 'next/server'
 import clientPromise from '@/lib/mongodb'
 import { getAuthRouteData, parseJwt } from '@/lib/utils/api-routes'
 
 export async function POST(req: Request) {
   try {
-    const { db, validatedTokenResult, reqBody, token } = await getAuthRouteData(
+    const { db, validateTokenResult, reqBody, token } = await getAuthRouteData(
       clientPromise,
       req
     )
 
-    if (validatedTokenResult.status !== 200) {
-      return NextResponse.json(validatedTokenResult)
+    if (validateTokenResult.status !== 200) {
+      return NextResponse.json(validateTokenResult)
     }
 
     if (Object.keys(reqBody).length < 5) {

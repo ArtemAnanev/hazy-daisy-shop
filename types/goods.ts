@@ -3,6 +3,8 @@ import { ICartItem } from './cart'
 export interface ILoadOneProductFx {
   productId: string
   category: string
+  setSpinner: (arg0: boolean) => void
+  withShowingSizeTable?: boolean
 }
 
 export interface IProductSizesItemProps {
@@ -37,4 +39,3 @@ export interface IProductCountBySizeProps {
   size: string
   withCartIcon?: boolean
 }
-

@@ -6,11 +6,7 @@ import Image from 'next/image'
 import { useLang } from '@/hooks/useLang'
 import { IProductsListItemProps } from '@/types/modules'
 import ProductSubtitle from '@/components/elements/ProductSubtitle/ProductSubtitle'
-import {
-  addOverflowHiddenToBody,
-  formatPrice,
-  isItemInList,
-} from '@/lib/utils/common'
+import { addOverflowHiddenToBody, formatPrice, isItemInList } from '@/lib/utils/common'
 import ProductLabel from './ProductLabel'
 import ProductItemActionBtn from '@/components/elements/ProductItemActionBtn/ProductItemActionBtn'
 import ProductAvailable from '@/components/elements/ProductAvailable/ProductAvailable'
@@ -19,6 +15,7 @@ import { showQuickViewModal } from '@/context/modals'
 import { setCurrentProduct } from '@/context/goods'
 import { productsWithoutSizes } from '@/constants/product'
 import { useCartAction } from '@/hooks/useCartAction'
+import { useComparisonAction } from '@/hooks/useComparisonAction'
 import { addProductToCartBySizeTable } from '@/lib/utils/cart'
 import { setIsAddToFavorites } from '@/context/favorites'
 import { useFavoritesAction } from '@/hooks/useFavoritesAction'
@@ -37,11 +34,11 @@ const ProductsListItem = ({ item, title }: IProductsListItemProps) => {
     addToFavoritesSpinner,
     isProductInFavorites,
   } = useFavoritesAction(item)
-  // const {
-  //   handleAddToComparison,
-  //   isProductInComparison,
-  //   addToComparisonSpinner,
-  // } = useComparisonAction(item)
+  const {
+    handleAddToComparison,
+    isProductInComparison,
+    addToComparisonSpinner,
+  } = useComparisonAction(item)
 
   const handleShowQuickViewModal = () => {
     addOverflowHiddenToBody()
@@ -121,15 +118,15 @@ const ProductsListItem = ({ item, title }: IProductsListItemProps) => {
               callback={handleAddProductToFavorites}
             />
             <ProductItemActionBtn
-              // spinner={addToComparisonSpinner}
-              // text={translations[lang].product.add_to_comparison}
-              // iconClass={`${
-              //   addToComparisonSpinner
-              //     ? 'actions__btn_spinner'
-              //     : isProductInComparison
-              //       ? 'actions__btn_comparison_checked'
-              //       : 'actions__btn_comparison'
-              // }`}
+              spinner={addToComparisonSpinner}
+              text={translations[lang].product.add_to_comparison}
+              iconClass={`${
+                addToComparisonSpinner
+                  ? 'actions__btn_spinner'
+                  : isProductInComparison
+                    ? 'actions__btn_comparison_checked'
+                    : 'actions__btn_comparison'
+              }`}
               callback={()=>''}
             />
             {!isMedia800 && (

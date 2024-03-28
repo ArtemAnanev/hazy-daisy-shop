@@ -1,8 +1,10 @@
 'use client'
+import Link from "next/link"
 import { useLang } from "@/hooks/useLang"
 import { useMediaQuery } from "@/hooks/useMediaQuery"
 import Logo from "@/components/elements/Logo/Logo"
-import Link from "next/link"
+import FooterLinks from "./FooterLinks"
+import FooterMobileLink from "@/components/modules/Footer/FooterMobilleLink"
 
 const Footer = () => {
   const { lang, translations } = useLang()
@@ -20,9 +22,9 @@ const Footer = () => {
             <span>
               <a href='tel:+79295944886'> +7 (929) 594 48 86</a>
             </span>
-            {/*{isMedia950 && <FooterLinks />}*/}
+            {isMedia950 && <FooterLinks />}
           </div>
-          {/*{!isMedia950 && <FooterLinks />}*/}
+          {!isMedia950 && <FooterLinks />}
           <ul className='list-reset footer__socials'>
             <li className='footer__socials__item'>
               <a
@@ -55,13 +57,13 @@ const Footer = () => {
                 {translations[lang].footer.privacy}
               </Link>
             </div>
-            {/*{isMedia640 && (*/}
-            {/*  <FooterMobileLink text={translations[lang].footer.full_version} />*/}
-            {/*)}*/}
+            {isMedia640 && (
+              <FooterMobileLink text={translations[lang].footer.full_version} />
+            )}
           </div>
-          {/*{!isMedia640 && (*/}
-          {/*  <FooterMobileLink text={translations[lang].footer.mobile_version} />*/}
-          {/*)}*/}
+          {!isMedia640 && (
+            <FooterMobileLink text={translations[lang].footer.mobile_version} />
+          )}
         </div>
       </div>
     </footer>

@@ -12,7 +12,7 @@ import { useGoodsByAuth } from '@/hooks/useGoodsByAuth'
 import { addFavoriteItemToLS } from '@/lib/utils/favorites'
 import { useFavoritesAction } from '@/hooks/useFavoritesAction'
 import styles from '@/styles/size-table/index.module.scss'
-import {useState} from "react"
+import React, {useState} from "react"
 
 const SizeTable = () => {
   const { lang, translations } = useLang()
@@ -237,7 +237,7 @@ const SizeTable = () => {
             ? headdressSizes.map((headdressSizesItem)=> (
             <tr key={headdressSizesItem.id}
                 {...(trProps(
-                  headdressSizesItem as React.HTMLAttributes<HTMLTableRowElement>))}
+                  headdressSizesItem) as React.HTMLAttributes<HTMLTableRowElement>)}
             >
               <td>{headdressSizesItem.headCircumference}</td>
               <td>

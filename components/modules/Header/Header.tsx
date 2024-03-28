@@ -108,21 +108,20 @@ const Header = () => {
                     <li className='header__links__item'>
                         <CartPopup />
                     </li>
-                    <li className='header__links__item header__links__item--profile'>
-                      {isAuth ? (
-                        <HeaderProfile />
-                      ): loginCheckSpinner ? (
-                        <FontAwesomeIcon icon={faSpinner} spin />
-                      ): (
-                        <button
+                  <li className='header__links__item header__links__item--profile'>
+                    {isAuth ? (
+                      <HeaderProfile />
+                    ) : loginCheckSpinner ? (
+                      <FontAwesomeIcon icon={faSpinner} spin />
+                    ) : (
+                      <button
                         className='btn-reset header__links__item__btn header__links__item__btn--profile'
                         onClick={handleOpenAuthPopup}
                       />
-                      )}
-                    </li>
+                    )}
+                  </li>
                 </ul>
             </div>
-            <title></title>
         </header>
 
     );

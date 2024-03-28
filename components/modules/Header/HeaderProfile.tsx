@@ -1,11 +1,11 @@
-import { forwardRef } from "react"
-import { IWrappedComponentProps } from "@/types/hocs"
-import { withClickOutside } from "@/components/hocs/withClickOutside"
-import { useUserLogout } from "@/hooks/useLogout"
-import { useUserAvatar } from "@/hooks/useUserAvatar"
-import Image from "next/image"
-import { useLang } from "@/hooks/useLang"
-import { AnimatePresence, motion } from "framer-motion"
+import { withClickOutside } from '@/components/hocs/withClickOutside'
+import { useLang } from '@/hooks/useLang'
+import { useUserLogout } from '@/hooks/useLogout'
+import { useUserAvatar } from '@/hooks/useUserAvatar'
+import { IWrappedComponentProps } from '@/types/hocs'
+import { AnimatePresence, motion } from 'framer-motion'
+import Image from 'next/image'
+import { forwardRef } from 'react'
 
 const HeaderProfile = forwardRef<HTMLDivElement, IWrappedComponentProps>(
   ({ open, setOpen }, ref) => {
@@ -30,12 +30,12 @@ const HeaderProfile = forwardRef<HTMLDivElement, IWrappedComponentProps>(
         <AnimatePresence>
           {open && (
             <motion.ul
-              initial={{opacity: 0, scale: 0}}
-              animate={{opacity: 1, scale: 1}}
-              exit={{opacity: 0, scale: 0}}
-              className='list-reset-header-profile__inner'
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0 }}
+              className='list-reset header-profile__inner'
             >
-              <li className='cart-popup__arrow' />
+              <li className='header-profile__arrow' />
               <li className='header-profile__item'>
                 <button className='btn-reset header-profile__item__btn'>
                   {translations[lang].header.profile}
@@ -45,7 +45,7 @@ const HeaderProfile = forwardRef<HTMLDivElement, IWrappedComponentProps>(
                 <button
                   className='btn-reset header-profile__item__btn'
                   onClick={handleLogout}
-                  >
+                >
                   {translations[lang].header.logout}
                 </button>
               </li>

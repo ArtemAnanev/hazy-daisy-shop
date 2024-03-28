@@ -1,10 +1,10 @@
 import Image from 'next/image'
-import Link from "next/link"
-import DeleteCartItemBtn from "@/components/elements/DeleteCartItemBtn/DeleteCartItemBtn"
-import ProductCounter from "@/components/modules/ProductsListItem/ProductCounter"
-import { useCartItemAction } from "@/hooks/useCartItemAction"
-import { formatPrice } from "@/lib/utils/common"
-import { ICartItem } from "@/types/cart"
+import Link from 'next/link'
+import { useCartItemAction } from '@/hooks/useCartItemAction'
+import { formatPrice } from '@/lib/utils/common'
+import { ICartItem } from '@/types/cart'
+import ProductCounter from '../../ProductsListItem/ProductCounter'
+import DeleteItemBtn from '@/components/elements/DeleteCartItemBtn/DeleteCartItemBtn'
 
 const CartPopupItem = ({ item }: { item: ICartItem }) => {
   const {
@@ -15,12 +15,11 @@ const CartPopupItem = ({ item }: { item: ICartItem }) => {
     setCount,
     animatedPrice,
     handleDeleteCartItem,
-    useP
   } = useCartItemAction(item)
 
   return (
     <>
-      <DeleteCartItemBtn
+      <DeleteItemBtn
         btnDisabled={deleteSpinner}
         callback={handleDeleteCartItem}
       />
