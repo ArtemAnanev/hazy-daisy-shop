@@ -3,7 +3,7 @@
   overflow: hidden;
   z-index: 1;
   height: 800px;
-  padding-top: 104px;
+  padding-top: 14px;
   padding-bottom: 200px;
   background: radial-gradient(112.11% 111.8% at 100% 0%, #4075FF 0%, rgba(64, 117, 255, 0.00) 100%), radial-gradient(111.72% 111.46% at 27% 0%, #16D9A6 0%, rgba(22, 217, 166, 0.00) 100%), #9466FF;
 
@@ -44,25 +44,26 @@
     overflow: hidden;
     position: absolute !important;
     height: max-content;
-    top: 0;
+    top: 200px;
     right: 0;
-    left: 245px;
+    left: 100px;
 
     @media (max-width: 1460px) {
-      left: 0;
+      left: 250px;
     }
 
     @media (max-width: 1215px) {
-      left: 150px;
+      top: 180px;
+      left: 250px;
     }
 
     @media (max-width: 990px) {
-      top: 35px;
+      top: 200px;
       left: 100px;
     }
 
     @media (max-width: 940px) {
-      top: -20px;
+      top: 120px;
       left: 50px;
     }
 
@@ -90,8 +91,8 @@
       }
 
       &__img {
-        width: 475px;
-        height: 580px;
+        width: 382px;
+        height: 601px;
 
         @media (max-width: 1460px) {
           width: 375px;
