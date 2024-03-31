@@ -4,17 +4,20 @@ import { useLang } from "@/hooks/useLang"
 import { closeCatalogMenu, closeMenu, openCatalogMenu, openMenu } from "@/context/modals"
 import { addOverflowHiddenToBody } from "@/lib/utils/common"
 import CatalogMenu from '../Header/CatalogMenu'
+import { useCartByAuth } from "@/hooks/useCartByAuth"
 
 const MobileNavbar = () => {
   const {lang, translations} = useLang()
+  const currentCartByAuth = useCartByAuth()
 
   const handleOpenMenu = () => {
+    addOverflowHiddenToBody()
     openMenu()
     closeCatalogMenu()
   }
 
   const handleOpenCatalogMenu = () => {
-    addOverflowHiddenToBody()
+    addOverflowHiddenToBody('0')
     openCatalogMenu()
     closeMenu()
   }
@@ -37,9 +40,7 @@ const MobileNavbar = () => {
           {translations[lang].breadcrumbs.favorites}
         </Link>
         <Link className='btn-reset mobile-navbar__btn' href='/cart'>
-          {/*{!!currentCartByAuth.length && (*/}
-          {/*  <span className='not-empty not-empty-mobile' />*/}
-          {/*)}*/}
+          {!!currentCartByAuth.length && <span className='not-empty not-empty-mobile' />}
           {translations[lang].breadcrumbs.cart}
         </Link>
         <button

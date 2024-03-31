@@ -11,8 +11,6 @@ import { IWrappedComponentProps } from '@/types/hocs'
 import CartPopupItem from './CartPopupItem'
 import { useTotalPrice } from '@/hooks/useTotalPrice'
 import { formatPrice } from '@/lib/utils/common'
-import { $cart, $cartFromLs } from '@/context/cart'
-import { useGoodsByAuth } from '@/hooks/useGoodsByAuth'
 import { useCartByAuth } from "@/hooks/useCartByAuth"
 
 const CartPopup = forwardRef<HTMLDivElement, IWrappedComponentProps>(
@@ -28,8 +26,7 @@ const CartPopup = forwardRef<HTMLDivElement, IWrappedComponentProps>(
     return (
       <div className='cart-popup' ref={ref}>
         <Link
-          className={`header__links__item__btn header__links__item__btn--cart
-           ${currentCartByAuth.length ? 'not-empty' : '' }`}
+          className='header__links__item__btn header__links__item__btn--cart'
           href='/cart'
           onMouseEnter={handleShowPopup}
         >

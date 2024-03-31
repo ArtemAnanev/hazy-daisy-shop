@@ -4,9 +4,7 @@ import { useBreadcrumbs } from '@/hooks/useBreadcrumbs'
 import styles from '@/styles/policy/index.module.scss'
 
 const PersonalDataPolicyPage = () => {
-  const { getDefaultTextGenerator, getTextGenerator } = useBreadcrumbs(
-    'personal_data_policy'
-  )
+  const { getDefaultTextGenerator, getTextGenerator } = useBreadcrumbs('personal_data_policy')
 
   return (
     <main>
