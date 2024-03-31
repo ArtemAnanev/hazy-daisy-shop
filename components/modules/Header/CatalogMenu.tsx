@@ -13,33 +13,18 @@ import CatalogMenuButton from "@/components/modules/Header/CatalogMenuButton"
 import Link from "next/link"
 import CatalogMenuList from "@/components/modules/Header/CatalogMenuList"
 
-
 const CatalogMenu = () => {
   const catalogMenuIsOpen = useUnit($catalogMenuIsOpen)
-  const [showClothList, setShowClothList] = useState(false)
-  const [showAccessoriesList, setShowAccessoriesList] = useState(false)
+  const [activeListId, setActiveListId] = useState(0)
   const { lang, translations } = useLang()
-  const { itemVariants, sideVariants, popupZIndex } = useMenuAnimation(
-    2,
-    catalogMenuIsOpen
-  )
+  const { itemVariants, sideVariants, popupZIndex } = useMenuAnimation(2, catalogMenuIsOpen)
   const isMedia450 = useMediaQuery(450)
-
-  const handleShowClothList = () => {
-    setShowClothList(true)
-    setShowAccessoriesList(false)
-  }
-
-  const handleShowAccessoriesList = () => {
-    setShowClothList(false)
-    setShowAccessoriesList(true)
-  }
+  const isActiveList = (id: number) => activeListId === id
 
   const handleCloseMenu = () => {
     removeOverflowHiddenFromBody()
     closeCatalogMenu()
-    setShowClothList(false)
-    setShowAccessoriesList(false)
+    setActiveListId(0)
   }
 
   const items = [
@@ -52,7 +37,7 @@ const CatalogMenu = () => {
         translations[lang].comparison.hoodie,
         translations[lang].comparison.outerwear,
       ],
-      handler: handleShowClothList,
+      handler: () => setActiveListId(1),
     },
     {
       name: translations[lang].main_menu.accessories,
@@ -61,7 +46,7 @@ const CatalogMenu = () => {
         translations[lang].comparison.bags,
         translations[lang].comparison.headdress,
       ],
-      handler: handleShowAccessoriesList,
+      handler: () => setActiveListId(2),
     },
     ]
 
@@ -124,22 +109,22 @@ const CatalogMenu = () => {
                         <>
                           {id === 1 && (
                             <CatalogMenuButton
-                              {...buttonProps(showClothList)}
+                              {...buttonProps(isActiveList(1))}
                             />
                           )}
                           {id === 2 && (
                             <CatalogMenuButton
-                              {...buttonProps(showAccessoriesList)}
+                              {...buttonProps(isActiveList(2))}
                             />
                           )}
                         </>
                       )}
                       {!isMedia450 && (
                         <AnimatePresence>
-                          {isCurrentList(showClothList, 1) && (
+                          {isCurrentList(isActiveList(1), 1) && (
                             <CatalogMenuList items={items} />
                           )}
-                          {isCurrentList(showAccessoriesList, 2) && (
+                          {isCurrentList(isActiveList(2), 2) && (
                             <CatalogMenuList items={items} />
                           )}
                         </AnimatePresence>

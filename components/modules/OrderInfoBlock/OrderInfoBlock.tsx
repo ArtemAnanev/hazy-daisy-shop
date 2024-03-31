@@ -1,16 +1,17 @@
 import Link from "next/link"
 import { OrderInfoBlock } from "@/types/modules"
 import { useLang } from "@/hooks/useLang"
-import { useCartByAuth } from "@/hooks/useCartByAuth"
 import { MutableRefObject, useState, useRef } from "react"
 import { useTotalPrice } from "@/hooks/useTotalPrice"
 import { formatPrice, showCountMessage } from "@/lib/utils/common"
 import { countWholeCartItemsAmount } from "@/lib/utils/cart"
 import styles from "@/styles/order-block/index.module.scss"
+import { useGoodsByAuth } from "@/hooks/useGoodsByAuth"
+import { $cart, $cartFromLs } from "@/context/cart"
 
 const OrderInfoBlock = ({isCorrectPromotionalCode, isOrderPage}: OrderInfoBlock)=> {
   const { lang, translations } = useLang()
-  const currentCartByAuth = useCartByAuth()
+  const currentCartByAuth = useGoodsByAuth($cart, $cartFromLs)
   const [isUserAgree, setIsUserAgree ] = useState(false)
   const { animatedPrice } = useTotalPrice()
   const priceWithDiscount = isCorrectPromotionalCode

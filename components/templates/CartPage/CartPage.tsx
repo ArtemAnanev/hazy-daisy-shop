@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from "react"
 import styles from "@/styles/cart-page/index.module.scss"
-import { useCartByAuth } from "@/hooks/useCartByAuth"
 import { useLang } from "@/hooks/useLang"
 import { useBreadcrumbs } from "@/hooks/useBreadcrumbs"
 import { countWholeCartItemsAmount } from "@/lib/utils/cart"
@@ -17,11 +16,12 @@ import OrderInfoBlock from "@/components/modules/OrderInfoBlock/OrderInfoBlock"
 import { useMediaQuery } from "@/hooks/useMediaQuery"
 import PromotionalCode from "@/components/modules/CartPage/PromotionalCode"
 import EmptyPageContent from "@/components/modules/EmptyPageContent/EmptyPageContent"
-import {$shouldShowEmpty} from "@/context/cart"
+import { $cart, $cartFromLs, $shouldShowEmpty } from "@/context/cart"
+import { useGoodsByAuth } from "@/hooks/useGoodsByAuth"
 
 const CartPage = () => {
   const cartSpinner = useUnit(getCartItemsFx.pending)
-  const currentCartByAuth = useCartByAuth()
+  const currentCartByAuth = useGoodsByAuth($cart, $cartFromLs)
   const {lang, translations} = useLang()
   const { getDefaultTextGenerator, getTextGenerator} = useBreadcrumbs('cart')
   const isMedia930 = useMediaQuery(930)

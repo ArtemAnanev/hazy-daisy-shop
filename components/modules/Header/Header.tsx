@@ -14,16 +14,16 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 import { loginCheckFx } from "@/api/auth"
 import { useEffect } from "react"
 import { $user } from "@/context/user"
-import { useCartByAuth } from "@/hooks/useCartByAuth"
 import { setLang } from "@/context/lang"
-import { addProductsFromLSToCart, setCartFromLS, setShouldShowEmpty } from "@/context/cart"
+import { $cart, $cartFromLs, addProductsFromLSToCart, setCartFromLS, setShouldShowEmpty } from "@/context/cart"
+import { useGoodsByAuth } from "@/hooks/useGoodsByAuth"
 
 const Header = () => {
   const { lang, translations } = useLang()
   const loginCheckSpinner = useUnit(loginCheckFx.pending)
   const isAuth = useUnit($isAuth)
-  const user = useUnit($user)
-  const currentCartByAuth = useCartByAuth()
+  // const user = useUnit($user)
+  const currentCartByAuth = useGoodsByAuth($cart, $cartFromLs)
 
   console.log(currentCartByAuth)
 

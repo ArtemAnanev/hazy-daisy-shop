@@ -1,29 +1,14 @@
 import toast from 'react-hot-toast'
 import { IProduct } from '@/types/common'
 import { idGenerator } from './common'
-import {
-  setFavoritesFromLS,
-  setShouldShowEmptyFavorites,
-} from '@/context/favorites'
+import { setFavoritesFromLS, setShouldShowEmptyFavorites} from '@/context/favorites'
 import { IFavoriteItem } from '@/types/favorites'
 
-export const addFavoriteItemToLS = (
-  product: IProduct,
-  selectedSize: string,
-  withToast = true
-) => {
-  let favoritesFromLS: IFavoriteItem[] = JSON.parse(
-    localStorage.getItem('favorites') as string
-  )
-
+export const addFavoriteItemToLS = (product: IProduct, selectedSize: string, withToast = true) => {
+  let favoritesFromLS: IFavoriteItem[] = JSON.parse(localStorage.getItem('favorites') as string)
   const clientId = idGenerator()
-
-  if (!favoritesFromLS) {
-    favoritesFromLS = []
-  }
-
+  if (!favoritesFromLS) {favoritesFromLS = []}
   setShouldShowEmptyFavorites(false)
-
   const existingItem = favoritesFromLS.find(
     (item) => item.productId === product._id && item.size === selectedSize
   )
@@ -33,8 +18,7 @@ export const addFavoriteItemToLS = (
     return existingItem.clientId
   }
 
-  const favorites = [
-    ...favoritesFromLS,
+  const favorites = [...favoritesFromLS,
     {
       clientId,
       productId: product._id,
@@ -51,6 +35,5 @@ export const addFavoriteItemToLS = (
   localStorage.setItem('favorites', JSON.stringify(favorites))
   setFavoritesFromLS(favorites as IFavoriteItem[])
   withToast && toast.success('Добавлено в избранное')
-
   return clientId
 }

@@ -2,12 +2,7 @@ import toast from 'react-hot-toast'
 import { useState } from 'react'
 import { IProduct } from '@/types/common'
 import { useGoodsByAuth } from './useGoodsByAuth'
-import {
-  $favorites,
-  $favoritesFromLS,
-  addProductToFavorites,
-  setIsAddToFavorites,
-} from '@/context/favorites'
+import { $favorites, $favoritesFromLS, addProductToFavorites, setIsAddToFavorites } from '@/context/favorites'
 import { productsWithoutSizes } from '@/constants/product'
 import { handleShowSizeTable, isUserAuth } from '@/lib/utils/common'
 import { addFavoriteItemToLS } from '@/lib/utils/favorites'
@@ -22,15 +17,12 @@ export const useFavoritesAction = (product: IProduct) => {
         toast.success('Добавлено в избранное!')
         return
       }
-
       if (!isUserAuth()) {
         addFavoriteItemToLS(product, '')
         return
       }
-
       const auth = JSON.parse(localStorage.getItem('auth') as string)
       const clientId = addFavoriteItemToLS(product, '', false)
-
       addProductToFavorites({
         jwt: auth.accessToken,
         productId: product._id,
@@ -41,7 +33,6 @@ export const useFavoritesAction = (product: IProduct) => {
       })
       return
     }
-
     setIsAddToFavorites(true)
     handleShowSizeTable(product)
   }
