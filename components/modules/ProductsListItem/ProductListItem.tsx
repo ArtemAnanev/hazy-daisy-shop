@@ -25,20 +25,12 @@ import stylesForAd from '@/styles/ad/index.module.scss'
 const ProductsListItem = ({ item, title }: IProductsListItemProps) => {
   const { lang, translations } = useLang()
   const isMedia800 = useMediaQuery(800)
+  const { addToCartSpinner, setAddToCartSpinner, currentCartByAuth } = useCartAction()
+  const { handleAddProductToFavorites, addToFavoritesSpinner, isProductInFavorites } = useFavoritesAction(item)
+  const { handleAddToComparison, isProductInComparison, addToComparisonSpinner, } = useComparisonAction(item)
+
   const isTitleForNew = title === translations[lang].main_page.new_title
-  const { addToCartSpinner, setAddToCartSpinner, currentCartByAuth } =
-    useCartAction()
   const isProductInCart = isItemInList(currentCartByAuth, item._id)
-  const {
-    handleAddProductToFavorites,
-    addToFavoritesSpinner,
-    isProductInFavorites,
-  } = useFavoritesAction(item)
-  const {
-    handleAddToComparison,
-    isProductInComparison,
-    addToComparisonSpinner,
-  } = useComparisonAction(item)
 
   const handleShowQuickViewModal = () => {
     addOverflowHiddenToBody()
@@ -110,11 +102,10 @@ const ProductsListItem = ({ item, title }: IProductsListItemProps) => {
               text={translations[lang].product.add_to_favorites}
               iconClass={`${
                 addToFavoritesSpinner
-                  ? 'actions__btn_spinner'
-                  : isProductInFavorites
-                    ? 'actions__btn_favorite_checked'
-                    : 'actions__btn_favorite'
-              }`}
+                ? 'actions__btn_spinner'
+                : isProductInFavorites
+                  ? 'actions__btn_favorite_checked'
+                  : 'actions__btn_favorite'}`}
               callback={handleAddProductToFavorites}
             />
             <ProductItemActionBtn

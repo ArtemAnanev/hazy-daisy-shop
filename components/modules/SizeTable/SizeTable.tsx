@@ -1,33 +1,33 @@
-import toast from 'react-hot-toast'
+import React from "react"
 import { useUnit } from 'effector-react'
 import { $sizeTableSizes } from '@/context/sizeTable'
 import { useCartAction } from '@/hooks/useCartAction'
 import { $showQuickViewModal } from '@/context/modals'
-import { closeSizeTableByCheck, isUserAuth } from '@/lib/utils/common'
+import { closeSizeTableByCheck, isUserAuth } from "@/lib/utils/common"
 import { useLang } from '@/hooks/useLang'
 import AddToCartBtn from '../ProductsListItem/AddToCartBtn'
 import ProductCountBySize from '../ProductsListItem/ProductCountBySize'
-import { $favorites, $favoritesFromLS, $isAddToFavorites, addProductToFavorites } from '@/context/favorites'
-import { useGoodsByAuth } from '@/hooks/useGoodsByAuth'
-import { addFavoriteItemToLS } from '@/lib/utils/favorites'
-import { useFavoritesAction } from '@/hooks/useFavoritesAction'
 import styles from '@/styles/size-table/index.module.scss'
-import React, {useState} from "react"
+import { useGoodsByAuth } from "@/hooks/useGoodsByAuth"
+import { $favorites, $favoritesFromLS, $isAddToFavorites, addProductToFavorites } from "@/context/favorites"
+import { addFavoriteItemToLS } from "@/lib/utils/favorites"
+import toast from "react-hot-toast"
+import { useFavoritesAction } from "@/hooks/useFavoritesAction"
 
 const SizeTable = () => {
   const { lang, translations } = useLang()
   const showQuickViewModal = useUnit($showQuickViewModal)
-  const [sSize, setSSize] = useState(false)
-  const [mSize, setMSize] = useState(false)
-  const [lSize, setLSize] = useState(false)
-  const [xlSize, setXLSize] = useState(false)
-  const [xxlSize, setXXLSize] = useState(false)
-  const { selectedSize, setSelectedSize, handleAddToCart, cartItemBySize, addToCartSpinner,
-  currentCartItems, updateCountSpinner} = useCartAction(true)
+  const isAddToFavorites = useUnit($isAddToFavorites)
   const productSizes = useUnit($sizeTableSizes)
-  const isHeaddressType = productSizes.type === 'headdress'
-  const isAnySizeSelected = sSize || lSize || mSize || xlSize || xxlSize || selectedSize
 
+  const { selectedSize, setSelectedSize, handleAddToCart, cartItemBySize, addToCartSpinner,
+  currentCartItems, updateCountSpinner, product} = useCartAction(true)
+  const { addToFavoritesSpinner, setAddToFavoritesSpinner } = useFavoritesAction(product)
+
+  const isHeaddressType = productSizes.type === 'headdress'
+  const currentFavoritesByAuth = useGoodsByAuth($favorites, $favoritesFromLS)
+  const currentFavoriteItems = currentFavoritesByAuth.filter((item)=>item.productId===product._id)
+  const favoriteItemBySize = currentFavoriteItems.find((item) => item.size === selectedSize)
 
   const handleSelectSSize = () => setSelectedSize('s')
   const handleSelectLSize = () => setSelectedSize('l')
@@ -36,6 +36,7 @@ const SizeTable = () => {
   const handleSelectXXLSize = () => setSelectedSize('xxl')
 
   const isSizeSelected = (size: string) => selectedSize === size
+  const checkInFavorites = (size: string) => currentFavoriteItems.find((item) => item.size === size)
 
 
   const dressSizes = [
@@ -49,8 +50,7 @@ const SizeTable = () => {
       selectHandler: handleSelectSSize,
       isSelected: isSizeSelected('s'),
       isAvailable: productSizes.sizes.s,
-      // isInFavorites: checkInFavorites('s'),
-      isInFavorites: false,
+      isInFavorites: checkInFavorites('s'),
     },
     {
       id: 2,
@@ -62,8 +62,7 @@ const SizeTable = () => {
       selectHandler: handleSelectMSize,
       isSelected: isSizeSelected('m'),
       isAvailable: productSizes.sizes.m,
-      // isInFavorites: checkInFavorites('m'),
-      isInFavorites: false,
+      isInFavorites: checkInFavorites('m'),
     },
     {
       id: 3,
@@ -75,8 +74,7 @@ const SizeTable = () => {
       selectHandler: handleSelectLSize,
       isSelected: isSizeSelected('l'),
       isAvailable: productSizes.sizes.l,
-      // isInFavorites: checkInFavorites('l'),
-      isInFavorites: false
+      isInFavorites: checkInFavorites('l'),
     },
     {
       id: 4,
@@ -88,8 +86,7 @@ const SizeTable = () => {
       selectHandler: handleSelectXLSize,
       isSelected: isSizeSelected('xl'),
       isAvailable: productSizes.sizes.xl,
-      // isInFavorites: checkInFavorites('xl'),
-      isInFavorites: false
+      isInFavorites: checkInFavorites('xl'),
     },
     {
       id: 5,
@@ -101,8 +98,7 @@ const SizeTable = () => {
       selectHandler: handleSelectXXLSize,
       isSelected: isSizeSelected('xxl'),
       isAvailable: productSizes.sizes.xxl,
-      // isInFavorites: checkInFavorites('xxl'),
-      isInFavorites: false
+      isInFavorites: checkInFavorites('xxl'),
     },
   ]
 
@@ -114,8 +110,7 @@ const SizeTable = () => {
       selectHandler: handleSelectSSize,
       isSelected: isSizeSelected('s'),
       isAvailable: productSizes.sizes.s,
-      // isInFavorites: checkInFavorites('s'),
-      isInFavorites: false
+      isInFavorites: checkInFavorites('s'),
     },
     {
       id: 2,
@@ -124,8 +119,7 @@ const SizeTable = () => {
       selectHandler: handleSelectMSize,
       isSelected: isSizeSelected('m'),
       isAvailable: productSizes.sizes.m,
-      // isInFavorites: checkInFavorites('m'),
-      isInFavorites: false
+      isInFavorites: checkInFavorites('m'),
     },
     {
       id: 3,
@@ -134,8 +128,7 @@ const SizeTable = () => {
       selectHandler: handleSelectLSize,
       isSelected: isSizeSelected('l'),
       isAvailable: productSizes.sizes.l,
-      // isInFavorites: checkInFavorites('l'),
-      isInFavorites: false
+      isInFavorites: checkInFavorites('l'),
     },
     {
       id: 4,
@@ -144,8 +137,7 @@ const SizeTable = () => {
       selectHandler: handleSelectXLSize,
       isSelected: isSizeSelected('xl'),
       isAvailable: productSizes.sizes.xl,
-      // isInFavorites: checkInFavorites('xl'),
-      isInFavorites: false
+      isInFavorites: checkInFavorites('xl'),
     },
     {
       id: 5,
@@ -154,18 +146,13 @@ const SizeTable = () => {
       selectHandler: handleSelectXXLSize,
       isSelected: isSizeSelected('xxl'),
       isAvailable: productSizes.sizes.xxl,
-      // isInFavorites: checkInFavorites('xxl'),
-      isInFavorites: false
+      isInFavorites: checkInFavorites('xxl'),
     },
   ]
 
   const handleCloseSizeTable = () => closeSizeTableByCheck(showQuickViewModal)
 
   const addToCart = () => handleAddToCart(+(cartItemBySize?.count || 1))
-
-  const auth = JSON.parse(localStorage.getItem('auth') as string)
-
-  // const clientId = addFavoriteItemToLS(product, selectedSize, false)
 
   const trProps = (
     item:
@@ -200,6 +187,28 @@ const SizeTable = () => {
       color: item.isAvailable ? '#fff' : 'rgba(255, 255, 255, .2)',
     },
   })
+
+  const handleAddProductToFavorites = () => {
+    if (!isUserAuth()) {
+      addFavoriteItemToLS(product, selectedSize)
+      return
+    }
+    if (favoriteItemBySize) {
+      toast.success('Добавлено в избранное!')
+      return
+    }
+    const auth = JSON.parse(localStorage.getItem('auth') as string)
+    const clientId = addFavoriteItemToLS(product, selectedSize, false)
+
+    addProductToFavorites({
+      jwt: auth.accessToken,
+      productId: product._id,
+      setSpinner: setAddToFavoritesSpinner,
+      size: selectedSize,
+      category: product.category,
+      clientId,
+    })
+  }
 
   return (
     <div
@@ -239,7 +248,12 @@ const SizeTable = () => {
                 {...(trProps(
                   headdressSizesItem) as React.HTMLAttributes<HTMLTableRowElement>)}
             >
-              <td>{headdressSizesItem.headCircumference}</td>
+              <td>
+                {headdressSizesItem.isInFavorites && (
+                  <span className={styles.size_table__favorite} />
+                )}
+                {headdressSizesItem.headCircumference}
+              </td>
               <td>
                 <ProductCountBySize
                   products={currentCartItems}
@@ -256,7 +270,12 @@ const SizeTable = () => {
                 item
               ) as React.HTMLAttributes<HTMLTableRowElement>)}
             >
-              <td>{item.russianSize}</td>
+              <td>
+                {item.isInFavorites && (
+                  <span className={styles.size_table__favorite} />
+                )}
+                {item.russianSize}
+              </td>
               <td>{item.manufacturerSize}</td>
               <td>{item.bust}</td>
               <td>{item.waist}</td>
@@ -274,10 +293,10 @@ const SizeTable = () => {
       </div>
       <AddToCartBtn
         className={styles.size_table__btn}
-        handleAddToCart={addToCart}
-        addToCartSpinner={addToCartSpinner || updateCountSpinner}
-        btnDisabled={!isAnySizeSelected || addToCartSpinner || updateCountSpinner}
-        text={translations[lang].product.to_cart}
+        handleAddToCart={isAddToFavorites ? handleAddProductToFavorites : addToCart}
+        addToCartSpinner={addToCartSpinner || updateCountSpinner || addToFavoritesSpinner}
+        btnDisabled={!selectedSize || addToCartSpinner || updateCountSpinner || addToFavoritesSpinner}
+        text={ isAddToFavorites ? translations[lang].product.to_favorite : translations[lang].product.to_cart}
       />
     </div>
   )

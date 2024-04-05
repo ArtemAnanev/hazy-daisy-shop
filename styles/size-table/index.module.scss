@@ -58,8 +58,7 @@
   }
 
   &__title {
-    margin: 0;
-    margin-bottom: 32px;
+    margin: 0 0 32px;
     font-size: 32px;
 
     @media (max-width: 620px) {
@@ -147,7 +146,20 @@
       }
     }
   }
+
+  &__favorite {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    height: 18px;
+    width: 18px;
+    background-image: url(/img/checked-favorite.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
 }
+
+
 
 .size_table_headdress {
   width: max-content;
