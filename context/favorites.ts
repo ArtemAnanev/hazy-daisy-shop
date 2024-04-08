@@ -2,11 +2,7 @@ import { createDomain, createEffect, sample } from 'effector'
 import toast from 'react-hot-toast'
 import { handleJWTError } from '@/lib/utils/errors'
 import { IAddProductToCartFx } from '@/types/cart'
-import {
-  IAddProductsFromLSToFavoriteFx,
-  IDeleteFavoriteItemsFx,
-  IFavoriteItem,
-} from '@/types/favorites'
+import { IAddProductsFromLSToFavoriteFx, IDeleteFavoriteItemsFx, IFavoriteItem, } from '@/types/favorites'
 import api from '../api/apiInstance'
 
 const favorites = createDomain()
@@ -33,12 +29,17 @@ export const getFavoriteItemsFx = createEffect(
 )
 
 export const addProductToFavoriteFx = createEffect(
-  async ({ jwt, setSpinner, ...dataFields }: Omit<IAddProductToCartFx, 'count'>) => {
+  async ({
+    jwt,
+    setSpinner,
+    ...dataFields
+  }: Omit<IAddProductToCartFx, 'count'>) => {
     try {
       setSpinner(true)
       const { data } = await api.post('/api/favorites/add', dataFields, {
         headers: { Authorization: `Bearer ${jwt}` },
       })
+
       if (data?.error) {
         const newData: { newFavoriteItem: IFavoriteItem } =
           await handleJWTError(data.error.name, {
@@ -47,6 +48,7 @@ export const addProductToFavoriteFx = createEffect(
           })
         return newData
       }
+
       toast.success('Добавлено в избранное!')
       return data
     } catch (error) {
@@ -113,13 +115,16 @@ export const deleteFavoriteItemFx = createEffect(
   }
 )
 
-export const addProductToFavorites = favorites.createEvent<Omit<IAddProductToCartFx, 'count'>>()
+export const addProductToFavorites =
+  favorites.createEvent<Omit<IAddProductToCartFx, 'count'>>()
 export const loadFavoriteItems = favorites.createEvent<{ jwt: string }>()
 export const setFavoritesFromLS = favorites.createEvent<IFavoriteItem[]>()
 export const setIsAddToFavorites = favorites.createEvent<boolean>()
-export const addProductsFromLSToFavorites = favorites.createEvent<IAddProductsFromLSToFavoriteFx>()
+export const addProductsFromLSToFavorites =
+  favorites.createEvent<IAddProductsFromLSToFavoriteFx>()
 export const setShouldShowEmptyFavorites = favorites.createEvent<boolean>()
-export const deleteProductFromFavorites = favorites.createEvent<IDeleteFavoriteItemsFx>()
+export const deleteProductFromFavorites =
+  favorites.createEvent<IDeleteFavoriteItemsFx>()
 
 export const $favorites = favorites
   .createStore<IFavoriteItem[]>([])
@@ -130,7 +135,9 @@ export const $favorites = favorites
     ).values(),
   ])
   .on(addProductsFromLSToFavoritesFx.done, (_, { result }) => result.items)
-  .on(deleteFavoriteItemFx.done, (state, { result }) => state.filter((item) => item._id !== result.id))
+  .on(deleteFavoriteItemFx.done, (state, { result }) =>
+    state.filter((item) => item._id !== result.id)
+  )
 
 export const $favoritesFromLS = favorites
   .createStore<IFavoriteItem[]>([])

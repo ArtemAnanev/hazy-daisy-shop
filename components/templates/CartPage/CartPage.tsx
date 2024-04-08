@@ -5,7 +5,7 @@ import { useLang } from "@/hooks/useLang"
 import { useBreadcrumbs } from "@/hooks/useBreadcrumbs"
 import { countWholeCartItemsAmount } from "@/lib/utils/cart"
 import Breadcrumbs from "@/components/modules/Breadcrumbs/Breadcrumbs"
-import HeadingWithCount from "@/components/elements/HeaderWithCount/HeaderWithCount"
+import HeadingWithCount from "@/components/elements/HeadingWithCount/HeadingWithCount"
 import cartSkeletonStyles from '@/styles/cart-skeleton/index.module.scss'
 import { useUnit } from "effector-react"
 import { getCartItemsFx } from "@/api/cart"

@@ -1,35 +1,23 @@
 /* eslint-disable indent */
+import { loginCheckFx, refreshTokenFx } from '@/api/auth'
 import {
   addProductToCartFx,
   deleteCartItemFx,
   getCartItemsFx,
 } from '@/api/cart'
 import { JWTError } from '@/constants/jwt'
-import { loginCheckFx, refreshTokenFx } from '@/api/auth'
-// import { refreshTokenFx } from '@/context/auth'
-import {
-  addProductToComparisonFx,
-  getComparisonItemsFx,
-  addProductsFromLSToComparisonFx,
-  deleteComparisonItemFx,
-} from '@/context/comparison'
+import { addProductsFromLSToCartFx } from '@/context/cart'
 import {
   addProductToFavoriteFx,
   addProductsFromLSToFavoritesFx,
   deleteFavoriteItemFx,
   getFavoriteItemsFx,
 } from '@/context/favorites'
-// import { loginCheckFx } from '@/context/user'
 import {
   IAddProductToCartFx,
   IAddProductsFromLSToCartFx,
   IDeleteCartItemsFx,
 } from '@/types/cart'
-import {
-  IAddProductToComparisonFx,
-  IAddProductsFromLSToComparisonFx,
-  IDeleteComparisonItemsFx,
-} from '@/types/comparison'
 import {
   IAddProductsFromLSToFavoriteFx,
   IDeleteFavoriteItemsFx,
@@ -54,35 +42,16 @@ export const handleJWTError = async (
         return getCartItemsFx({
           jwt: newTokens.accessToken,
         })
-      case 'addProductToComparisonFx':
-        return addProductToComparisonFx({
-          ...(payload as IAddProductToComparisonFx),
-          jwt: newTokens.accessToken,
-        })
-      case 'getComparisonItemsFx':
-        return getComparisonItemsFx({
-          jwt: newTokens.accessToken,
-        })
-      case 'addProductsFromLSToComparisonFx':
-        return addProductsFromLSToComparisonFx({
-          ...(payload as IAddProductsFromLSToComparisonFx),
-          jwt: newTokens.accessToken,
-        })
-      case 'deleteComparisonItemFx':
-        return deleteComparisonItemFx({
-          ...(payload as IDeleteComparisonItemsFx),
-          jwt: newTokens.accessToken,
-        })
       case 'addProductToCartFx':
         return addProductToCartFx({
           ...(payload as IAddProductToCartFx),
           jwt: newTokens.accessToken,
         })
-      // case 'addProductsFromLSToCartFx':
-      //   return addProductsFromLSToCartFx({
-      //     ...(payload as IAddProductsFromLSToCartFx),
-      //     jwt: newTokens.accessToken,
-      //   })
+      case 'addProductsFromLSToCartFx':
+        return addProductsFromLSToCartFx({
+          ...(payload as IAddProductsFromLSToCartFx),
+          jwt: newTokens.accessToken,
+        })
       case 'deleteCartItemFx':
         return deleteCartItemFx({
           ...(payload as IDeleteCartItemsFx),

@@ -12,6 +12,7 @@ import MenuLinkItem from "@/components/modules/Header/MenuLinkItem"
 import { useMediaQuery } from "@/hooks/useMediaQuery"
 import BuyersListItems from "@/components/modules/Header/BuyersListItems"
 import ContactsListItems from "@/components/modules/Header/ContactsListItems"
+import Logo from "@/components/elements/Logo/Logo"
 
 const Menu = () => {
   const [activeListId, setActiveListId] = useState(0)
@@ -80,7 +81,7 @@ const Menu = () => {
       <nav className={`nav-menu ${menuIsOpen ? 'open' : 'close'}`}>
         <div className='container nav-menu__container'>
           <div className={`nav-menu__logo ${menuIsOpen ? 'open' : ''}`}>
-            {/*<Logo />*/}
+            <Logo />
           </div>
           <img
             className={`nav-menu__bg ${menuIsOpen ? 'open' : ''}`}

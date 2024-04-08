@@ -292,7 +292,7 @@ const SizeTable = () => {
         </table>
       </div>
       <AddToCartBtn
-        className={styles.size_table__btn}
+        className={`${styles.size_table__btn} ${styles.size_table__btn_favorite}`}
         handleAddToCart={isAddToFavorites ? handleAddProductToFavorites : addToCart}
         addToCartSpinner={addToCartSpinner || updateCountSpinner || addToFavoritesSpinner}
         btnDisabled={!selectedSize || addToCartSpinner || updateCountSpinner || addToFavoritesSpinner}

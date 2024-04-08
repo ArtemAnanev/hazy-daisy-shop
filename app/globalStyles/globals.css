@@ -105,11 +105,7 @@ body::-webkit-scrollbar-thumb:hover {
     z-index: 2;
 }
 
-.size-table-overlay.overlay-active {
-    z-index: 10;
-}
-
-.auth-overlay.overlay-active {
+.auth-overlay.overlay-active, .size-table-overlay.overlay-active {
     z-index: 100;
 }
 
@@ -232,6 +228,11 @@ body::-webkit-scrollbar-thumb:hover {
     right: 15px;
 }
 
+.not-empty-mobile-favorite {
+    top: 12px;
+    right: 25px;
+}
+
 .quick-modal-dots li.slick-active button {
     background-image: url(/img/white-ellipse.svg) !important;
 }
@@ -259,7 +260,6 @@ body::-webkit-scrollbar-thumb:hover {
     opacity: 1;
     visibility: visible;
     transition: opacity .2s ease-in-out, visibility .2s ease-in-out;
-
 }
 
 @font-face {

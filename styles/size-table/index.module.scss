@@ -58,7 +58,8 @@
   }
 
   &__title {
-    margin: 0 0 32px;
+    margin: 0;
+    margin-bottom: 32px;
     font-size: 32px;
 
     @media (max-width: 620px) {
@@ -101,6 +102,10 @@
       opacity: 0.5;
       pointer-events: none;
     }
+  }
+
+  &__btn_favorite {
+    min-width: 143px;
   }
 
   &__btn_added {
@@ -158,8 +163,6 @@
     background-position: center center;
   }
 }
-
-
 
 .size_table_headdress {
   width: max-content;

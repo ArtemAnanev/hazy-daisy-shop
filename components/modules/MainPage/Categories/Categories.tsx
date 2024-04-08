@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import Link from "next/link"
-import img1 from '@/public/img/categories-img-11.png'
+import img1 from '@/public/img/categories-img-1.png'
 import img2 from '@/public/img/categories-img-2.png'
 import { useLang } from "@/hooks/useLang"
 import useImagePreloader from '@/hooks/useImagePreloader'
@@ -19,8 +19,7 @@ const Categories = () => {
   const images = [
     { src: img1, id: 1, title: translations[lang].main_page.category_cloth },
     {
-      src: img2,
-      id: 2,
+      src: img2, id: 2,
       title: translations[lang].main_page.category_accessories,
     },
   ]
