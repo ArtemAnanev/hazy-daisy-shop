@@ -1,6 +1,6 @@
 'use client'
 import { useUnit } from 'effector-react'
-import React, { useRef, MutableRefObject } from 'react'
+import { useRef, MutableRefObject } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import Header from '../modules/Header/Header'

@@ -6,7 +6,11 @@ import Image from 'next/image'
 import { useLang } from '@/hooks/useLang'
 import { IProductsListItemProps } from '@/types/modules'
 import ProductSubtitle from '@/components/elements/ProductSubtitle/ProductSubtitle'
-import { addOverflowHiddenToBody, formatPrice, isItemInList } from '@/lib/utils/common'
+import {
+  addOverflowHiddenToBody,
+  formatPrice,
+  isItemInList,
+} from '@/lib/utils/common'
 import ProductLabel from './ProductLabel'
 import ProductItemActionBtn from '@/components/elements/ProductItemActionBtn/ProductItemActionBtn'
 import ProductAvailable from '@/components/elements/ProductAvailable/ProductAvailable'
@@ -15,22 +19,30 @@ import { showQuickViewModal } from '@/context/modals'
 import { setCurrentProduct } from '@/context/goods'
 import { productsWithoutSizes } from '@/constants/product'
 import { useCartAction } from '@/hooks/useCartAction'
-import { useComparisonAction } from '@/hooks/useComparisonAction'
 import { addProductToCartBySizeTable } from '@/lib/utils/cart'
 import { setIsAddToFavorites } from '@/context/favorites'
 import { useFavoritesAction } from '@/hooks/useFavoritesAction'
 import styles from '@/styles/product-list-item/index.module.scss'
 import stylesForAd from '@/styles/ad/index.module.scss'
+import { useComparisonAction } from '@/hooks/useComparisonAction'
 
 const ProductsListItem = ({ item, title }: IProductsListItemProps) => {
   const { lang, translations } = useLang()
   const isMedia800 = useMediaQuery(800)
-  const { addToCartSpinner, setAddToCartSpinner, currentCartByAuth } = useCartAction()
-  const { handleAddProductToFavorites, addToFavoritesSpinner, isProductInFavorites } = useFavoritesAction(item)
-  const { handleAddToComparison, isProductInComparison, addToComparisonSpinner, } = useComparisonAction(item)
-
   const isTitleForNew = title === translations[lang].main_page.new_title
+  const { addToCartSpinner, setAddToCartSpinner, currentCartByAuth } =
+    useCartAction()
   const isProductInCart = isItemInList(currentCartByAuth, item._id)
+  const {
+    handleAddProductToFavorites,
+    addToFavoritesSpinner,
+    isProductInFavorites,
+  } = useFavoritesAction(item)
+  const {
+    handleAddToComparison,
+    isProductInComparison,
+    addToComparisonSpinner,
+  } = useComparisonAction(item)
 
   const handleShowQuickViewModal = () => {
     addOverflowHiddenToBody()
@@ -102,10 +114,11 @@ const ProductsListItem = ({ item, title }: IProductsListItemProps) => {
               text={translations[lang].product.add_to_favorites}
               iconClass={`${
                 addToFavoritesSpinner
-                ? 'actions__btn_spinner'
-                : isProductInFavorites
-                  ? 'actions__btn_favorite_checked'
-                  : 'actions__btn_favorite'}`}
+                  ? 'actions__btn_spinner'
+                  : isProductInFavorites
+                    ? 'actions__btn_favorite_checked'
+                    : 'actions__btn_favorite'
+              }`}
               callback={handleAddProductToFavorites}
             />
             <ProductItemActionBtn
@@ -118,7 +131,7 @@ const ProductsListItem = ({ item, title }: IProductsListItemProps) => {
                     ? 'actions__btn_comparison_checked'
                     : 'actions__btn_comparison'
               }`}
-              callback={()=>''}
+              callback={handleAddToComparison}
             />
             {!isMedia800 && (
               <ProductItemActionBtn

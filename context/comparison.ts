@@ -1,3 +1,5 @@
+import { createDomain, createEffect, sample } from 'effector'
+import toast from 'react-hot-toast'
 import { handleJWTError } from '@/lib/utils/errors'
 import {
   IAddProductToComparisonFx,
@@ -5,9 +7,10 @@ import {
   IComparisonItem,
   IDeleteComparisonItemsFx,
 } from '@/types/comparison'
-import { createDomain, createEffect, sample } from 'effector'
-import toast from 'react-hot-toast'
+
 import api from '../api/apiInstance'
+
+const comparison = createDomain()
 
 export const addProductToComparisonFx = createEffect(
   async ({ jwt, setSpinner, ...payload }: IAddProductToComparisonFx) => {
@@ -115,7 +118,7 @@ export const deleteComparisonItemFx = createEffect(
   }
 )
 
-const comparison = createDomain()
+
 
 export const loadComparisonItems = comparison.createEvent<{ jwt: string }>()
 export const addProductToComparison =

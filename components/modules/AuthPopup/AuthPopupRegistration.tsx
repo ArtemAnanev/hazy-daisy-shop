@@ -1,17 +1,19 @@
-import AuthPopupClose from "@/components/modules/AuthPopup/AuthPopupClose"
-import { useLang } from "@/hooks/useLang"
-import { IAuthSideProps, IInputs } from "@/types/authPopup"
-import { singUpFx } from "@/api/auth"
-import { useAuthForm } from "@/hooks/useAuthForm"
-import { handleSignUp } from "@/context/auth"
-import NameInput from "@/components/modules/AuthPopup/NameInput"
-import EmailInput from "@/components/modules/AuthPopup/EmailInput"
-import PasswordInput from "@/components/modules/AuthPopup/PasswordInput"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSpinner } from "@fortawesome/free-solid-svg-icons"
-import AuthPopupSocials from "@/components/modules/AuthPopup/AuthPopupSocials"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { useAuthForm } from '@/hooks/useAuthForm'
+import AuthPopupClose from './AuthPopupClose'
+import { handleSignUp, singUpFx } from '@/context/auth'
+import { IAuthSideProps, IInputs } from '@/types/authPopup'
+import NameInput from './NameInput'
+import EmailInput from './EmailInput'
+import PasswordInput from './PasswordInput'
+import { useLang } from '@/hooks/useLang'
+import AuthPopupSocials from './AuthPopupSocials'
 
-const AuthPopupRegistration = ({toggleAuth, isSideActive}: IAuthSideProps) => {
+const AuthPopupRegistration = ({
+  toggleAuth,
+  isSideActive,
+}: IAuthSideProps) => {
   const { lang, translations } = useLang()
   const { spinner, register, errors, handleSubmit, handleSignupWithOAuth } =
     useAuthForm(singUpFx.pending, isSideActive, handleSignUp)
@@ -36,8 +38,8 @@ const AuthPopupRegistration = ({toggleAuth, isSideActive}: IAuthSideProps) => {
         </p>
         <form onSubmit={handleSubmit(submitForm)}>
           <NameInput register={register} errors={errors} />
-          <EmailInput register={register} errors={errors}/>
-          <PasswordInput register={register} errors={errors}/>
+          <EmailInput register={register} errors={errors} />
+          <PasswordInput register={register} errors={errors} />
           <div className='card-body__inner'>
             <div className='inner__top'>
               <button className='inner__btn' type='submit' disabled={spinner}>
@@ -62,7 +64,7 @@ const AuthPopupRegistration = ({toggleAuth, isSideActive}: IAuthSideProps) => {
             </div>
           </div>
         </form>
-        <AuthPopupSocials handleSignupWithOAuth={handleSignupWithOAuth}/>
+        <AuthPopupSocials handleSignupWithOAuth={handleSignupWithOAuth} />
       </div>
     </div>
   )
