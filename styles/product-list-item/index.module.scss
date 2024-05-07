@@ -27,6 +27,7 @@
       font-size: 14px;
       font-weight: 500;
       padding: 0 8px;
+      z-index: 1;
     }
 
     &__new {
@@ -73,7 +74,8 @@
     }
 
     &__title {
-      margin: 0 0 4px;
+      margin: 0;
+      margin-bottom: 4px;
 
       a {
         color: #A5A8AD;
@@ -176,18 +178,17 @@
     }
 
     &__subtitle {
+      position: relative;
       width: max-content;
       margin-bottom: 20px;
 
-      &__top {
-        padding-top: 5px;
-
-        @media (max-width: 590px) {
-          padding-top: 2px;
-        }
-      }
-
       span {
+        padding-top: 5px;
+        display: inline-block;
+        background-color: #E8E9EA;
+        color: #2A323F;
+        font-size: 60px;
+        font-weight: 700;
         padding-left: 10px;
         padding-right: 10px;
         font-size: 36px;
@@ -201,6 +202,11 @@
     }
 
     &__subtitle__rect {
+      position: absolute;
+      right: 0;
+      background-image: url('/img/subtitle-rect.svg');
+      background-repeat: no-repeat;
+      background-position: center center;
       bottom: -15px;
       width: 25px;
       height: 15px;
@@ -230,7 +236,8 @@
     }
 
     &__title {
-      margin: auto 0 0;
+      margin: 0;
+      margin-top: auto;
       color: #E8E9EA;
       font-size: 18px;
       font-weight: 700;
