@@ -1,4 +1,5 @@
 import { ICartItem } from './cart'
+import { IProduct } from "@/types/common"
 
 export interface ILoadOneProductFx {
   productId: string
@@ -38,4 +39,17 @@ export interface IProductCountBySizeProps {
   products: ICartItem[]
   size: string
   withCartIcon?: boolean
+}
+
+export interface ILoadProductsByFilterFx {
+  limit: number
+  offset: number
+  category: string
+  additionalParams?: string
+  isCatalog?: boolean
+}
+
+export interface IProducts {
+  count: number
+  items: IProduct[]
 }
