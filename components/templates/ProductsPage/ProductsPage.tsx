@@ -1,7 +1,6 @@
 /* eslint-disable indent */
 'use client'
 import ReactPaginate from "react-paginate"
-import { useEffect } from 'react'
 import { IProductsPage } from "@/types/catalog"
 import { useProductFilters } from "@/hooks/useProductFilters"
 import { motion } from "framer-motion"
@@ -9,6 +8,8 @@ import styles from '@/styles/catalog/index.module.scss'
 import skeletonStyles from "@/styles/skeleton/index.module.scss"
 import { basePropsForMotion } from "@/constants/motion"
 import ProductsListItem from "@/components/modules/ProductsListItem/ProductListItem"
+import { useLang } from "@/hooks/useLang"
+import HeadingWithCount from "@/components/elements/HeadingWithCount/HeadingWithCount"
 
 
 const ProductsPage = ({searchParams, pageName}: IProductsPage) => {
@@ -18,11 +19,18 @@ const ProductsPage = ({searchParams, pageName}: IProductsPage) => {
     paginationProps,
     handlePageChange, } =
     useProductFilters(searchParams, pageName, pageName === 'catalog')
+  const { lang, translations } = useLang()
+
 
   console.log(products)
 
   return (
     <>
+      <HeadingWithCount
+        count={products.count}
+        title={(translations[lang].breadcrumbs as {[index: string]: string})[pageName]}
+        spinner={productsSpinner}
+      />
       {productsSpinner && (
         <motion.ul
           {...basePropsForMotion}
@@ -39,7 +47,7 @@ const ProductsPage = ({searchParams, pageName}: IProductsPage) => {
       {!productsSpinner && (
         <motion.ul
           {...basePropsForMotion}
-          className={skeletonStyles.skeleton}>
+          className={`list-reset ${ styles.catalog__list }`}>
           {(products.items || []).map((item)=> (
             <ProductsListItem
               key={item._id}
@@ -47,11 +55,17 @@ const ProductsPage = ({searchParams, pageName}: IProductsPage) => {
           ))}
         </motion.ul>
         )}
+      {!products.items?.length && !productsSpinner && (
+        <div className={styles.catalog__list__empty}>
+          {translations[lang].common.nothing_is_found}
+        </div>
+      )}
+
       <div className={styles.catalog__bottom}>
         <ReactPaginate
           {...paginationProps}
-          // nextLabel={<></>}
-          // previousLabel={<></>}
+          nextLabel={<span>{translations[lang].catalog.next_page}</span>}
+          previousLabel={<span>{translations[lang].catalog.previous_page}</span>}
           onPageChange={handlePageChange}
         />
       </div>

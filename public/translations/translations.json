@@ -154,7 +154,9 @@
       "white": "White",
       "cotton": "Cotton",
       "synthetics": "Synthetic",
-      "polyester": "Polyester"
+      "polyester": "Polyester",
+      "next_page": "Next page",
+      "previous_page": "Previous page"
     },
     "size_table": {
       "head_circumference": "Head circumference, cm",
@@ -389,7 +391,9 @@
       "white": "Белый",
       "cotton": "Хлопок",
       "synthetics": "Синтетика",
-      "polyester": "Полиэстер"
+      "polyester": "Полиэстер",
+      "next_page": "Следующая страница",
+      "previous_page": "Предыдущая страница"
     },
     "size_table": {
       "head_circumference": "Обхват головы, см",
