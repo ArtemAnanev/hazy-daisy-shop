@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useState } from "react"
-import { usePathname } from "next/navigation"
+import { useCallback, useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { useCrumbText } from './useCrumbText'
 import { usePageTitle } from './usePageTitle'
-import { useLang } from "@/hooks/useLang"
+import { useLang } from './useLang'
 
 export const useBreadcrumbs = (page: string) => {
   const [dynamicTitle, setDynamicTitle] = useState('')
@@ -27,8 +27,9 @@ export const useBreadcrumbs = (page: string) => {
       }
 
       const text = (
-        translations[lang]
-      [page === 'comparison' ? 'comparison' : 'breadcrumbs'] as { [index: string]: string }
+        translations[lang][
+          page === 'comparison' ? 'comparison' : 'breadcrumbs'
+          ] as { [index: string]: string }
       )[productTypePathname]
       setDynamicTitle(text)
       lastCrumb.textContent = text

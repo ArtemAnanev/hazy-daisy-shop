@@ -1,6 +1,6 @@
+import { EventCallable } from 'effector'
+import toast from 'react-hot-toast'
 import { closeAuthPopup, openAuthPopup, setIsAuth } from '@/context/auth'
-import { setShouldShowEmpty } from '@/context/cart'
-import { setShouldShowEmptyFavorites } from '@/context/favorites'
 import { setCurrentProduct } from '@/context/goods'
 import {
   closeSearchModal,
@@ -11,8 +11,6 @@ import { setSizeTableSizes } from '@/context/sizeTable'
 import { loginCheck } from '@/context/user'
 import { ICartItem } from '@/types/cart'
 import { IProduct } from '@/types/common'
-import { EventCallable } from 'effector'
-import toast from 'react-hot-toast'
 
 export const removeOverflowHiddenFromBody = () => {
   const body = document.querySelector('body') as HTMLBodyElement
@@ -147,6 +145,7 @@ export const deleteProductFromLS = <T>(
   id: string,
   key: string,
   event: EventCallable<T>,
+  setShouldShowEmpty: (arg0: boolean) => void,
   message: string,
   withToast = true
 ) => {
@@ -166,7 +165,6 @@ export const deleteProductFromLS = <T>(
 
   if (!updatedItems.length) {
     setShouldShowEmpty(true)
-    setShouldShowEmptyFavorites(true)
   }
 }
 
@@ -187,19 +185,37 @@ export const showCountMessage = (count: string, lang: string) => {
 }
 
 export const checkOffsetParam = (offset: string | string[] | undefined) =>
-  offset && !isNaN(+offset) && +offset >=0
+  offset && !isNaN(+offset) && +offset >= 0
 
 export const getSearchParamsUrl = () => {
-  const paramString = window.location.search
-  const urlParams = new URLSearchParams(paramString)
+  const paramsString = window.location.search
+  const urlParams = new URLSearchParams(paramsString)
+
   return urlParams
 }
 
-export const updateSearchParam = (key: string, value: string|number, pathname: string) => {
+export const updateSearchParam = (
+  key: string,
+  value: string | number,
+  pathname: string
+) => {
   const urlParams = getSearchParamsUrl()
   urlParams.set(key, `${value}`)
   const newPath = `${pathname}?${urlParams.toString()}`
   window.history.pushState({ path: newPath }, '', newPath)
 }
 
+export const checkPriceParam = (price: number) =>
+  price && !isNaN(price) && price >= 0 && price <= 10000
 
+export const getCheckedArrayParam = (param: string) => {
+  try {
+    const sizesArr = JSON.parse(decodeURIComponent(param))
+
+    if (Array.isArray(sizesArr) && sizesArr.length) {
+      return sizesArr
+    }
+  } catch (error) {
+    return false
+  }
+}

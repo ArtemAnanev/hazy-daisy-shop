@@ -1,15 +1,19 @@
 'use client'
-import { useBreadcrumbs } from "@/hooks/useBreadcrumbs"
-import Breadcrumbs from "@/components/modules/Breadcrumbs/Breadcrumbs"
-
+import { useBreadcrumbs } from '@/hooks/useBreadcrumbs'
+import Breadcrumbs from '../modules/Breadcrumbs/Breadcrumbs'
 import styles from '@/styles/catalog/index.module.scss'
+import React from "react"
 
-const CatalogLayout = ({children}: {children: React.ReactNode}) => {
-  const {getDefaultTextGenerator, getTextGenerator} = useBreadcrumbs('catalog')
+const CatalogLayout = ({ children }: { children: React.ReactNode }) => {
+  const { getDefaultTextGenerator, getTextGenerator } =
+    useBreadcrumbs('catalog')
 
   return (
     <main>
-      <Breadcrumbs getTextGenerator={getTextGenerator} getDefaultTextGenerator={getDefaultTextGenerator}/>
+      <Breadcrumbs
+        getDefaultTextGenerator={getDefaultTextGenerator}
+        getTextGenerator={getTextGenerator}
+      />
       <section className={styles.catalog}>
         <div className='container'>{children}</div>
       </section>

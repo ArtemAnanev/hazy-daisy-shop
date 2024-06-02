@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { IFavoriteItem } from '@/types/favorites'
-import { $cart, $cartFromLs, addProductToCart } from '@/context/cart'
+import { $cart, $cartFromLs, addProductToCart, setShouldShowEmpty } from "@/context/cart"
 import { useGoodsByAuth } from '@/hooks/useGoodsByAuth'
 import DeleteItemBtn from '@/components/elements/DeleteCartItemBtn/DeleteCartItemBtn'
 import AddToCartIcon from '@/components/elements/AddToCartIcon/AddToCartIcon'
@@ -11,7 +11,7 @@ import { deleteProductFromLS, formatPrice, isUserAuth, } from '@/lib/utils/commo
 import styles from '@/styles/favorites/index.module.scss'
 import { addCartItemToLS } from '@/lib/utils/cart'
 import { IProduct } from '@/types/common'
-import { deleteProductFromFavorites, setFavoritesFromLS, } from '@/context/favorites'
+import { deleteProductFromFavorites, setFavoritesFromLS, setShouldShowEmptyFavorites } from "@/context/favorites"
 import { useProductDelete } from '@/hooks/useProductDelete'
 
 const FavoritesListItem = ({ item }: { item: IFavoriteItem }) => {
@@ -66,6 +66,7 @@ const FavoritesListItem = ({ item }: { item: IFavoriteItem }) => {
         item.clientId,
         'favorites',
         setFavoritesFromLS,
+        setShouldShowEmptyFavorites,
         'Удалено из избранного!'
       )
       return
@@ -76,6 +77,7 @@ const FavoritesListItem = ({ item }: { item: IFavoriteItem }) => {
       item.clientId,
       'favorites',
       setFavoritesFromLS,
+      setShouldShowEmptyFavorites,
       '',
       false
     )

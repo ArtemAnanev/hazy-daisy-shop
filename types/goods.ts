@@ -1,5 +1,5 @@
 import { ICartItem } from './cart'
-import { IProduct } from "@/types/common"
+import { IProduct } from './common'
 
 export interface ILoadOneProductFx {
   productId: string
@@ -45,7 +45,7 @@ export interface ILoadProductsByFilterFx {
   limit: number
   offset: number
   category: string
-  additionalParams?: string
+  additionalParam?: string
   isCatalog?: boolean
 }
 

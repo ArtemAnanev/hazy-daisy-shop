@@ -1,58 +1,117 @@
-import { useUnit } from "effector-react"
-import { useEffect, useState } from "react"
-import { $products, loadProductsByFilter, loadProductsByFilterFx } from "@/context/goods"
-import { SearchParams } from "@/types/catalog"
-import { checkOffsetParam, getSearchParamsUrl, updateSearchParam } from "@/lib/utils/common"
-import { usePathname } from "next/navigation"
-import {IProducts} from "@/types/goods"
+import { useUnit } from 'effector-react'
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import {
+  $products,
+  loadProductsByFilter,
+  loadProductsByFilterFx,
+} from '@/context/goods'
+import {
+  checkOffsetParam,
+  getSearchParamsUrl,
+  updateSearchParam,
+} from '@/lib/utils/common'
+import { SearchParams } from '@/types/catalog'
 import styles from '@/styles/catalog/index.module.scss'
 
-
-export const  useProductFilters = (searchParams :SearchParams, category: string, isCatalog = false
+export const useProductFilters = (
+  searchParams: SearchParams,
+  category: string,
+  isCatalog = false
 ) => {
   const products = useUnit($products)
   const isValidOffset = checkOffsetParam(searchParams.offset)
-  const pagesCount = Math.ceil((products.count || 12)/12)
-  const [currentPage, setCurrentPage] = useState(isValidOffset ? +(searchParams.offset || 0): 0)
+  const pagesCount = Math.ceil((products.count || 12) / 12)
+  const [currentPage, setCurrentPage] = useState(
+    isValidOffset ? +(searchParams.offset || 0) : 0
+  )
   const pathname = usePathname()
   const productsSpinner = useUnit(loadProductsByFilterFx.pending)
 
-
-  useEffect(()=> {
+  useEffect(() => {
     const urlParams = getSearchParamsUrl()
+
     urlParams.delete('offset')
+
     if (!isValidOffset) {
       loadProductsByFilter({
         limit: 12,
         offset: 0,
-        additionalParams: urlParams.toString(),
+        additionalParam: urlParams.toString(),
         isCatalog,
-        category})
+        category,
+      })
+
       updateSearchParam('offset', 0, pathname)
       setCurrentPage(0)
       return
     }
+
     loadProductsByFilter({
-      limit: 12*+(searchParams.offset || 0)+12,
-      offset: +(searchParams.offset || 0)*12,
-      additionalParams: urlParams.toString(),
+      limit: 12 * +(searchParams.offset || 0) + 12,
+      offset: +(searchParams.offset || 0) * 12,
+      additionalParam: urlParams.toString(),
       isCatalog,
-      category})
+      category,
+    })
+
     setCurrentPage(+(searchParams.offset || 0))
   }, [])
 
-  const handlePageChange = ({selected}: {selected: number}) => {
+  const handlePageChange = ({ selected }: { selected: number }) => {
     const urlParams = getSearchParamsUrl()
+
     urlParams.delete('offset')
+
     loadProductsByFilter({
-      limit: 12*selected+12,
-      offset: selected*12,
-      additionalParams: urlParams.toString(),
+      limit: 12 * selected + 12,
+      offset: selected * 12,
+      additionalParam: urlParams.toString(),
       isCatalog,
-      category})
+      category,
+    })
+
     updateSearchParam('offset', selected, pathname)
     setCurrentPage(selected)
+  }
 
+  const handleApplyFiltersWithCategory = (categoryType: string) => {
+    updateSearchParam('type', categoryType, pathname)
+    handlePageChange({ selected: 0 })
+  }
+
+  const handleApplyFiltersWithPrice = (priceFrom: string, priceTo: string) => {
+    updateSearchParam('priceFrom', priceFrom, pathname)
+    updateSearchParam('priceTo', priceTo, pathname)
+    handlePageChange({ selected: 0 })
+  }
+
+  const handleApplyFiltersWithSizes = (sizes: string[]) => {
+    updateSearchParam(
+      'sizes',
+      encodeURIComponent(JSON.stringify(sizes)),
+      pathname
+    )
+    handlePageChange({ selected: 0 })
+  }
+
+  const handleApplyFiltersWithColors = (sizes: string[]) => {
+    updateSearchParam(
+      'colors',
+      encodeURIComponent(JSON.stringify(sizes)),
+      pathname
+    )
+    handlePageChange({ selected: 0 })
+  }
+
+  const handleApplyFiltersBySort = (sort: string) => {
+    const urlParams = getSearchParamsUrl()
+    const offset = urlParams.get('offset')
+
+    updateSearchParam('sort', sort, pathname)
+    handlePageChange({
+      selected: checkOffsetParam(offset as string) ? +(offset || 0) : 0,
+    })
   }
 
   const paginationProps = {
@@ -63,7 +122,7 @@ export const  useProductFilters = (searchParams :SearchParams, category: string,
     nextClassName: `catalog-pagination-next ${styles.catalog__bottom__list__next}`,
     breakClassName: styles.catalog__bottom__list__break,
     breakLinkClassName: styles.catalog__bottom__list__break__link,
-    breakLabel:'...',
+    breakLabe: '...',
     pageCount: pagesCount,
     forcePage: currentPage,
   }
@@ -73,6 +132,11 @@ export const  useProductFilters = (searchParams :SearchParams, category: string,
     products,
     pagesCount,
     productsSpinner,
-    handlePageChange
+    handlePageChange,
+    handleApplyFiltersWithCategory,
+    handleApplyFiltersWithPrice,
+    handleApplyFiltersWithSizes,
+    handleApplyFiltersWithColors,
+    handleApplyFiltersBySort,
   }
 }

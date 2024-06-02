@@ -90,7 +90,7 @@ const ComparisonItem = ({ item }: { item: IComparisonItem }) => {
         item.clientId,
         'comparison',
         setComparisonFromLS,
-        // setShouldShowEmptyComparison,
+        setShouldShowEmptyComparison,
         'Удалено из сравнения!'
       )
       return
@@ -101,7 +101,7 @@ const ComparisonItem = ({ item }: { item: IComparisonItem }) => {
       item.clientId,
       'comparison',
       setComparisonFromLS,
-      // setShouldShowEmptyComparison,
+      setShouldShowEmptyComparison,
       '',
       false
     )

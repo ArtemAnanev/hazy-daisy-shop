@@ -1,6 +1,8 @@
 'use client'
 import { useUnit } from 'effector-react'
+import { usePathname } from 'next/navigation'
 import { useBreadcrumbs } from '@/hooks/useBreadcrumbs'
+import { useLang } from '@/hooks/useLang'
 import Breadcrumbs from '../modules/Breadcrumbs/Breadcrumbs'
 import HeadingWithCount from '../elements/HeadingWithCount/HeadingWithCount'
 import {
@@ -13,19 +15,19 @@ import { useComparisonLinks } from '@/hooks/useComparisonLinks'
 import Skeleton from '../elements/Skeleton/Skeleton'
 import ComparisonLinksList from '../modules/Comparison/ComparisonLinksList'
 import EmptyPageContent from '../modules/EmptyPageContent/EmptyPageContent'
+import { loginCheckFx } from '@/context/user'
+import { isUserAuth } from '@/lib/utils/common'
 import styles from '@/styles/comparison/index.module.scss'
 import skeletonLinksStyles from '@/styles/comparison-links-skeleton/index.module.scss'
 import skeletonListsStyles from '@/styles/comparison-list-skeleton/index.module.scss'
 import comparisonSkeleton from '@/styles/comparison-skeleton/index.module.scss'
-import { loginCheckFx } from '@/context/user'
-import { isUserAuth } from '@/lib/utils/common'
-import { useLang } from "@/hooks/useLang"
-import { usePathname } from "next/navigation"
+import React from "react"
 
 const ComparisonLayout = ({ children }: { children: React.ReactNode }) => {
   const { lang, translations } = useLang()
+  const { getDefaultTextGenerator, getTextGenerator } =
+    useBreadcrumbs('comparison')
   const pathname = usePathname()
-  const { getDefaultTextGenerator, getTextGenerator } = useBreadcrumbs('comparison')
   const currentComparisonByAuth = useGoodsByAuth($comparison, $comparisonFromLs)
   const { availableProductLinks, linksSpinner } = useComparisonLinks()
   const shouldShowEmptyComparison = useUnit($shouldShowEmptyComparison)

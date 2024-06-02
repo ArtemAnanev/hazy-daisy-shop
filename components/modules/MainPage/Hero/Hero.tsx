@@ -13,6 +13,8 @@ import HeroSlide from './HeroSlide'
 import ProductSubtitle from "@/components/elements/ProductSubtitle/ProductSubtitle"
 import styles from '@/styles/main-page/index.module.scss'
 import stylesForAd from '@/styles/ad/index.module.scss'
+import productSubtitleStyles from '@/styles/productSubtitle/index.module.scss'
+
 
 const Hero = () => {
   const { lang, translations } = useLang()
@@ -20,17 +22,17 @@ const Hero = () => {
   const slides = [
     {
       id: 1,
-      title: `${translations[lang].main_page.tShirt} «Line» ${translations[lang].main_page.black}`,
+      title: `${translations[lang].main_page.tShirt} «Hazy Daisy» ${translations[lang].main_page.noodle}`,
       image: img1,
     },
     {
       id: 2,
-      title: `${translations[lang].main_page.tShirt} «Line» ${translations[lang].main_page.orange}`,
+      title: `${translations[lang].main_page.tShirt} «Hazy Daisy» ${translations[lang].main_page.mam}`,
       image: img2,
     },
     {
       id: 3,
-      title: `${translations[lang].main_page.tShirt} «Line» ${translations[lang].main_page.violet}`,
+      title: `${translations[lang].main_page.tShirt} «Hazy Daisy» ${translations[lang].main_page.why}`,
       image: img3,
     },
   ]
@@ -68,7 +70,12 @@ const Hero = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-        <ProductSubtitle />
+        <ProductSubtitle
+          subtitleClassName={productSubtitleStyles.product_subtitle__subtitle}
+          subtitleRectClassName={
+            productSubtitleStyles.product_subtitle__subtitle__rect
+          }
+        />
         <h2 className={styles.hero__title}>
           <span
             className={`${styles.hero__title__subtitle} ${

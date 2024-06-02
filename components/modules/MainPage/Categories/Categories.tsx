@@ -36,7 +36,7 @@ const Categories = () => {
           {!isMedia490 && (
             <>
               <Link
-                href='/catalog/cloth'
+                href='/catalog/clothes'
                 className={`${styles.categories__right} ${styles.categories__img} ${imgSpinnerClass}`}
               >
                 <Image
