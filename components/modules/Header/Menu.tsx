@@ -46,21 +46,21 @@ const Menu = () => {
     handleCloseMenu()
   }
 
-  const clothLinks = [
+  const clothesLinks = [
     {
       id: 1,
       text: translations[lang].comparison['t-shirts'],
-      href: '/catalog/cloth?offset=0&type=t-shirts'
+      href: '/catalog/clothes?offset=0&type=t-shirts'
     },
     {
       id: 2,
       text: translations[lang].comparison['long-sleeves'],
-      href: '/catalog/cloth?offset=0&type=long-sleeves',
+      href: '/catalog/clothes?offset=0&type=long-sleeves',
     },
     {
       id: 3,
       text: translations[lang].comparison.hoodie,
-      href: '/catalog/cloth?offset=0&type=hoodie',
+      href: '/catalog/clothes?offset=0&type=hoodie',
     },
   ]
 
@@ -129,11 +129,11 @@ const Menu = () => {
                     >
                       <li className='nav-menu__accordion__item'>
                         <Accordion
-                          title={translations[lang].main_menu.cloth}
+                          title={translations[lang].main_menu.clothes}
                           titleClass='btn-reset nav-menu__accordion__item__title'
                         >
                           <ul className='list-reset nav-menu__accordion__item__list'>
-                            {clothLinks.map((item) => (
+                            {clothesLinks.map((item) => (
                               <MenuLinkItem
                                 key={item.id}
                                 item={item}

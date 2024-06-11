@@ -17,7 +17,7 @@ const Categories = () => {
   const imgSpinnerClass = imgSpinner ? styles.img_loading : ''
 
   const images = [
-    { src: img1, id: 1, title: translations[lang].main_page.category_cloth },
+    { src: img1, id: 1, title: translations[lang].main_page.category_clothes },
     {
       src: img2, id: 2,
       title: translations[lang].main_page.category_accessories,
@@ -45,7 +45,7 @@ const Categories = () => {
                   className='transition-opacity opacity-0 duration'
                   onLoad={handleLoadingImageComplete}
                 />
-                <span>{translations[lang].main_page.category_cloth}</span>
+                <span>{translations[lang].main_page.category_clothes}</span>
               </Link>
               <div className={styles.categories__left}>
                 <div className={styles.categories__left__top}>

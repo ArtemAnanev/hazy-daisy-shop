@@ -5,7 +5,7 @@ const getRandomArrayValue = (arr) => arr[Math.floor(Math.random()*arr.length)]
 const collections = ['street', 'black', 'casual', 'orange', 'line']
 const colors = ['purple', 'yellow', 'orange', 'black', 'white']
 const compositions = ['cotton', 'synthetics', 'polyester']
-const clothTypes = ['t-shirts', 'long-sleeves', 'hoodie']
+const clothesTypes = ['t-shirts', 'long-sleeves', 'hoodie']
 
 const images = [
   '/img/clothes/cloth-hoodie-1.png',
@@ -71,7 +71,7 @@ const liningMaterials = ['taffeta', 'viscose', 'polyester', 'chiffon', 'satin']
 module.exports = {
   async up(db, client) {
     return db.collection('clothes').insertMany([...Array(20)].map(()=>{
-      const type = clothTypes[Math.floor(Math.random()*clothTypes.length)]
+      const type = clothesTypes[Math.floor(Math.random()*clothesTypes.length)]
       const characteristics = [
         {
           type: 't-shirts',

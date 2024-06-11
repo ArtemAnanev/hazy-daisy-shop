@@ -35,7 +35,7 @@ const ProductsPage = ({ searchParams, pageName }: IProductsPage) => {
         rootCategoryOptions: [
           {
             id: 1,
-            title: translations[lang].main_menu.cloth,
+            title: translations[lang].main_menu.clothes,
             href: '/catalog/clothes',
           },
           {
@@ -69,7 +69,7 @@ const ProductsPage = ({ searchParams, pageName }: IProductsPage) => {
       break
     case 'clothes':
       setCatalogCategoryOptions({
-        clothCategoryOptions: [
+        clothesCategoryOptions: [
           {
             id: 1,
             title: translations[lang].comparison['t-shirts'],

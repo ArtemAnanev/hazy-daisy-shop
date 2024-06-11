@@ -11,7 +11,7 @@ export interface ICatalogCategoryOptions {
     title: string
     href: string
   }[]
-  clothCategoryOptions?: ICategoryOption[]
+  clothesCategoryOptions?: ICategoryOption[]
   accessoryCategoryOptions?: ICategoryOption[]
   officeCategoryOptions?: ICategoryOption[]
   souvenirsCategoryOptions?: ICategoryOption[]
