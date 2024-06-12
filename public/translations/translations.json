@@ -162,7 +162,8 @@
       "previous_page": "Previous page",
       "filters": "Filters",
       "found": "Found",
-      "nothing_found": "Nothing found"
+      "nothing_found": "Nothing found",
+      "collection": "Collection"
     },
     "size_table": {
       "head_circumference": "Head circumference, cm",
@@ -405,7 +406,8 @@
       "previous_page": "Предыдущая страница",
       "filters": "Фильтры",
       "found": "Найдено",
-      "nothing_found": "Ничего не найдено"
+      "nothing_found": "Ничего не найдено",
+      "collection": "Коллекция"
     },
     "size_table": {
       "head_circumference": "Обхват головы, см",
