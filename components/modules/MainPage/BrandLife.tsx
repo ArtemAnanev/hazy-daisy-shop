@@ -1,4 +1,3 @@
-
 import { useMediaQuery } from "@/hooks/useMediaQuery"
 import useImagePreloader from "@/hooks/useImagePreloader"
 import { useLang } from "@/hooks/useLang"

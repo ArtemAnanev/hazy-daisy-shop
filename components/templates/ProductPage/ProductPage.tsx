@@ -10,6 +10,7 @@ import styles from "@/styles/product/index.module.scss"
 import { usePageTitle } from "@/hooks/usePageTitle"
 import { useBreadcrumbs } from "@/hooks/useBreadcrumbs"
 import { useLang } from "@/hooks/useLang"
+import ProductPageContent from "@/components/modules/ProductPage/ProductPageContent"
 
 const ProductPage = ({productId, category}: IProductPageProps) => {
   const product = useUnit($currentProduct)
@@ -56,10 +57,9 @@ const ProductPage = ({productId, category}: IProductPageProps) => {
         <div className={styles.product__preloader}>
           <FontAwesomeIcon icon={faSpinner} spin size='8x' />
         </div>
-
-      )
-      :
-    <h1>{product.name}</h1>}
+      ) :(
+    product.name && <ProductPageContent />
+    )}
     </div>
 
 }
