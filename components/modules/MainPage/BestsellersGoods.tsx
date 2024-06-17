@@ -1,5 +1,5 @@
 import { useUnit } from "effector-react/compat"
-import { $bestsellerProducts } from "@/context/goods"
+import { $bestsellerProducts } from "@/context/goods/state"
 import { getBestsellerProductsFx } from "@/api/main-page"
 import { useLang } from "@/hooks/useLang"
 import MainPageSection from "@/components/modules/MainPage/MainPageSection"

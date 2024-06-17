@@ -1,7 +1,6 @@
 "use client"
 import { IProductPageProps } from "@/types/product"
 import { useEffect } from "react"
-import { $currentProduct, loadOneProduct, loadOneProductFx } from "@/context/goods"
 import { useUnit } from "effector-react"
 import { notFound } from "next/navigation"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -10,6 +9,8 @@ import styles from "@/styles/product/index.module.scss"
 import { usePageTitle } from "@/hooks/usePageTitle"
 import { useBreadcrumbs } from "@/hooks/useBreadcrumbs"
 import { useLang } from "@/hooks/useLang"
+import {loadOneProduct, loadOneProductFx} from "@/context/goods"
+import { $currentProduct } from '@/context/goods/state'
 import ProductPageContent from "@/components/modules/ProductPage/ProductPageContent"
 
 const ProductPage = ({productId, category}: IProductPageProps) => {

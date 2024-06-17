@@ -13,6 +13,7 @@ import { useEffect } from 'react'
 import { setCatalogCategoryOptions } from '@/context/catalog'
 import CatalogFilters from '@/components/modules/CatalogFilters/CatalogFilters'
 import ProductsListItem from "@/components/modules/ProductsListItem/ProductListItem"
+import { IProduct } from '@/types/common'
 
 const ProductsPage = ({ searchParams, pageName }: IProductsPage) => {
   const { lang, translations } = useLang()
@@ -134,7 +135,7 @@ const ProductsPage = ({ searchParams, pageName }: IProductsPage) => {
           {...basePropsForMotion}
           className={`list-reset ${styles.catalog__list}`}
         >
-          {(products.items || []).map((item) => (
+          {(products.items || []).map((item: IProduct) => (
             <ProductsListItem key={item._id} item={item} />
           ))}
         </motion.ul>

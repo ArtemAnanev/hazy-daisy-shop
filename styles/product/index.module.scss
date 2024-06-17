@@ -107,11 +107,10 @@
     }
 
     &__title {
-      margin: 0;
       color: #F1F3F5;
       font-size: 42px;
       font-weight: 700;
-      margin-bottom: 20px;
+      margin: 0 0 20px;
 
       @media (max-width: 520px) {
         font-size: 24px;
@@ -139,11 +138,10 @@
       }
 
       &__title {
-        margin: 0;
         color: #16D9A6;
         font-size: 32px;
         font-weight: 500;
-        margin-bottom: 0;
+        margin: 0;
 
         @media (max-width: 520px) {
           font-size: 28px;
@@ -405,11 +403,10 @@
     }
 
     &__title {
-      margin: 0;
       color: #F1F3F5;
       font-size: 42px;
       font-weight: 700;
-      margin-bottom: 40px;
+      margin: 0 0 40px;
 
       @media (max-width: 650px) {
         font-size: 32px;

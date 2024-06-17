@@ -8,6 +8,8 @@ import { useLang } from '@/hooks/useLang'
 import img1 from '@/public/img/budu-makaroni-swiper.png'
 import img2 from '@/public/img/mam-swiper.png'
 import img3 from '@/public/img/po4emu-swiper.png'
+import img4 from '@/public/img/kid-t-shirt/budu-makaroni-b-2nobg.png'
+import img5 from '@/public/img/kid-t-shirt/budu-makaroni-s-3nb.png'
 import HeroSlide from './HeroSlide'
 
 import ProductSubtitle from "@/components/elements/ProductSubtitle/ProductSubtitle"
@@ -35,6 +37,7 @@ const Hero = () => {
       title: `${translations[lang].main_page.tShirt} «Hazy Daisy» ${translations[lang].main_page.why}`,
       image: img3,
     },
+
   ]
 
   const handleSlideClick = (e: SwiperType) => e.slideTo(e.clickedIndex)

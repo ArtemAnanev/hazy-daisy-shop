@@ -3,8 +3,9 @@ import { useMediaQuery } from "@/hooks/useMediaQuery"
 import ProductImagesItem from "@/components/modules/ProductPage/ProductImagesItem"
 import { useProductImages } from "@/hooks/useProductImages"
 import { useUnit } from "effector-react"
-import { $currentProduct } from "@/context/goods"
+import { $currentProduct } from "@/context/goods/state"
 import styles from "@/styles/product/index.module.scss"
+import { baseSliderSettings } from "@/constants/slider"
 
 const ProductImages = () => {
   const product = useUnit($currentProduct)
@@ -15,15 +16,6 @@ const ProductImages = () => {
   const isMedia420 = useMediaQuery(470)
   const imgSize = isMedia1040 ? 230 : isMedia1420 ? 280 : 480
   const slideImgSize = isMedia420 ? 280 : 432
-  const settings = {
-    dots: false,
-    infinite: true,
-    slidesToScroll: 1,
-    variableWidth: true,
-    speed: 500,
-    autoplay: true,
-    arrows: false,
-  }
 
   return (
     <>
@@ -35,7 +27,7 @@ const ProductImages = () => {
       </ul>
       )}
       {isMedia520 && (
-        <Slider {...settings} className={styles.product__top__images__slider}>
+        <Slider {...baseSliderSettings} className={styles.product__top__images__slider}>
           {images.map((img)=> (
             <ProductImagesItem
               key={img.id}

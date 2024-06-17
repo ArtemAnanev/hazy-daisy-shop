@@ -18,6 +18,7 @@ import { $openAuthPopup } from '@/context/auth'
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import CookieAlert from '../modules/CookieAlert/CookieAlert'
+import '@/context/goods/init'
 
 const PagesLayout = ({ children }: { children: React.ReactNode }) => {
   const [isClient, setIsClient] = useState(false)

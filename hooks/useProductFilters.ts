@@ -2,7 +2,7 @@ import { useUnit } from 'effector-react'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import {
-  $products,
+
   loadProductsByFilter,
   loadProductsByFilterFx,
 } from '@/context/goods'
@@ -12,6 +12,7 @@ import {
   updateSearchParam,
 } from '@/lib/utils/common'
 import { SearchParams } from '@/types/catalog'
+import { $products } from '@/context/goods/state'
 import styles from '@/styles/catalog/index.module.scss'
 
 export const useProductFilters = (

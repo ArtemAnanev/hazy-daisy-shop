@@ -53,3 +53,7 @@ export interface IProducts {
   count: number
   items: IProduct[]
 }
+
+export interface ILoadWatchedProductsFx {
+  payload: { _id: string; category: string }[]
+}
