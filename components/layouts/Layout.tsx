@@ -1,25 +1,18 @@
-'use client'
-import { useUnit } from 'effector-react'
-import { useRef, MutableRefObject } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
-import Header from '../modules/Header/Header'
-import MobileNavbar from '../modules/MobileNavbar/MobileNavbar'
-import SearchModal from '../modules/Header/SearchModal'
-import {
-  $searchModal,
-  $showQuickViewModal,
-  $showSizeTable,
-} from '@/context/modals'
-import {
-  handleCloseAuthPopup,
-  handleCloseSearchModal,
-} from '@/lib/utils/common'
-import Footer from '../modules/Footer/Footer'
-import QuickViewModal from '../modules/QuickViewModal/QuickViewModal'
-import SizeTable from '../modules/SizeTable/SizeTable'
-import { $openAuthPopup } from '@/context/auth'
-import AuthPopup from '../modules/AuthPopup/AuthPopup'
+"use client"
+import { useUnit } from "effector-react"
+import { MutableRefObject, useRef } from "react"
+import { AnimatePresence, motion } from "framer-motion"
+import { useMediaQuery } from "@/hooks/useMediaQuery"
+import Header from "../modules/Header/Header"
+import MobileNavbar from "../modules/MobileNavbar/MobileNavbar"
+import SearchModal from "../modules/Header/SearchModal"
+import { handleCloseAuthPopup, handleCloseSearchModal } from "@/lib/utils/common"
+import Footer from "../modules/Footer/Footer"
+import QuickViewModal from "../modules/QuickViewModal/QuickViewModal"
+import SizeTable from "../modules/SizeTable/SizeTable"
+import AuthPopup from "../modules/AuthPopup/AuthPopup"
+import { $openAuthPopup } from "@/context/auth/state"
+import { $searchModal, $showQuickViewModal, $showSizeTable } from "@/context/modals/state"
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const isMedia800 = useMediaQuery(800)

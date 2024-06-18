@@ -1,26 +1,26 @@
 /* eslint-disable react/jsx-indent */
-'use client'
-import { useUnit } from 'effector-react'
-import { motion } from 'framer-motion'
-import { useState } from 'react'
-import { getCartItemsFx } from '@/api/cart'
-import HeadingWithCount from '@/components/elements/HeadingWithCount/HeadingWithCount'
-import Breadcrumbs from '@/components/modules/Breadcrumbs/Breadcrumbs'
-import CartList from '@/components/modules/CartPage/CartList'
-import PromotionalCode from '@/components/modules/CartPage/PromotionalCode'
-import EmptyPageContent from '@/components/modules/EmptyPageContent/EmptyPageContent'
-import OrderInfoBlock from '@/components/modules/OrderInfoBlock/OrderInfoBlock'
-import { basePropsForMotion } from '@/constants/motion'
-import { useBreadcrumbs } from '@/hooks/useBreadcrumbs'
-import { useLang } from '@/hooks/useLang'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { countWholeCartItemsAmount } from '@/lib/utils/cart'
-import { $cart, $cartFromLs, $shouldShowEmpty } from '@/context/cart'
-import { useGoodsByAuth } from '@/hooks/useGoodsByAuth'
-import cartSkeletonStyles from '@/styles/cart-skeleton/index.module.scss'
-import styles from '@/styles/cart-page/index.module.scss'
-import { isUserAuth } from '@/lib/utils/common'
-import { loginCheckFx } from '@/context/user'
+"use client"
+import { useUnit } from "effector-react"
+import { motion } from "framer-motion"
+import { useState } from "react"
+import { getCartItemsFx } from "@/context/cart"
+import HeadingWithCount from "@/components/elements/HeadingWithCount/HeadingWithCount"
+import Breadcrumbs from "@/components/modules/Breadcrumbs/Breadcrumbs"
+import CartList from "@/components/modules/CartPage/CartList"
+import PromotionalCode from "@/components/modules/CartPage/PromotionalCode"
+import EmptyPageContent from "@/components/modules/EmptyPageContent/EmptyPageContent"
+import OrderInfoBlock from "@/components/modules/OrderInfoBlock/OrderInfoBlock"
+import { basePropsForMotion } from "@/constants/motion"
+import { useBreadcrumbs } from "@/hooks/useBreadcrumbs"
+import { useLang } from "@/hooks/useLang"
+import { useMediaQuery } from "@/hooks/useMediaQuery"
+import { countWholeCartItemsAmount } from "@/lib/utils/cart"
+import { $cart, $cartFromLs, $shouldShowEmpty } from "@/context/cart/state"
+import { useGoodsByAuth } from "@/hooks/useGoodsByAuth"
+import cartSkeletonStyles from "@/styles/cart-skeleton/index.module.scss"
+import styles from "@/styles/cart-page/index.module.scss"
+import { isUserAuth } from "@/lib/utils/common"
+import { loginCheckFx } from "@/context/user"
 
 const CartPage = () => {
   const cartSpinner = useUnit(getCartItemsFx.pending)

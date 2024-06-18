@@ -3,7 +3,8 @@ import { useMemo, useState } from 'react'
 import { $currentProduct } from '@/context/goods/state'
 import { isUserAuth } from '@/lib/utils/common'
 import { addCartItemToLS, addItemToCart, addProductToCartBySizeTable} from '@/lib/utils/cart'
-import { $cart, $cartFromLs, updateCartItemCount } from '@/context/cart'
+import { updateCartItemCount } from '@/context/cart'
+import { $cart, $cartFromLs } from '@/context/cart/state'
 import { useGoodsByAuth } from './useGoodsByAuth'
 
 export const useCartAction = (isSizeTable = false) => {

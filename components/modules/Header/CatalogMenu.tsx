@@ -1,17 +1,18 @@
 'use client'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useUnit } from "effector-react"
-import { useState } from "react"
-import { useLang } from "@/hooks/useLang"
-import { useMediaQuery } from "@/hooks/useMediaQuery"
-import { removeOverflowHiddenFromBody } from "@/lib/utils/common"
-import { $catalogMenuIsOpen, closeCatalogMenu } from "@/context/modals"
+import Link from 'next/link'
+import { useState } from 'react'
+import { useUnit } from 'effector-react'
+import { closeCatalogMenu } from '@/context/modals'
+import { useLang } from '@/hooks/useLang'
+import { useMenuAnimation } from '@/hooks/useMenuAnimations'
 import Header from './Header'
-import Accordion from "@/components/modules/Accordion/Accordion"
-import { useMenuAnimation } from "@/hooks/useMenuAnimations"
-import CatalogMenuButton from "@/components/modules/Header/CatalogMenuButton"
-import Link from "next/link"
-import CatalogMenuList from "@/components/modules/Header/CatalogMenuList"
+import { removeOverflowHiddenFromBody } from '@/lib/utils/common'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+import CatalogMenuButton from './CatalogMenuButton'
+import CatalogMenuList from './CatalogMenuList'
+import Accordion from '../Accordion/Accordion'
+import { $catalogMenuIsOpen } from '@/context/modals/state'
 
 const CatalogMenu = () => {
   const catalogMenuIsOpen = useUnit($catalogMenuIsOpen)

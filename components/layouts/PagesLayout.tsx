@@ -1,24 +1,22 @@
-'use client'
-import { useUnit } from 'effector-react'
-import { Toaster } from 'react-hot-toast'
-import { EarthoOneProvider } from '@eartho/one-client-react'
-import { Next13ProgressBar } from 'next13-progressbar'
-import {
-  $showQuickViewModal,
-  $showSizeTable,
-  closeQuickViewModal,
-} from '@/context/modals'
-import Layout from './Layout'
-import {
-  closeSizeTableByCheck,
-  handleCloseAuthPopup,
-  removeOverflowHiddenFromBody,
-} from '@/lib/utils/common'
-import { $openAuthPopup } from '@/context/auth'
-import React, { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
-import CookieAlert from '../modules/CookieAlert/CookieAlert'
-import '@/context/goods/init'
+"use client"
+import { useUnit } from "effector-react"
+import { Toaster } from "react-hot-toast"
+import { EarthoOneProvider } from "@eartho/one-client-react"
+import { Next13ProgressBar } from "next13-progressbar"
+import { closeQuickViewModal } from "@/context/modals"
+import Layout from "./Layout"
+import { closeSizeTableByCheck, handleCloseAuthPopup, removeOverflowHiddenFromBody } from "@/lib/utils/common"
+import { useEffect, useState } from "react"
+import { motion } from "framer-motion"
+import CookieAlert from "../modules/CookieAlert/CookieAlert"
+import { $openAuthPopup } from "@/context/auth/state"
+import { $showQuickViewModal, $showSizeTable } from "@/context/modals/state"
+import "@/context/goods/init"
+import "@/context/auth/init"
+import "@/context/cart/init"
+import "@/context/comparison/init"
+import "@/context/favorites/init"
+import "@/context/user/init"
 
 const PagesLayout = ({ children }: { children: React.ReactNode }) => {
   const [isClient, setIsClient] = useState(false)

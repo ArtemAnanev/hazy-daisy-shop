@@ -20,7 +20,7 @@ import { useMemo, useState } from 'react'
 import { addProductToCart } from '@/context/cart'
 import { loadOneProduct } from '@/context/goods'
 import { useGoodsByAuth } from '@/hooks/useGoodsByAuth'
-import { $cart, $cartFromLs } from '@/context/cart'
+import { $cart, $cartFromLs } from '@/context/cart/state'
 
 const ComparisonItem = ({ item }: { item: IComparisonItem }) => {
   const currentCartByAuth = useGoodsByAuth($cart, $cartFromLs)

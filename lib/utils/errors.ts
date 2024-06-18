@@ -1,39 +1,27 @@
 /* eslint-disable indent */
+import { JWTError } from "@/constants/jwt"
+import { refreshTokenFx } from "@/context/auth"
+import { addProductsFromLSToCartFx, addProductToCartFx, deleteCartItemFx, getCartItemsFx } from "@/context/cart"
 import {
-  addProductToCartFx,
-  deleteCartItemFx,
-  getCartItemsFx,
-} from '@/api/cart'
-import { JWTError } from '@/constants/jwt'
-import { refreshTokenFx } from '@/context/auth'
-import { addProductsFromLSToCartFx } from '@/context/cart'
-import {
-  addProductToComparisonFx,
-  getComparisonItemsFx,
   addProductsFromLSToComparisonFx,
+  addProductToComparisonFx,
   deleteComparisonItemFx,
-} from '@/context/comparison'
+  getComparisonItemsFx
+} from "@/context/comparison"
 import {
-  addProductToFavoriteFx,
   addProductsFromLSToFavoritesFx,
+  addProductToFavoriteFx,
   deleteFavoriteItemFx,
-  getFavoriteItemsFx,
-} from '@/context/favorites'
-import { loginCheckFx } from '@/context/user'
+  getFavoriteItemsFx
+} from "@/context/favorites"
+import { loginCheckFx } from "@/context/user"
+import { IAddProductsFromLSToCartFx, IAddProductToCartFx, IDeleteCartItemsFx } from "@/types/cart"
 import {
-  IAddProductToCartFx,
-  IAddProductsFromLSToCartFx,
-  IDeleteCartItemsFx,
-} from '@/types/cart'
-import {
-  IAddProductToComparisonFx,
   IAddProductsFromLSToComparisonFx,
-  IDeleteComparisonItemsFx,
-} from '@/types/comparison'
-import {
-  IAddProductsFromLSToFavoriteFx,
-  IDeleteFavoriteItemsFx,
-} from '@/types/favorites'
+  IAddProductToComparisonFx,
+  IDeleteComparisonItemsFx
+} from "@/types/comparison"
+import { IAddProductsFromLSToFavoriteFx, IDeleteFavoriteItemsFx } from "@/types/favorites"
 
 export const handleJWTError = async (
   errorName: string,

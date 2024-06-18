@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useUnit } from 'effector-react'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useEffect } from 'react'
 import Menu from './Menu'
 import { openMenu, openSearchModal } from '@/context/modals'
 import {
@@ -14,8 +15,6 @@ import Logo from '@/components/elements/Logo/Logo'
 import { useLang } from '@/hooks/useLang'
 import CartPopup from './CartPopup/CartPopup'
 import HeaderProfile from './HeaderProfile'
-import { $isAuth } from '@/context/auth'
-import { useEffect } from 'react'
 import {
   addProductsFromLSToCart,
   setCartFromLS,
@@ -23,21 +22,20 @@ import {
 } from '@/context/cart'
 import { setLang } from '@/context/lang'
 import {
-  $favorites,
-  $favoritesFromLS,
   addProductsFromLSToFavorites,
   setFavoritesFromLS,
   setShouldShowEmptyFavorites,
 } from '@/context/favorites'
 import { useGoodsByAuth } from '@/hooks/useGoodsByAuth'
 import {
-  $comparison,
-  $comparisonFromLs,
   addProductsFromLSToComparison,
   setComparisonFromLS,
   setShouldShowEmptyComparison,
 } from '@/context/comparison'
 import { loginCheckFx } from '@/context/user'
+import { $favorites, $favoritesFromLS } from '@/context/favorites/state'
+import { $isAuth } from '@/context/auth/state'
+import { $comparison, $comparisonFromLs } from '@/context/comparison/state'
 
 const Header = () => {
   const isAuth = useUnit($isAuth)

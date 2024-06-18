@@ -7,12 +7,12 @@ import HeadingWithCount from '@/components/elements/HeadingWithCount/HeadingWith
 import Breadcrumbs from '@/components/modules/Breadcrumbs/Breadcrumbs'
 import EmptyPageContent from '@/components/modules/EmptyPageContent/EmptyPageContent'
 import { basePropsForMotion } from '@/constants/motion'
+import { getFavoriteItemsFx, } from '@/context/favorites'
 import {
   $favorites,
   $favoritesFromLS,
   $shouldShowEmptyFavorites,
-  getFavoriteItemsFx,
-} from '@/context/favorites'
+} from '@/context/favorites/state'
 import { useBreadcrumbs } from '@/hooks/useBreadcrumbs'
 import { useGoodsByAuth } from '@/hooks/useGoodsByAuth'
 import { useLang } from '@/hooks/useLang'

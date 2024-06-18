@@ -1,13 +1,10 @@
-import { useMemo } from 'react'
-import { useUnit } from 'effector-react'
-import { usePathname } from 'next/navigation'
-import {
-  $comparison,
-  $comparisonFromLs,
-  getComparisonItemsFx,
-} from '@/context/comparison'
-import { useGoodsByAuth } from './useGoodsByAuth'
-import { useLang } from './useLang'
+import { useMemo } from "react"
+import { useUnit } from "effector-react"
+import { usePathname } from "next/navigation"
+import { $comparison, $comparisonFromLs } from "@/context/comparison/state"
+import { getComparisonItemsFx } from "@/context/comparison"
+import { useGoodsByAuth } from "./useGoodsByAuth"
+import { useLang } from "./useLang"
 
 export const useComparisonLinks = () => {
   const currentComparisonByAuth = useGoodsByAuth($comparison, $comparisonFromLs)

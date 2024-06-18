@@ -1,4 +1,4 @@
-'use client'
+"use client"
 import { createDomain, createEffect } from "effector"
 import { ILoadOneProductFx, ILoadProductsByFilterFx, ILoadWatchedProductsFx } from "@/types/goods"
 import api from "@/api/apiInstance"
@@ -77,6 +77,17 @@ export const loadWatchedProductsFx = createEffect(
     }
   }
 )
+
+export const getNewProductsFx = createEffect(async ()=> {
+  const {data} = await api.get('/api/goods/new')
+  return data
+})
+
+export const getBestsellerProductsFx = createEffect(async ()=> {
+  const {data} = await api.get('/api/goods/bestsellers')
+  return data
+})
+
 
 
 

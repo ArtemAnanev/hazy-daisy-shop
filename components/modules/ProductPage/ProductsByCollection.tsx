@@ -1,31 +1,19 @@
-import { useUnit } from "effector-react"
-import { loadProductsByFilter, loadProductsByFilterFx } from "@/context/goods"
-import { $products } from '@/context/goods/state'
+import { loadProductsByFilter} from "@/context/goods"
 import { useEffect } from "react"
 import { allowedCollectionsCategory } from "@/constants/product"
 import styles from "@/styles/product/index.module.scss"
-import { useLang } from "@/hooks/useLang"
-import { capitalizeFirstLetter } from "@/lib/utils/common"
 import AllLink from "@/components/elements/AllLink/AllLink"
 import { motion } from "framer-motion"
 import skeletonStyles from "@/styles/skeleton/index.module.scss"
 import { basePropsForMotion } from "@/constants/motion"
 import ProductListItem from "@/components/modules/ProductsListItem/ProductListItem"
+import {useProductsByCollection} from "@/hooks/useProductsByCollection"
 
 const ProductsByCollection = ({collection}:{collection: string}) => {
-  const products = useUnit($products)
-  const { lang, translations } = useLang()
-  const langText = translations[lang].product.collection_goods
-  const capitalizedCollection = capitalizeFirstLetter(collection)
-  const spinner = useUnit(loadProductsByFilterFx.pending)
-  const title =
-    lang === 'ru'
-      ? `${langText} <<${capitalizedCollection}>>`
-      : [
-        langText.slice(0, 17),
-        ` <<${capitalizedCollection}>>`,
-        langText.slice(17),
-      ].join('')
+  const {title, capitalizedCollection, spinner, products} = useProductsByCollection(collection)
+  const currentCategory = allowedCollectionsCategory[
+    Math.floor(Math.random()*allowedCollectionsCategory.length)
+    ]
 
     useEffect(()=>{
     loadProductsByFilter({
@@ -39,8 +27,6 @@ const ProductsByCollection = ({collection}:{collection: string}) => {
     })
   }, [])
 
-  console.log(products)
-
   if (!products.items?.length) {
     return null
   }
@@ -52,7 +38,8 @@ const ProductsByCollection = ({collection}:{collection: string}) => {
       </span>
       <h2 className={styles.product__collection__title}>{title}</h2>
       <div className={styles.product__collection__inner}>
-        <AllLink link='/collection-products'/>
+        <AllLink
+          link={`/collection-products?collection=${collection}&category=${currentCategory}`}/>
         {spinner && (
           <motion.ul
             className={skeletonStyles.skeleton}

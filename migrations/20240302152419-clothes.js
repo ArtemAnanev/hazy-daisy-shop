@@ -2,7 +2,7 @@ const { faker } = require('@faker-js/faker')
 
 const getRandomArrayValue = (arr) => arr[Math.floor(Math.random()*arr.length)]
 
-const collections = ['street', 'black', 'casual', 'orange', 'line']
+const collections = ['budu-makaroni', 'mam-mam-mam', 'casual', 'net', 'line']
 const colors = ['purple', 'yellow', 'orange', 'black', 'white']
 const compositions = ['cotton', 'synthetics', 'polyester']
 const clothesTypes = ['t-shirts', 'long-sleeves', 'hoodie']

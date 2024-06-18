@@ -1,6 +1,6 @@
 import { useUnit } from "effector-react"
 import { $newProducts } from "@/context/goods/state"
-import { getNewProductsFx } from "@/api/main-page"
+import { getNewProductsFx } from '@/context/goods'
 import { useLang } from "@/hooks/useLang"
 import MainPageSection from "@/components/modules/MainPage/MainPageSection"
 

@@ -1,6 +1,6 @@
 import { useUnit } from "effector-react"
-import { $cart, $cartFromLs } from "@/context/cart"
-import { $isAuth } from "@/context/auth"
+import { $cart, $cartFromLs } from "@/context/cart/state"
+import { $isAuth } from "@/context/auth/state"
 
 export const useCartByAuth = () => {
   const cart = useUnit($cart)

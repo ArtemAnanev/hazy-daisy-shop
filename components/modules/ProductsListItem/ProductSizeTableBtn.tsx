@@ -1,6 +1,7 @@
 'use client'
 import { useUnit } from 'effector-react'
-import { showSizeTable, $showQuickViewModal } from '@/context/modals'
+import { showSizeTable } from '@/context/modals'
+import { $showQuickViewModal } from '@/context/modals/state'
 import { ISelectedSizes } from '@/types/common'
 import { setSizeTableSizes } from '@/context/sizeTable'
 import { useLang } from '@/hooks/useLang'

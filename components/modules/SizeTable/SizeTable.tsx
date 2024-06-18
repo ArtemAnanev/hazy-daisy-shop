@@ -1,15 +1,16 @@
 import React from "react"
 import { useUnit } from 'effector-react'
-import { $sizeTableSizes } from '@/context/sizeTable'
+import { $sizeTableSizes } from '@/context/sizeTable/state'
 import { useCartAction } from '@/hooks/useCartAction'
-import { $showQuickViewModal } from '@/context/modals'
+import { $showQuickViewModal } from '@/context/modals/state'
 import { closeSizeTableByCheck, isUserAuth } from "@/lib/utils/common"
 import { useLang } from '@/hooks/useLang'
 import AddToCartBtn from '../ProductsListItem/AddToCartBtn'
 import ProductCountBySize from '../ProductsListItem/ProductCountBySize'
 import styles from '@/styles/size-table/index.module.scss'
 import { useGoodsByAuth } from "@/hooks/useGoodsByAuth"
-import { $favorites, $favoritesFromLS, $isAddToFavorites, addProductToFavorites } from "@/context/favorites"
+import { addProductToFavorites } from "@/context/favorites"
+import { $favorites, $favoritesFromLS, $isAddToFavorites } from "@/context/favorites/state"
 import { addFavoriteItemToLS } from "@/lib/utils/favorites"
 import toast from "react-hot-toast"
 import { useFavoritesAction } from "@/hooks/useFavoritesAction"

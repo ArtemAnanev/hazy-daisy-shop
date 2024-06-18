@@ -1,20 +1,21 @@
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useUnit } from 'effector-react'
-import { AnimatePresence, motion } from 'framer-motion'
-import { $filtersPopup, setFiltersPopup } from '@/context/catalog'
-import { loadProductsByFilterFx } from '@/context/goods'
-import { useCategoryFilter } from '@/hooks/useCategoryFilter'
-import { useLang } from '@/hooks/useLang'
+import { faSpinner } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useUnit } from "effector-react"
+import { AnimatePresence, motion } from "framer-motion"
+import { $filtersPopup } from "@/context/catalog/state"
+import { setFiltersPopup } from "@/context/catalog"
+import { loadProductsByFilterFx } from "@/context/goods"
+import { useCategoryFilter } from "@/hooks/useCategoryFilter"
+import { useLang } from "@/hooks/useLang"
 import { useMenuAnimation } from "@/hooks/useMenuAnimations"
-import { removeOverflowHiddenFromBody, showCountMessage, } from '@/lib/utils/common'
-import { ICatalogFiltersProps } from '@/types/catalog'
-import { $products } from '@/context/goods/state'
-import PriceFilter from './PriceFilter'
-import CategoryFilterList from '../CategoryFilterList'
-import SizesFilter from './SizesFilter'
-import ColorsFilter from './ColorsFilter'
-import styles from '@/styles/catalog/index.module.scss'
+import { removeOverflowHiddenFromBody, showCountMessage } from "@/lib/utils/common"
+import { ICatalogFiltersProps } from "@/types/catalog"
+import { $products } from "@/context/goods/state"
+import PriceFilter from "./PriceFilter"
+import CategoryFilterList from "../CategoryFilterList"
+import SizesFilter from "./SizesFilter"
+import ColorsFilter from "./ColorsFilter"
+import styles from "@/styles/catalog/index.module.scss"
 
 const FiltersPopup = ({
   handleApplyFiltersWithPrice,

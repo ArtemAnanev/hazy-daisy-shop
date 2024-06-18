@@ -1,6 +1,6 @@
 import { useUnit } from 'effector-react'
 import { useEffect, useState } from 'react'
-import { $catalogCategoryOptions } from '@/context/catalog'
+import { $catalogCategoryOptions } from '@/context/catalog/state'
 import { useLang } from './useLang'
 import { getSearchParamsUrl } from '@/lib/utils/common'
 
