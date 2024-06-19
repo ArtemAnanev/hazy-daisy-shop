@@ -20,9 +20,6 @@ const ProductPage = ({productId, category}: IProductPageProps) => {
   const { lang, translations } = useLang()
   usePageTitle(category, product.name)
 
-  console.log(product)
-
-
   useEffect(()=> {
     loadOneProduct({
       productId,

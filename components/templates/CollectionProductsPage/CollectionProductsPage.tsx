@@ -10,10 +10,15 @@ import { getSearchParamsUrl } from "@/lib/utils/common"
 import { allowedCollectionsCategory, allowedCollections } from "@/constants/product"
 import {useProductsByCollection} from "@/hooks/useProductsByCollection"
 import { notFound } from "next/navigation"
+import Breadcrumbs from "@/components/modules/Breadcrumbs/Breadcrumbs"
+import { useBreadcrumbs } from "@/hooks/useBreadcrumbs"
+import { useLang } from "@/hooks/useLang"
 
 const CollectionProductsPage = () => {
   const [currentCollection, setCurrentCollection] = useState('')
   const {title, spinner, products} = useProductsByCollection(currentCollection)
+  const { getDefaultTextGenerator, getTextGenerator } =
+    useBreadcrumbs('collection-products')
 
   useEffect(()=> {
     const urlParams = getSearchParamsUrl()
@@ -41,6 +46,10 @@ const CollectionProductsPage = () => {
 
   return (
     <main>
+      <Breadcrumbs
+        getDefaultTextGenerator={getDefaultTextGenerator}
+        getTextGenerator={getTextGenerator}
+      />
       <section className={styles.watched_products}>
         <div className='container'>
           <h1 className={`site-title ${styles.watched_products__title}`}>

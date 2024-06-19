@@ -3,10 +3,10 @@ import toast from 'react-hot-toast'
 import { closeAuthPopup, openAuthPopup, setIsAuth } from '@/context/auth'
 import { setCurrentProduct } from '@/context/goods'
 import {
-  closeSearchModal,
+  closeSearchModal, closeShareModal,
   closeSizeTable,
-  showSizeTable,
-} from '@/context/modals'
+  showSizeTable
+} from "@/context/modals"
 import { setSizeTableSizes } from '@/context/sizeTable'
 import { loginCheck } from '@/context/user'
 import { ICartItem } from '@/types/cart'
@@ -231,4 +231,9 @@ export const getWatchedProductFromLS = () => {
     watchedProducts = []
   }
   return watchedProducts
+}
+
+export const handleCloseShareModal = () => {
+  removeOverflowHiddenFromBody()
+  closeShareModal()
 }

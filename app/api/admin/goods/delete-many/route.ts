@@ -31,7 +31,7 @@ export async function GET(req: Request) {
     }
 
     await Promise.allSettled([
-      deleteManyFromCollection('cloth'),
+      deleteManyFromCollection('clothes'),
       deleteManyFromCollection('accessories'),
     ])
 

@@ -78,7 +78,9 @@
       "souvenirs": "Souvenirs",
       "order": "Placing an order",
       "personal_data_policy": "Data processing policy",
-      "privacy_policy": "Privacy policy"
+      "privacy_policy": "Privacy policy",
+      "watched-products": "Watched products",
+      "collection-products": "Products by collection "
     },
     "footer": {
       "copyright": "«Hazy Daisy» All rights reserved",
@@ -133,7 +135,8 @@
       "total_in_cart": "Total in cart",
       "more": "More information about the product",
       "composition": "Composition",
-      "in_cart": "Added"
+      "in_cart": "Added",
+      "share_with": "Share"
     },
     "catalog": {
       "all_categories": "All categories",
@@ -322,7 +325,9 @@
       "souvenirs": "Сувениры",
       "order": "Оформление заказа",
       "personal_data_policy": "Политика обработки данных",
-      "privacy_policy": "Политика конфиденциальности"
+      "privacy_policy": "Политика конфиденциальности",
+      "watched-products": "Просмотренные товары",
+      "collection-products": "Товары по коллекции"
     },
     "footer": {
       "copyright": "«Hazy Daisy» Все права защищены",
@@ -377,7 +382,8 @@
       "total_in_cart": "Всего в корзине",
       "more": "Больше информации о товаре",
       "composition": "Состав",
-      "in_cart": "Добавлено"
+      "in_cart": "Добавлено",
+      "share_with": "Поделиться"
     },
     "catalog": {
       "all_categories": "Все категории",

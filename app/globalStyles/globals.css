@@ -68,8 +68,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .site-title {
-    margin: 0;
-    margin-bottom: 40px;
+    margin: 0 0 40px;
     color: #E8E9EA;
     font-size: 42px;
     font-weight: 700;

@@ -12,7 +12,9 @@ import QuickViewModal from "../modules/QuickViewModal/QuickViewModal"
 import SizeTable from "../modules/SizeTable/SizeTable"
 import AuthPopup from "../modules/AuthPopup/AuthPopup"
 import { $openAuthPopup } from "@/context/auth/state"
-import { $searchModal, $showQuickViewModal, $showSizeTable } from "@/context/modals/state"
+import { $searchModal, $shareModal, $showQuickViewModal, $showSizeTable } from "@/context/modals/state"
+import { basePropsForMotion } from "@/constants/motion"
+import ShareModal from "@/components/modules/ShareModal/ShareModal"
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const isMedia800 = useMediaQuery(800)
@@ -20,6 +22,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const showQuickViewModal = useUnit($showQuickViewModal)
   const showSizeTable = useUnit($showSizeTable)
   const openAuthPopup = useUnit($openAuthPopup)
+  const shareModal = useUnit($shareModal)
   const authWrapperRef = useRef() as MutableRefObject<HTMLDivElement>
 
   const handleCloseAuthPopupByTarget = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -57,11 +60,16 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <SearchModal />
           </motion.div>
         )}
+        {shareModal && (
+          <motion.div
+            {...basePropsForMotion}
+          >
+            <ShareModal />
+          </motion.div>
+        )}
         {showSizeTable && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            {...basePropsForMotion}
           >
             <SizeTable />
           </motion.div>
@@ -70,11 +78,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       {!isMedia800 && (
         <AnimatePresence>
           {showQuickViewModal && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
+            <motion.div {...basePropsForMotion} initial={{ opacity: 0, zIndex: 6 }}>
               <QuickViewModal />
             </motion.div>
           )}

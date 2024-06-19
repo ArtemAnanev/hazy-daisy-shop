@@ -1,4 +1,3 @@
-import React from "react"
 import type { Metadata, Viewport } from "next"
 import PagesLayout from '@/components/layouts/PagesLayout'
 import './globalStyles/normalize.css'
@@ -16,8 +15,6 @@ import './globalStyles/auth-popup.css'
 import './globalStyles/header-profile.css'
 import './globalStyles/cookie-popup.css'
 import './globalStyles/breadcrumbs.css'
-
-
 
 export const metadata: Metadata = {
   title: "Hazy Daisy Shop",

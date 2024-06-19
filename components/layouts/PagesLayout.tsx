@@ -5,12 +5,13 @@ import { EarthoOneProvider } from "@eartho/one-client-react"
 import { Next13ProgressBar } from "next13-progressbar"
 import { closeQuickViewModal } from "@/context/modals"
 import Layout from "./Layout"
-import { closeSizeTableByCheck, handleCloseAuthPopup, removeOverflowHiddenFromBody } from "@/lib/utils/common"
+import { closeSizeTableByCheck, handleCloseAuthPopup, removeOverflowHiddenFromBody,
+handleCloseShareModal} from "@/lib/utils/common"
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import CookieAlert from "../modules/CookieAlert/CookieAlert"
 import { $openAuthPopup } from "@/context/auth/state"
-import { $showQuickViewModal, $showSizeTable } from "@/context/modals/state"
+import { $shareModal, $showQuickViewModal, $showSizeTable } from "@/context/modals/state"
 import "@/context/goods/init"
 import "@/context/auth/init"
 import "@/context/cart/init"
@@ -24,6 +25,7 @@ const PagesLayout = ({ children }: { children: React.ReactNode }) => {
   const showQuickViewModal = useUnit($showQuickViewModal)
   const showSizeTable = useUnit($showSizeTable)
   const openAuthPopup = useUnit($openAuthPopup)
+  const shareModal = useUnit($shareModal)
 
   useEffect(() => setIsClient(true), [])
 
@@ -68,6 +70,12 @@ const PagesLayout = ({ children }: { children: React.ReactNode }) => {
               openAuthPopup ? 'overlay-active' : ''
             }`}
             onClick={handleCloseAuthPopup}
+          />
+          <div
+            className={`share-overlay ${
+              shareModal ? 'overlay-active' : ''
+            }`}
+            onClick={handleCloseShareModal}
           />
           {cookieAlertOpen && (
             <motion.div

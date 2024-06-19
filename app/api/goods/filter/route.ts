@@ -76,13 +76,13 @@ export async function GET(req: Request) {
         return goods
       }
 
-      const [cloth, accessories] = await Promise.allSettled([
-        getFilteredCollection('cloth'),
+      const [clothes, accessories] = await Promise.allSettled([
+        getFilteredCollection('clothes'),
         getFilteredCollection('accessories'),
       ])
 
       if (
-        cloth.status !== 'fulfilled' ||
+        clothes.status !== 'fulfilled' ||
         accessories.status !== 'fulfilled'
       ) {
         return NextResponse.json({
@@ -92,9 +92,27 @@ export async function GET(req: Request) {
       }
 
       const allGoods = [
-        ...cloth.value,
+        ...clothes.value,
         ...accessories.value,
-      ]
+      ].sort((a,b)=> {
+        if (sortParam.includes('cheap_first')) {
+          return +a.price - +b.price
+        }
+
+        if (sortParam.includes('expensive_first')) {
+          return +b.price - +a.price
+        }
+
+        if (sortParam.includes('new')) {
+          return Number(b.isNew) - Number(a.isNew)
+        }
+
+        if (sortParam.includes('popular')) {
+          return +b.popularity - +a.popularity
+        }
+
+        return 0
+      })
 
       return NextResponse.json({
         count: allGoods.length,
