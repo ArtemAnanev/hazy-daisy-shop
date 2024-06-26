@@ -15,7 +15,7 @@ export const productTypes = [
 ]
 
 export const productCategories = ['clothes', 'accessories']
-export const allowedColors = ['purpure', 'yellow', 'orange', 'black', 'white']
+export const allowedColors = ['purple', 'yellow', 'orange', 'black', 'white']
 export const allowedSizes = ['s', 'l', 'm', 'xl', 'xxl']
 export const allowedCollectionsCategory = ['clothes', 'accessories']
 export const allowedCollections = ['budu-makaroni', 'mam-mam-mam', 'casual', 'net', 'line']

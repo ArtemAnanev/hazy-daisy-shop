@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { OrderInfoBlock } from "@/types/modules"
+import { IOrderInfoBlockProps } from "@/types/modules"
 import { useLang } from "@/hooks/useLang"
 import { MutableRefObject, useState, useRef } from "react"
 import { useTotalPrice } from "@/hooks/useTotalPrice"
@@ -8,8 +8,10 @@ import { countWholeCartItemsAmount } from "@/lib/utils/cart"
 import styles from "@/styles/order-block/index.module.scss"
 import { useGoodsByAuth } from "@/hooks/useGoodsByAuth"
 import { $cart, $cartFromLs } from "@/context/cart/state"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 
-const OrderInfoBlock = ({isCorrectPromotionalCode, isOrderPage}: OrderInfoBlock)=> {
+const OrderInfoBlock = ({isCorrectPromotionalCode, isOrderPage}: IOrderInfoBlockProps)=> {
   const { lang, translations } = useLang()
   const currentCartByAuth = useGoodsByAuth($cart, $cartFromLs)
   const [isUserAgree, setIsUserAgree ] = useState(false)
@@ -56,7 +58,18 @@ const OrderInfoBlock = ({isCorrectPromotionalCode, isOrderPage}: OrderInfoBlock)
             {priceWithDiscount} ₽
           </span>
         </p>
-        { isOrderPage ? <button></button> : (
+        { isOrderPage ? (
+          <button
+            className={`btn-reset ${styles.order_block__btn}`}
+            disabled={!isUserAgree || !currentCartByAuth.length || false}
+          >
+            {false ? (
+              <FontAwesomeIcon icon={faSpinner} spin color='#fff' />
+            ) : (
+              translations[lang].order.make_order
+            )}
+          </button>
+        ):(
           <Link
           href='/order'
           className={`${styles.order_block__btn} ${

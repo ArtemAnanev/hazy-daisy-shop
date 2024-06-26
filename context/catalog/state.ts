@@ -33,7 +33,7 @@ export const $sizesOptions = catalog
 
 export const $colorsOptions = catalog
   .createStore<IColorOption[]>([
-    { id: 1, colorCode: 'purpure', checked: false, colorText: '' },
+    { id: 1, colorCode: 'purple', checked: false, colorText: '' },
     { id: 2, colorCode: 'yellow', checked: false, colorText: '' },
     { id: 3, colorCode: 'orange', checked: false, colorText: '' },
     { id: 4, colorCode: 'black', checked: false, colorText: '' },

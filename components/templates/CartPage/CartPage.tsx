@@ -18,9 +18,9 @@ import { countWholeCartItemsAmount } from "@/lib/utils/cart"
 import { $cart, $cartFromLs, $shouldShowEmpty } from "@/context/cart/state"
 import { useGoodsByAuth } from "@/hooks/useGoodsByAuth"
 import cartSkeletonStyles from "@/styles/cart-skeleton/index.module.scss"
-import styles from "@/styles/cart-page/index.module.scss"
 import { isUserAuth } from "@/lib/utils/common"
 import { loginCheckFx } from "@/context/user"
+import styles from "@/styles/cart-page/index.module.scss"
 
 const CartPage = () => {
   const cartSpinner = useUnit(getCartItemsFx.pending)
