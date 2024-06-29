@@ -1,7 +1,8 @@
 'use client'
 import { useUnit } from 'effector-react'
 import { AnimatePresence, motion } from 'framer-motion'
-// import { useEffect } from 'react'
+
+import { useEffect } from 'react'
 import Breadcrumbs from '@/components/modules/Breadcrumbs/Breadcrumbs'
 import OrderInfoBlock from '@/components/modules/OrderInfoBlock/OrderInfoBlock'
 import MapModal from '@/components/modules/OrderPage/MapModal'
@@ -16,6 +17,7 @@ import { useGoodsByAuth } from '@/hooks/useGoodsByAuth'
 import { useLang } from '@/hooks/useLang'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import styles from '@/styles/order/index.module.scss'
+import OrderPayment from "@/components/modules/OrderPage/OrderPayment"
 
 const OrderPage = () => {
   const { getDefaultTextGenerator, getTextGenerator } = useBreadcrumbs('order')
@@ -109,7 +111,7 @@ const OrderPage = () => {
                     orderNumber='3'
                     text={translations[lang].order.payment}
                   />
-                  {/*<OrderPayment />*/}
+                  <OrderPayment />
                 </li>
                 <li className={`${styles.order__list__item} details-block`}>
                   <OrderTitle
