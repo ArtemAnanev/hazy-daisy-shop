@@ -30,8 +30,6 @@ export const setCashPaymentTb = order.createEvent<boolean>()
 export const makePayment = order.createEvent<IMakePaymentFx>()
 export const setOrderDetailsValues = order.createEvent<IOrderDetailsValues>()
 
-
-
 export const getHazyOfficesByCityFx = order.createEffect(
   async ({city, lang}: IGetHazyOfficesByCityFx)=> {
  try {
