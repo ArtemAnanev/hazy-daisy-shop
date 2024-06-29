@@ -4,9 +4,8 @@ import { useLang } from "@/hooks/useLang"
 import { $cashPaymentTab, $onlinePaymentTab } from "@/context/order/state"
 import { setCashPaymentTb, setOnlinePaymentTb } from "@/context/order"
 import TabControls from "@/components/modules/OrderPage/TabControls"
-import styles from "@/styles/order/index.module.scss"
 import { basePropsForMotion } from "@/constants/motion"
-
+import styles from "@/styles/order/index.module.scss"
 
 const OrderPayment = () => {
   const {lang, translations} = useLang()

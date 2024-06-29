@@ -2,7 +2,6 @@
 import { useUnit } from 'effector-react'
 import { AnimatePresence, motion } from 'framer-motion'
 
-import { useEffect } from 'react'
 import Breadcrumbs from '@/components/modules/Breadcrumbs/Breadcrumbs'
 import OrderInfoBlock from '@/components/modules/OrderInfoBlock/OrderInfoBlock'
 import MapModal from '@/components/modules/OrderPage/MapModal'
@@ -18,6 +17,7 @@ import { useLang } from '@/hooks/useLang'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import styles from '@/styles/order/index.module.scss'
 import OrderPayment from "@/components/modules/OrderPage/OrderPayment"
+import OrderDetailsForm from "@/components/modules/OrderPage/OrderDetailsForm"
 
 const OrderPage = () => {
   const { getDefaultTextGenerator, getTextGenerator } = useBreadcrumbs('order')
@@ -122,7 +122,7 @@ const OrderPage = () => {
                     <p className={styles.order__list__item__details__title}>
                       {translations[lang].order.enter_details}
                     </p>
-                    {/*<OrderDetailsForm />*/}
+                    <OrderDetailsForm />
                   </div>
                 </li>
               </ul>
