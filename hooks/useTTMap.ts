@@ -30,7 +30,7 @@ export const useTTMap = () => {
     const element = document.createElement('div')
     element.classList.add('map-marker')
 
-    new ttMaps.Marker({element})
+    new ttMaps.Marker({ element })
       .setLngLat([position.lon, position.lat])
       .addTo(currentMap);
   }

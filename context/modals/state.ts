@@ -1,18 +1,21 @@
-"use client"
+'use client'
 import {
-  closeCatalogMenu,
-  closeMenu,
-  closeQuickViewModal,
-  closeSearchModal,
-  closeSizeTable,
   modals,
-  openCatalogMenu,
   openMenu,
+  closeMenu,
+  openCatalogMenu,
+  closeCatalogMenu,
   openSearchModal,
+  closeSearchModal,
   showQuickViewModal,
-  showSizeTable
-} from "."
-import { closeShareModal, openShareModal } from "@/context/modals/index"
+  closeQuickViewModal,
+  closeSizeTable,
+  showSizeTable,
+  closeShareModal,
+  openShareModal,
+  closeMapModal,
+  openMapModal,
+} from '.'
 
 export const $menuIsOpen = modals
   .createStore(false)
@@ -43,3 +46,8 @@ export const $shareModal = modals
   .createStore(false)
   .on(openShareModal, () => true)
   .on(closeShareModal, () => false)
+
+export const $mapModal = modals
+  .createStore(false)
+  .on(openMapModal, () => true)
+  .on(closeMapModal, () => false)
