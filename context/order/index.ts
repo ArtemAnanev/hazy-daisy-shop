@@ -1,12 +1,7 @@
 "use client"
 import { createDomain } from "effector"
-import {
-  IGetHazyOfficesByCityFx,
-  IHazyAddressData,
-  IMakePaymentFx,
-  IOrderDetailsValues,
-  IPaymentNotifyFx
-} from "@/types/order"
+import { IGetHazyOfficesByCityFx, IHazyAddressData, IMakePaymentFx, IOrderDetailsValues,
+  IPaymentNotifyFx } from "@/types/order"
 import toast from "react-hot-toast"
 import api from "@/api/apiInstance"
 import { handleJWTError } from "@/lib/utils/errors"
@@ -27,6 +22,7 @@ export const getHazyOfficesByCity =
 export const setCourierAddressData = order.createEvent<IHazyAddressData>()
 export const setOnlinePaymentTb = order.createEvent<boolean>()
 export const setCashPaymentTb = order.createEvent<boolean>()
+export const setScrollToRequiredBlock = order.createEvent<boolean>()
 export const makePayment = order.createEvent<IMakePaymentFx>()
 export const setOrderDetailsValues = order.createEvent<IOrderDetailsValues>()
 

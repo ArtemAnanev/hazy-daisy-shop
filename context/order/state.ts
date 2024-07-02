@@ -2,7 +2,6 @@
 import { IOrderDetailsValues, IHazyAddressData } from '@/types/order'
 import {
   getHazyOfficesByCityFx,
-
   order,
   setCashPaymentTb,
   setChosenCourierAddressData,
@@ -16,6 +15,7 @@ import {
   setShouldLoadHazyData,
   setShouldShowCourierAddressData,
 } from '.'
+import { setScrollToRequiredBlock } from "@/context/order/index"
 
 export const $hazyDataByCity = order
   .createStore<IHazyAddressData[]>([])
@@ -61,6 +61,10 @@ export const $onlinePaymentTab = order
 export const $cashPaymentTab = order
   .createStore<boolean>(false)
   .on(setCashPaymentTb, (_, value) => value)
+
+export const $scrollToRequiredBlock = order
+  .createStore<boolean>(false)
+  .on(setScrollToRequiredBlock, (_, value) => value)
 
 export const $orderDetailsValues = order
   .createStore<IOrderDetailsValues>({} as IOrderDetailsValues)

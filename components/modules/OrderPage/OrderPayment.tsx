@@ -92,7 +92,11 @@ const OrderPayment = () => {
           <motion.div {...basePropsForMotion} className={styles.order__list__item__payment__content}>
             <form>
               <p className={styles.order__list__item__payment__content__radio}>
-                <input type='radio' id='payment-1' name='radio-group' />
+                <input type='radio'
+                       id='payment-1'
+                       name='radio-group'
+                       defaultChecked
+                />
                 <label
                   htmlFor='payment-1'
                   className={`${styles.order__list__item__payment__content__label} ${styles.no_bg}`}

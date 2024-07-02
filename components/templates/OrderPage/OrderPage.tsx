@@ -18,6 +18,9 @@ import { useMediaQuery } from '@/hooks/useMediaQuery'
 import styles from '@/styles/order/index.module.scss'
 import OrderPayment from "@/components/modules/OrderPage/OrderPayment"
 import OrderDetailsForm from "@/components/modules/OrderPage/OrderDetailsForm"
+import { MutableRefObject, useEffect, useRef, useState } from "react"
+import { $scrollToRequiredBlock } from "@/context/order/state"
+import toast from "react-hot-toast"
 
 const OrderPage = () => {
   const { getDefaultTextGenerator, getTextGenerator } = useBreadcrumbs('order')
@@ -25,6 +28,36 @@ const OrderPage = () => {
   const currentCartByAuth = useGoodsByAuth($cart, $cartFromLs)
   const isMedia1220 = useMediaQuery(1220)
   const mapModal = useUnit($mapModal)
+  const shouldScrollToDelivery = useRef(true)
+  const scrollToRequiredBlock = useUnit($scrollToRequiredBlock)
+  const [isFirstRender, setIsFirstRender] = useState(true)
+  const deliveryBlockRef = useRef() as MutableRefObject<HTMLLIElement>
+
+
+
+  useEffect(() => {
+    if(shouldScrollToDelivery.current) {
+      shouldScrollToDelivery.current = false
+      setIsFirstRender(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    if(isFirstRender) {
+      return
+    }
+
+    window.scrollTo({
+      top:
+        deliveryBlockRef.current.getBoundingClientRect().top +
+        window.scrollY +
+        -50,
+      behavior: 'smooth'
+    })
+
+    toast.error('Нужно указать адрес!')
+  }, [scrollToRequiredBlock])
+
 
   // useEffect(() => {
   //   clearCartByPayment()
@@ -103,7 +136,7 @@ const OrderPage = () => {
                     </table>
                   )}
                 </li>
-                <li className={`${styles.order__list__item} order-block`}>
+                <li className={styles.order__list__item} ref={deliveryBlockRef}>
                   <OrderDelivery />
                 </li>
                 <li className={styles.order__list__item}>
