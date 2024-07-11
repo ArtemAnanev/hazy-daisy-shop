@@ -1,13 +1,14 @@
-'use client'
+/* eslint-disable prettier/prettier */
+"use client"
 import { useLang } from "@/hooks/useLang"
 import { useUnit } from "effector-react"
 import { checkPaymentFx, paymentNotifyFx } from "@/context/order"
 import { useEffect, useState } from "react"
 import { IPaymentData } from "@/types/order"
 import { notFound } from "next/navigation"
-import { isUserAuth, formatPrice, getWatchedProductFromLS } from "@/lib/utils/common"
+import { formatPrice, isUserAuth } from "@/lib/utils/common"
 import { handleDeleteAllFromCart } from "@/lib/utils/cart"
-import styles from '@/styles/payment-success/index.module.scss'
+import styles from "@/styles/payment-success/index.module.scss"
 import Link from "next/link"
 import { useWatchedProducts } from "@/hooks/useWatchedProducts"
 import WatchedProducts from "@/app/watched-products/page"
@@ -35,10 +36,19 @@ export default function PaymentSuccess() {
     getPaymentData()
   }, [])
 
-  useEffect(()=> {
-   if (paymentData.description && user.email){
-     paymentNotifyFx({email: user.email, message: paymentData.description})
-   }
+  useEffect(() => {
+    if (paymentData.description && user.email) {
+      let description = paymentData.description
+
+      if (paymentData.metadata && Object.values(paymentData.metadata).some((item) => !!item)) {
+        const recipientData = Object.values(paymentData.metadata)
+          .filter((item) => !!item && typeof item === 'string').join(', ')
+
+        description = `${description} Данные получателя: ${recipientData}`
+      }
+
+      paymentNotifyFx({ email: user.email, message: description })
+    }
   }, [paymentData.description, user.email])
 
   const getPaymentData = async () => {
@@ -61,6 +71,8 @@ export default function PaymentSuccess() {
       }
     }
   }
+
+  console.log(paymentData)
 
   return (
     <main>
@@ -87,6 +99,7 @@ export default function PaymentSuccess() {
                       : `${translations[lang].payment_success.order_info
                         .replace(
                           '1-info',
+                          // eslint-disable-next-line max-len
                           `<span className=${styles.payment_success__num}>№${paymentData.authorization_details?.rrn}</span>`
                         )
                         .replace(

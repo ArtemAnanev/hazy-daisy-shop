@@ -3,7 +3,8 @@ import toast from 'react-hot-toast'
 import { closeAuthPopup, openAuthPopup, setIsAuth } from '@/context/auth'
 import { setCurrentProduct } from '@/context/goods'
 import {
-  closeSearchModal, closeShareModal,
+  closeSearchModal,
+  closeShareModal,
   closeSizeTable,
   showSizeTable
 } from "@/context/modals"

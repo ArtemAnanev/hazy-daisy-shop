@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { useUnit } from "effector-react"
-import { MutableRefObject, useRef, useState } from "react"
+import React, { MutableRefObject, useRef, useState } from "react"
 import { useLang } from "@/hooks/useLang"
 import { useTotalPrice } from "@/hooks/useTotalPrice"
 import { countWholeCartItemsAmount } from "@/lib/utils/cart"
@@ -28,7 +28,6 @@ const OrderInfoBlock = ({isCorrectPromotionalCode, isOrderPage}: IOrderInfoBlock
   const chosenCourierAddressData = useUnit($chosenCourierAddressData)
   const chosenPickupAddressData = useUnit($chosenPickupAddressData)
   const orderDetailsValues = useUnit($orderDetailsValues)
-
   const priceWithDiscount = isCorrectPromotionalCode
     ? formatPrice(Math.round(animatedPrice - animatedPrice * 0.3))
     : formatPrice(animatedPrice)
@@ -92,7 +91,7 @@ const OrderInfoBlock = ({isCorrectPromotionalCode, isOrderPage}: IOrderInfoBlock
       jwt: auth.accessToken,
       description,
       amount: `${priceWithDiscount.replace(' ', '')}`,
-      // metadata: orderDetailsValues,
+      metadata: orderDetailsValues,
     })
   }
 
