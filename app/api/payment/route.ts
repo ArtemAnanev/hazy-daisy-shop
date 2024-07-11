@@ -33,7 +33,7 @@ export async function POST(req: Request) {
         confirmation: {
           type: 'redirect',
           // return_url: 'http://localhost:3000/payment-success',
-          return_url: 'https://https://hazy-daisy-shop.vercel.app/',
+          return_url: 'https://hazy-daisy-shop.vercel.app/',
         },
         capture: true,
         description: reqBody.description,
