@@ -1,7 +1,7 @@
 import autosize from 'autosize'
 import { useLang } from '@/hooks/useLang'
 import styles from '@/styles/order/index.module.scss'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FieldErrorsImpl, useForm } from 'react-hook-form'
 import {
   emailValidationRules,

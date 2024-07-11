@@ -227,6 +227,7 @@ export const getWatchedProductFromLS = () => {
   let watchedProducts: IProduct[] = JSON.parse(
     localStorage.getItem('watched') as string
   )
+
   if (!watchedProducts || !Array.isArray(watchedProducts)){
     watchedProducts = []
   }

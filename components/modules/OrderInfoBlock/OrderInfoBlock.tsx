@@ -1,21 +1,22 @@
 import Link from "next/link"
-import { IOrderInfoBlockProps } from "@/types/modules"
+import { useUnit } from "effector-react"
+import { MutableRefObject, useRef, useState } from "react"
 import { useLang } from "@/hooks/useLang"
-import { MutableRefObject, useState, useRef } from "react"
 import { useTotalPrice } from "@/hooks/useTotalPrice"
-import { formatPrice, showCountMessage } from "@/lib/utils/common"
 import { countWholeCartItemsAmount } from "@/lib/utils/cart"
-import styles from "@/styles/order-block/index.module.scss"
+import { formatPrice, handleOpenAuthPopup, isUserAuth, showCountMessage } from "@/lib/utils/common"
+import { IOrderInfoBlockProps } from "@/types/modules"
 import { useGoodsByAuth } from "@/hooks/useGoodsByAuth"
 import { $cart, $cartFromLs } from "@/context/cart/state"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSpinner } from "@fortawesome/free-solid-svg-icons"
-import { useUnit } from "effector-react"
 import {
-  $chosenCourierAddressData, $chosenPickupAddressData, $onlinePaymentTab,
-  $pickupTab, $scrollToRequiredBlock
+  $chosenCourierAddressData,
+  $chosenPickupAddressData,
+  $onlinePaymentTab,
+  $pickupTab, $orderDetailsValues
 } from "@/context/order/state"
-import { setScrollToRequiredBlock } from "@/context/order"
+import styles from "@/styles/order-block/index.module.scss"
+import toast from "react-hot-toast"
+import { makePayment } from "@/context/order"
 
 const OrderInfoBlock = ({isCorrectPromotionalCode, isOrderPage}: IOrderInfoBlockProps)=> {
   const { lang, translations } = useLang()
@@ -25,8 +26,8 @@ const OrderInfoBlock = ({isCorrectPromotionalCode, isOrderPage}: IOrderInfoBlock
   const onlinePaymentTab = useUnit($onlinePaymentTab)
   const pickupTab = useUnit($pickupTab)
   const chosenCourierAddressData = useUnit($chosenCourierAddressData)
-  const scrollToRequiredBlock = useUnit($scrollToRequiredBlock)
   const chosenPickupAddressData = useUnit($chosenPickupAddressData)
+  const orderDetailsValues = useUnit($orderDetailsValues)
 
   const priceWithDiscount = isCorrectPromotionalCode
     ? formatPrice(Math.round(animatedPrice - animatedPrice * 0.3))
@@ -34,6 +35,12 @@ const OrderInfoBlock = ({isCorrectPromotionalCode, isOrderPage}: IOrderInfoBlock
   const checkboxRef = useRef() as MutableRefObject<HTMLInputElement>
 
   const handleAgreementChange = () => setIsUserAgree(!isUserAgree)
+
+  const scrollToBlock = (selector: HTMLLIElement) =>
+    window.scrollTo({
+      top: selector.getBoundingClientRect().top + window.scrollY + -50,
+      behavior: 'smooth',
+    })
 
   const handleTabCheckbox = (e: React.KeyboardEvent<HTMLLabelElement>) => {
     if (e.key == ' ' || e.code == 'Space') {
@@ -44,11 +51,49 @@ const OrderInfoBlock = ({isCorrectPromotionalCode, isOrderPage}: IOrderInfoBlock
   }
 
   const handleMakePayment = async () => {
-    if (!chosenCourierAddressData.address_line1 &&
-    !chosenPickupAddressData.address_line1) {
-      setScrollToRequiredBlock(!scrollToRequiredBlock)
+    if (
+      !chosenCourierAddressData.address_line1 &&
+      !chosenPickupAddressData.address_line1
+    ) {
+      const orderBlock = document.querySelector('.order-block') as HTMLLIElement
+      scrollToBlock(orderBlock)
+      toast.error('Нужно выбрать адрес!')
       return
     }
+
+    if (!orderDetailsValues.isValid) {
+      const detailsBlock = document.querySelector(
+        '.details-block'
+      ) as HTMLLIElement
+      scrollToBlock(detailsBlock)
+      return
+    }
+
+
+    if (!isUserAuth()) {
+      handleOpenAuthPopup()
+      return
+    }
+
+    const auth = JSON.parse(localStorage.getItem('auth') as string)
+    let description = ''
+
+    if (chosenCourierAddressData.address_line1){
+      //eslint-disable-next-line max-len
+      description = `Адрес доставки товара курьером: ${chosenCourierAddressData.address_line1}, ${chosenCourierAddressData.address_line2} `
+    }
+
+    if (chosenPickupAddressData.address_line1){
+      //eslint-disable-next-line max-len
+      description = `Адрес доставки товара курьером: ${chosenPickupAddressData.address_line1}, ${chosenPickupAddressData.address_line2} `
+    }
+
+    makePayment({
+      jwt: auth.accessToken,
+      description,
+      amount: `${priceWithDiscount.replace(' ', '')}`,
+      // metadata: orderDetailsValues,
+    })
   }
 
   return (
@@ -91,7 +136,7 @@ const OrderInfoBlock = ({isCorrectPromotionalCode, isOrderPage}: IOrderInfoBlock
             </p>
           </>
         )}
-        {/*{isOrderPage && <></>}*/}
+        {isOrderPage && <></>}
         <p className={styles.order_block__total}>
           <span>{translations[lang].order.total}</span>
           <span className={styles.order_block__total__price}>
@@ -104,9 +149,7 @@ const OrderInfoBlock = ({isCorrectPromotionalCode, isOrderPage}: IOrderInfoBlock
             disabled={!isUserAgree || !currentCartByAuth.length || false}
             onClick={handleMakePayment}
           >
-            {false ? (
-              <FontAwesomeIcon icon={faSpinner} spin color='#fff' />
-            ) : (
+            {(
               translations[lang].order.make_order
             )}
           </button>

@@ -8,6 +8,8 @@ import {
   addProductsFromLSToCartFx,
   deleteCartItemFx,
   deleteProductFromCart,
+  deleteAllFromCart,
+  deleteAllFromCartFx,
   updateCartItemCountFx,
   updateCartItemCount
 } from "."
@@ -46,4 +48,11 @@ sample({
   source: $cart,
   fn: (_, data) => data,
   target: deleteCartItemFx,
+})
+
+sample({
+  clock: deleteAllFromCart,
+  source: {},
+  fn: (_, data) => data,
+  target: deleteAllFromCartFx,
 })

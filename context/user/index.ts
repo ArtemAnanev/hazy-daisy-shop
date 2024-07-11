@@ -1,25 +1,28 @@
-"use client"
+'use client'
 import toast from 'react-hot-toast'
 import { createDomain, createEffect } from 'effector'
 import api from '@/api/apiInstance'
 import { handleJWTError } from '@/lib/utils/errors'
 import { setIsAuth } from '../auth'
-import { IUserGeolocation } from "@/types/user"
-import { IGetGeolocationFx } from "@/types/common"
+import { ILoginCheckFx, IUserGeolocation } from '@/types/user'
+import { IGetGeolocationFx } from '@/types/common'
 
 export const user = createDomain()
 
-export const loginCheck = user.createEvent<{ jwt: string }>()
+export const loginCheck = user.createEvent<ILoginCheckFx>()
 export const setUserGeolocation = user.createEvent<IUserGeolocation>()
+export const updateUsername = user.createEvent<string>()
+export const updateUserImage = user.createEvent<string>()
+export const updateUserEmail = user.createEvent<string>()
 
-export const loginCheckFx = createEffect(async ({ jwt }: { jwt: string }) => {
+export const loginCheckFx = createEffect(async ({ jwt }: ILoginCheckFx) => {
   try {
     const { data } = await api.get('/api/users/login-check', {
       headers: { Authorization: `Bearer ${jwt}` },
     })
 
     if (data?.error) {
-      handleJWTError(data.error.name, {
+      await handleJWTError(data.error.name, {
         repeatRequestMethodName: 'loginCheckFx',
       })
       return
@@ -33,14 +36,16 @@ export const loginCheckFx = createEffect(async ({ jwt }: { jwt: string }) => {
 })
 
 export const getGeolocationFx = createEffect(
-  async ({lat, lon }: IGetGeolocationFx ) => {
-  try {
-    const data = await api.get(
-      //eslint-disable-next-line max-len
-      `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lon}&apiKey=${process.env.NEXT_PUBLIC_GEOAPIFY_API_KEY}`
-    )
-    return data
-  } catch (error) {
-    toast.error((error as Error).message)
+  async ({ lon, lat }: IGetGeolocationFx) => {
+    try {
+      const data = await api.get(
+        // eslint-disable-next-line max-len
+        `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lon}&apiKey=${process.env.NEXT_PUBLIC_GEOAPIFY_API_KEY}`
+      )
+
+      return data
+    } catch (error) {
+      toast.error((error as Error).message)
+    }
   }
-})
+)

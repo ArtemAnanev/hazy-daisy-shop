@@ -1,15 +1,18 @@
-"use client"
-import { createDomain } from "effector"
-import { IGetHazyOfficesByCityFx, IHazyAddressData, IMakePaymentFx, IOrderDetailsValues,
-  IPaymentNotifyFx } from "@/types/order"
+'use client'
 import toast from "react-hot-toast"
-import api from "@/api/apiInstance"
-import { handleJWTError } from "@/lib/utils/errors"
+import { createDomain } from "effector"
+import { handleJWTError } from '@/lib/utils/errors'
+import {
+  IGetHazyOfficesByCityFx,
+  IHazyAddressData,
+  IMakePaymentFx,
+  IOrderDetailsValues,
+  IPaymentNotifyFx } from "@/types/order"
+import api from '@/api/apiInstance'
 
 export const order = createDomain()
 export const setPickupTab = order.createEvent<boolean>()
 export const setCourierTab = order.createEvent<boolean>()
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const setMapInstance = order.createEvent<any>()
 export const setShouldLoadHazyData = order.createEvent<boolean>()
 export const setChosenPickupAddressData =
@@ -22,9 +25,9 @@ export const getHazyOfficesByCity =
 export const setCourierAddressData = order.createEvent<IHazyAddressData>()
 export const setOnlinePaymentTb = order.createEvent<boolean>()
 export const setCashPaymentTb = order.createEvent<boolean>()
-export const setScrollToRequiredBlock = order.createEvent<boolean>()
 export const makePayment = order.createEvent<IMakePaymentFx>()
 export const setOrderDetailsValues = order.createEvent<IOrderDetailsValues>()
+
 
 export const getHazyOfficesByCityFx = order.createEffect(
   async ({city, lang}: IGetHazyOfficesByCityFx)=> {
@@ -32,14 +35,14 @@ export const getHazyOfficesByCityFx = order.createEffect(
    const apiKey = process.env.NEXT_PUBLIC_GEOAPIFY_API_KEY
    const baseUrl = `https://api.geoapify.com/v1/geocode/search?format=json&apiKey=${apiKey}`
    const { data } = await api.get(`${baseUrl}&text=${city}&lang=${lang}`)
-   const hazyData = await api.get(
-     `${baseUrl}&text=хэйзи_дэйзи&filter=place:${data.results[0].place_id}`)
+   const hazyData = await api.get(`${baseUrl}&text=хэйзи_дэйзи&filter=place:${data.results[0].place_id}`)
 
    return hazyData.data.results
  } catch (error) {
    toast.error((error as Error).message)
  }
 })
+
 
 export const makePaymentFx = order.createEffect(
   async ({ jwt, amount, description, metadata }: IMakePaymentFx) => {
@@ -53,7 +56,7 @@ export const makePaymentFx = order.createEffect(
       )
 
       if (data?.error) {
-        await handleJWTError(data.error.name, {
+        handleJWTError(data.error.name, {
           repeatRequestMethodName: 'makePaymentFx',
           payload: { amount, description },
         })

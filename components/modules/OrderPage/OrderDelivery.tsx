@@ -154,7 +154,7 @@ const OrderDelivery = () => {
 
     setMapInstance(map)
     withMarker &&
-    handleSelectAddress(
+    await handleSelectAddress(
       chosenPickupAddressData.bbox as IAddressBBox,
       {
         lat: chosenPickupAddressData.lat as number,

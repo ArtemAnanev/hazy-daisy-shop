@@ -9,7 +9,8 @@ import {
   updateCartItemCountFx,
   setShouldShowEmpty,
   setTotalPrice,
-  setCartFromLS
+  setCartFromLS,
+  deleteAllFromCartFx
 } from "."
 
 export const $cart = cart
@@ -29,6 +30,7 @@ export const $cart = cart
   .on(deleteCartItemFx.done, (cart, { result }) =>
     cart.filter((item) => item._id !== result.id)
   )
+  .on(deleteAllFromCartFx.done, () => [])
 
 export const $cartFromLs = cart
   .createStore<ICartItem[]>([])

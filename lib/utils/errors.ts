@@ -1,27 +1,19 @@
 /* eslint-disable indent */
 import { JWTError } from "@/constants/jwt"
 import { refreshTokenFx } from "@/context/auth"
-import { addProductsFromLSToCartFx, addProductToCartFx, deleteCartItemFx, getCartItemsFx } from "@/context/cart"
-import {
-  addProductsFromLSToComparisonFx,
-  addProductToComparisonFx,
-  deleteComparisonItemFx,
-  getComparisonItemsFx
-} from "@/context/comparison"
-import {
-  addProductsFromLSToFavoritesFx,
-  addProductToFavoriteFx,
-  deleteFavoriteItemFx,
-  getFavoriteItemsFx
-} from "@/context/favorites"
+import { addProductsFromLSToCartFx, addProductToCartFx, deleteCartItemFx, getCartItemsFx,
+deleteAllFromCartFx} from "@/context/cart"
+import { addProductsFromLSToComparisonFx, addProductToComparisonFx, deleteComparisonItemFx,
+  getComparisonItemsFx } from "@/context/comparison"
+import { addProductsFromLSToFavoritesFx, addProductToFavoriteFx, deleteFavoriteItemFx,
+  getFavoriteItemsFx } from "@/context/favorites"
 import { loginCheckFx } from "@/context/user"
 import { IAddProductsFromLSToCartFx, IAddProductToCartFx, IDeleteCartItemsFx } from "@/types/cart"
-import {
-  IAddProductsFromLSToComparisonFx,
-  IAddProductToComparisonFx,
-  IDeleteComparisonItemsFx
+import { IAddProductsFromLSToComparisonFx, IAddProductToComparisonFx, IDeleteComparisonItemsFx
 } from "@/types/comparison"
 import { IAddProductsFromLSToFavoriteFx, IDeleteFavoriteItemsFx } from "@/types/favorites"
+import { makePaymentFx } from "@/context/order"
+import { IMakePaymentFx } from "@/types/order"
 
 export const handleJWTError = async (
   errorName: string,
@@ -66,6 +58,17 @@ export const handleJWTError = async (
           ...(payload as IAddProductToCartFx),
           jwt: newTokens.accessToken,
         })
+      case 'makePaymentFx':
+        makePaymentFx({
+          ...(payload as IMakePaymentFx),
+          jwt: newTokens.accessToken
+        })
+        break
+      case 'deleteAllFromCartFx':
+        deleteAllFromCartFx({
+          jwt: newTokens.accessToken,
+        })
+        break
       case 'addProductsFromLSToCartFx':
         return addProductsFromLSToCartFx({
           ...(payload as IAddProductsFromLSToCartFx),

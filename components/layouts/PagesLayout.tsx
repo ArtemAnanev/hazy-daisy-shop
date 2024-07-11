@@ -1,7 +1,6 @@
 "use client"
 import { useUnit } from "effector-react"
 import { Toaster } from "react-hot-toast"
-import { EarthoOneProvider } from "@eartho/one-client-react"
 import { Next13ProgressBar } from "next13-progressbar"
 import { closeQuickViewModal } from "@/context/modals"
 import Layout from "./Layout"
@@ -19,6 +18,7 @@ import "@/context/comparison/init"
 import "@/context/favorites/init"
 import "@/context/user/init"
 import "@/context/order/init"
+import { EarthoOneProvider } from "@eartho/one-client-react"
 
 const PagesLayout = ({ children }: { children: React.ReactNode }) => {
   const [isClient, setIsClient] = useState(false)
@@ -48,6 +48,7 @@ const PagesLayout = ({ children }: { children: React.ReactNode }) => {
     <>
       {isClient ? (
         <EarthoOneProvider
+          domain={`${process.env.NEXT_PUBLIC_DOMAIN}`}
           clientId={`${process.env.NEXT_PUBLIC_OAUTH_CLIENT_ID}`}
         >
           <html lang='en'>

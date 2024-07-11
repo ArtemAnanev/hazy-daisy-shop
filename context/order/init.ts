@@ -1,5 +1,5 @@
 import { sample } from "effector"
-import { getHazyOfficesByCity, getHazyOfficesByCityFx, makePayment, makePaymentFx } from "@/context/order/index"
+import { getHazyOfficesByCity, getHazyOfficesByCityFx, makePayment, makePaymentFx } from '.'
 
 sample({
   clock: getHazyOfficesByCity,
@@ -7,6 +7,7 @@ sample({
   fn: (_, data) => data,
   target: getHazyOfficesByCityFx,
 })
+
 
 sample({
   clock: makePayment,

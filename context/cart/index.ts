@@ -22,6 +22,7 @@ export const updateCartItemCount = cart.createEvent<IUpdateCartItemCountFx>()
 export const setTotalPrice = cart.createEvent<number>()
 export const deleteProductFromCart = cart.createEvent<IDeleteCartItemsFx>()
 export const setShouldShowEmpty = cart.createEvent<boolean>()
+export const deleteAllFromCart = cart.createEvent<{ jwt: string }>()
 
 export const addProductsFromLSToCartFx = createEffect(
   async ({ jwt, cartItems }: IAddProductsFromLSToCartFx) => {
@@ -151,3 +152,20 @@ export const deleteCartItemFx = createEffect(
   }
 )
 
+export const deleteAllFromCartFx = cart.createEffect(
+  async ({ jwt }: { jwt: string }) => {
+    try {
+      const { data } = await api.delete('/api/cart/delete-many',{
+        headers: { Authorization: `Bearer ${jwt}` },
+        })
+
+      if (data?.error){
+        handleJWTError(data.error.name, {
+          repeatRequestMethodName: 'deleteAllFromCartFx',
+        })
+      }
+    } catch (error) {
+      toast.error((error as Error).message)
+    }
+  }
+)

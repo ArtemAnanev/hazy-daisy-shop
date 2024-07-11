@@ -1,12 +1,14 @@
 'use client'
 import { useUnit } from 'effector-react'
 import { AnimatePresence, motion } from 'framer-motion'
-
+import { useEffect } from 'react'
 import Breadcrumbs from '@/components/modules/Breadcrumbs/Breadcrumbs'
 import OrderInfoBlock from '@/components/modules/OrderInfoBlock/OrderInfoBlock'
 import MapModal from '@/components/modules/OrderPage/MapModal'
 import OrderCartItem from '@/components/modules/OrderPage/OrderCartItem'
 import OrderDelivery from '@/components/modules/OrderPage/OrderDelivery'
+import OrderDetailsForm from '@/components/modules/OrderPage/OrderDetailsForm'
+import OrderPayment from '@/components/modules/OrderPage/OrderPayment'
 import OrderTitle from '@/components/modules/OrderPage/OrderTitle'
 import { basePropsForMotion } from '@/constants/motion'
 import { $cart, $cartFromLs } from '@/context/cart/state'
@@ -15,12 +17,10 @@ import { useBreadcrumbs } from '@/hooks/useBreadcrumbs'
 import { useGoodsByAuth } from '@/hooks/useGoodsByAuth'
 import { useLang } from '@/hooks/useLang'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import { isUserAuth } from '@/lib/utils/common'
+import { checkPaymentFx } from '@/context/order'
+import { handleDeleteAllFromCart } from '@/lib/utils/cart'
 import styles from '@/styles/order/index.module.scss'
-import OrderPayment from "@/components/modules/OrderPage/OrderPayment"
-import OrderDetailsForm from "@/components/modules/OrderPage/OrderDetailsForm"
-import { MutableRefObject, useEffect, useRef, useState } from "react"
-import { $scrollToRequiredBlock } from "@/context/order/state"
-import toast from "react-hot-toast"
 
 const OrderPage = () => {
   const { getDefaultTextGenerator, getTextGenerator } = useBreadcrumbs('order')
@@ -28,59 +28,29 @@ const OrderPage = () => {
   const currentCartByAuth = useGoodsByAuth($cart, $cartFromLs)
   const isMedia1220 = useMediaQuery(1220)
   const mapModal = useUnit($mapModal)
-  const shouldScrollToDelivery = useRef(true)
-  const scrollToRequiredBlock = useUnit($scrollToRequiredBlock)
-  const [isFirstRender, setIsFirstRender] = useState(true)
-  const deliveryBlockRef = useRef() as MutableRefObject<HTMLLIElement>
-
-
 
   useEffect(() => {
-    if(shouldScrollToDelivery.current) {
-      shouldScrollToDelivery.current = false
-      setIsFirstRender(false)
-    }
+    clearCartByPayment()
   }, [])
 
-  useEffect(() => {
-    if(isFirstRender) {
+  const clearCartByPayment = async () => {
+    const paymentId = JSON.parse(localStorage.getItem('paymentId') as string)
+
+    if (!isUserAuth() || !paymentId) {
       return
     }
 
-    window.scrollTo({
-      top:
-        deliveryBlockRef.current.getBoundingClientRect().top +
-        window.scrollY +
-        -50,
-      behavior: 'smooth'
-    })
+    const auth = JSON.parse(localStorage.getItem('auth') as string)
+    const data = await checkPaymentFx({ paymentId })
 
-    toast.error('Нужно указать адрес!')
-  }, [scrollToRequiredBlock])
+    if (data) {
+      if (data.result.status === 'succeeded') {
+        handleDeleteAllFromCart(auth.accessToken)
+      }
+    }
 
-
-  // useEffect(() => {
-  //   clearCartByPayment()
-  // }, [])
-
-  // const clearCartByPayment = async () => {
-  //   const paymentId = JSON.parse(localStorage.getItem('paymentId') as string)
-  //
-  //   if (!isUserAuth() || !paymentId) {
-  {/*    return*/}
-  {/*  }*/}
-
-  {/*  const auth = JSON.parse(localStorage.getItem('auth') as string)*/}
-  {/*  // const data = await checkPaymentFx({ paymentId })*/}
-
-  //   if (data) {
-  //     if (data.result.status === 'succeeded') {
-  //       handleDeleteAllFromCart(auth.accessToken)
-  //     }
-  //   }
-  //
-  //   localStorage.removeItem('paymentId')
-  // }
+    localStorage.removeItem('paymentId')
+  }
 
   return (
     <main>
@@ -136,7 +106,7 @@ const OrderPage = () => {
                     </table>
                   )}
                 </li>
-                <li className={styles.order__list__item} ref={deliveryBlockRef}>
+                <li className={`${styles.order__list__item} order-block`}>
                   <OrderDelivery />
                 </li>
                 <li className={styles.order__list__item}>
