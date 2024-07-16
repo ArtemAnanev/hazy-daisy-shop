@@ -1,19 +1,37 @@
 /* eslint-disable indent */
 import { JWTError } from "@/constants/jwt"
 import { refreshTokenFx } from "@/context/auth"
-import { addProductsFromLSToCartFx, addProductToCartFx, deleteCartItemFx, getCartItemsFx,
-deleteAllFromCartFx} from "@/context/cart"
-import { addProductsFromLSToComparisonFx, addProductToComparisonFx, deleteComparisonItemFx,
-  getComparisonItemsFx } from "@/context/comparison"
-import { addProductsFromLSToFavoritesFx, addProductToFavoriteFx, deleteFavoriteItemFx,
-  getFavoriteItemsFx } from "@/context/favorites"
+import {
+  addProductsFromLSToCartFx,
+  addProductToCartFx,
+  deleteAllFromCartFx,
+  deleteCartItemFx,
+  getCartItemsFx
+} from "@/context/cart"
+import {
+  addProductsFromLSToComparisonFx,
+  addProductToComparisonFx,
+  deleteComparisonItemFx,
+  getComparisonItemsFx
+} from "@/context/comparison"
+import {
+  addProductsFromLSToFavoritesFx,
+  addProductToFavoriteFx,
+  deleteFavoriteItemFx,
+  getFavoriteItemsFx
+} from "@/context/favorites"
 import { loginCheckFx } from "@/context/user"
+import { uploadUserAvatarFx } from "@/context/profile"
 import { IAddProductsFromLSToCartFx, IAddProductToCartFx, IDeleteCartItemsFx } from "@/types/cart"
-import { IAddProductsFromLSToComparisonFx, IAddProductToComparisonFx, IDeleteComparisonItemsFx
+import {
+  IAddProductsFromLSToComparisonFx,
+  IAddProductToComparisonFx,
+  IDeleteComparisonItemsFx
 } from "@/types/comparison"
 import { IAddProductsFromLSToFavoriteFx, IDeleteFavoriteItemsFx } from "@/types/favorites"
 import { makePaymentFx } from "@/context/order"
 import { IMakePaymentFx } from "@/types/order"
+import { IUploadUserAvatarFx } from "@/types/profile"
 
 export const handleJWTError = async (
   errorName: string,
@@ -39,6 +57,12 @@ export const handleJWTError = async (
           ...(payload as IAddProductToComparisonFx),
           jwt: newTokens.accessToken,
         })
+      case 'uploadUserAvatarFx':
+        return uploadUserAvatarFx({
+          ...(payload as IUploadUserAvatarFx),
+          jwt: newTokens.accessToken,
+        })
+        break
       case 'getComparisonItemsFx':
         return getComparisonItemsFx({
           jwt: newTokens.accessToken,
