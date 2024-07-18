@@ -8,14 +8,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 import { useMediaQuery } from "@/hooks/useMediaQuery"
 import styles from "@/styles/profile/index.module.scss"
-import { $userImage } from "@/context/profile/state"
-
 
 const ProfileAvatar = () => {
   const {src, alt} = useUserAvatar()
   const uploadSpinner = useUnit(uploadUserAvatarFx.pending)
   const loginCheckSpinner = useUnit(loginCheckFx.pending)
-  const userImage = useUnit($userImage)
   const isMedia300  = useMediaQuery(300)
   const avatarSize = isMedia300 ? 280 : 320
 
@@ -53,7 +50,7 @@ const ProfileAvatar = () => {
              <FontAwesomeIcon icon={faSpinner} spin color='#fff' size='3x' />
            ) : (
              <Image
-               src={userImage || src}
+               src={src}
                width={avatarSize}
                height={avatarSize}
                alt={alt}

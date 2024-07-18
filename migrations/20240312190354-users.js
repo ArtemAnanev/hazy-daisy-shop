@@ -1,9 +1,9 @@
 module.exports = {
-  async up(db, client) {
+  async up(db) {
     db.createCollection('users')
   },
 
-  async down(db, client) {
+  async down(db) {
     db.collection('users').drop()
   }
 };

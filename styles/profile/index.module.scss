@@ -27,13 +27,12 @@
     cursor: pointer;
     display: block;
     height: 207px;
-    margin: 0 auto;
     opacity: 0.2;
     -webkit-transition: opacity 0.1s;
     -o-transition: opacity 0.1s;
     transition: opacity 0.1s;
     width: 207px;
-    margin-bottom: 40px;
+    margin: 0 auto 40px;
   }
 
   &__photo:hover {

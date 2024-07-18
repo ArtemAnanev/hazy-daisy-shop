@@ -21,7 +21,7 @@ import {
   getFavoriteItemsFx
 } from "@/context/favorites"
 import { loginCheckFx } from "@/context/user"
-import { uploadUserAvatarFx } from "@/context/profile"
+import { editUsernameFx, uploadUserAvatarFx } from "@/context/profile"
 import { IAddProductsFromLSToCartFx, IAddProductToCartFx, IDeleteCartItemsFx } from "@/types/cart"
 import {
   IAddProductsFromLSToComparisonFx,
@@ -31,7 +31,7 @@ import {
 import { IAddProductsFromLSToFavoriteFx, IDeleteFavoriteItemsFx } from "@/types/favorites"
 import { makePaymentFx } from "@/context/order"
 import { IMakePaymentFx } from "@/types/order"
-import { IUploadUserAvatarFx } from "@/types/profile"
+import { IEditUsernameFx, IUploadUserAvatarFx } from "@/types/profile"
 
 export const handleJWTError = async (
   errorName: string,
@@ -58,11 +58,15 @@ export const handleJWTError = async (
           jwt: newTokens.accessToken,
         })
       case 'uploadUserAvatarFx':
-        return uploadUserAvatarFx({
+        return  uploadUserAvatarFx({
           ...(payload as IUploadUserAvatarFx),
           jwt: newTokens.accessToken,
         })
-        break
+      case 'editUsernameFx':
+        return  editUsernameFx({
+          ...(payload as IEditUsernameFx),
+          jwt: newTokens.accessToken,
+        })
       case 'getComparisonItemsFx':
         return getComparisonItemsFx({
           jwt: newTokens.accessToken,

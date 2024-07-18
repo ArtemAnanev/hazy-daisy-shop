@@ -36,18 +36,18 @@ export const POST = async (req: Request) => {
     path.join(process.cwd(), './public', 'avatars')
   )
 
-  const existingImage = filenames.find((name)=>
+  const existingImage = filenames.find((name) =>
     name.includes(new ObjectId(user?._id).toString())
   )
 
   if (existingImage) {
-    fs.unlinkSync(path.join(process.cwd(), './public/avatars/' + existingImage))
+    fs.unlinkSync(path.join(process.cwd(), 'public/avatars/' + existingImage))
   }
 
   //@ts-ignore
   const buffer = Buffer.from(await file.arrayBuffer())
   //@ts-ignore
-  const filename = `${user?._id}__${file.name.replaceAll('', '_')}`
+  const filename = `${user?._id}__${file.name.replaceAll(' ', '_')}`
 
   try {
     await writeFile(
@@ -74,6 +74,4 @@ export const POST = async (req: Request) => {
   } catch (error) {
     return NextResponse.json({ Message: 'Failed', statue: 500 })
   }
-
-
 }

@@ -6,6 +6,7 @@ import { useUnit } from "effector-react"
 import { $user } from "@/context/user/state"
 import ProfileAvatar from "@/components/modules/ProfilePage/ProfileAvatar"
 import styles from "@/styles/profile/index.module.scss"
+import ProfileName from "@/components/modules/ProfilePage/ProfileName"
 
 const ProfilePage = () => {
   // const { lang, translations } = useLang()
@@ -25,6 +26,7 @@ const ProfilePage = () => {
         <div className={`container ${styles.profile__container}`}>
           <div className={styles.profile__inner}>
             <ProfileAvatar />
+            <ProfileName />
           </div>
         </div>
       </section>
