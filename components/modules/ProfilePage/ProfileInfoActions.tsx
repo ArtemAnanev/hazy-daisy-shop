@@ -1,14 +1,14 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSpinner } from "@fortawesome/free-solid-svg-icons"
-import { IProfileInfoActionsProps } from "@/types/profile"
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { IProfileInfoActionsProps } from '@/types/profile'
 import styles from '@/styles/profile/index.module.scss'
 
 const ProfileInfoActions = ({
   spinner,
   handleSaveInfo,
+  disabled,
   handleCancelEdit,
-  disabled
-}:IProfileInfoActionsProps) => (
+}: IProfileInfoActionsProps) => (
   <div className={styles.profile__info__actions}>
     <button
       className={`btn-reset ${styles.profile__info__save} ${
@@ -17,15 +17,13 @@ const ProfileInfoActions = ({
       onClick={handleSaveInfo}
       disabled={disabled}
     >
-      {spinner ? <FontAwesomeIcon
-        icon={faSpinner}
-        spin /> : <span />}
+      {spinner ? <FontAwesomeIcon icon={faSpinner} spin /> : <span />}
     </button>
     <button
       className={`btn-reset ${styles.profile__info__close}`}
       onClick={handleCancelEdit}
     />
   </div>
-  )
+)
 
 export default ProfileInfoActions

@@ -1,37 +1,58 @@
 /* eslint-disable indent */
-import { JWTError } from "@/constants/jwt"
-import { refreshTokenFx } from "@/context/auth"
+import { JWTError } from '@/constants/jwt'
+import { refreshTokenFx } from '@/context/auth'
 import {
-  addProductsFromLSToCartFx,
   addProductToCartFx,
+  addProductsFromLSToCartFx,
   deleteAllFromCartFx,
   deleteCartItemFx,
-  getCartItemsFx
-} from "@/context/cart"
+  getCartItemsFx,
+} from '@/context/cart'
 import {
-  addProductsFromLSToComparisonFx,
   addProductToComparisonFx,
+  getComparisonItemsFx,
+  addProductsFromLSToComparisonFx,
   deleteComparisonItemFx,
-  getComparisonItemsFx
-} from "@/context/comparison"
+} from '@/context/comparison'
 import {
-  addProductsFromLSToFavoritesFx,
   addProductToFavoriteFx,
+  addProductsFromLSToFavoritesFx,
   deleteFavoriteItemFx,
-  getFavoriteItemsFx
-} from "@/context/favorites"
-import { loginCheckFx } from "@/context/user"
-import { editUsernameFx, uploadUserAvatarFx } from "@/context/profile"
-import { IAddProductsFromLSToCartFx, IAddProductToCartFx, IDeleteCartItemsFx } from "@/types/cart"
+  getFavoriteItemsFx,
+} from '@/context/favorites'
+import { makePaymentFx } from '@/context/order'
 import {
-  IAddProductsFromLSToComparisonFx,
+  deleteUserFx,
+  editUserEmailFx,
+  editUsernameFx,
+  uploadUserAvatarFx,
+  verifyCodeFx,
+  verifyEmailFx,
+} from '@/context/profile'
+import { loginCheckFx } from '@/context/user'
+import {
+  IAddProductToCartFx,
+  IAddProductsFromLSToCartFx,
+  IDeleteCartItemsFx,
+} from '@/types/cart'
+import {
   IAddProductToComparisonFx,
-  IDeleteComparisonItemsFx
-} from "@/types/comparison"
-import { IAddProductsFromLSToFavoriteFx, IDeleteFavoriteItemsFx } from "@/types/favorites"
-import { makePaymentFx } from "@/context/order"
-import { IMakePaymentFx } from "@/types/order"
-import { IEditUsernameFx, IUploadUserAvatarFx } from "@/types/profile"
+  IAddProductsFromLSToComparisonFx,
+  IDeleteComparisonItemsFx,
+} from '@/types/comparison'
+import {
+  IAddProductsFromLSToFavoriteFx,
+  IDeleteFavoriteItemsFx,
+} from '@/types/favorites'
+import { IMakePaymentFx } from '@/types/order'
+import {
+  IDeleteUserFx,
+  IEditUserEmailFx,
+  IEditUsernameFx,
+  IUploadUserAvatarFx,
+  IVerifyCodeFx,
+  IVerifyEmailFx,
+} from '@/types/profile'
 
 export const handleJWTError = async (
   errorName: string,
@@ -58,15 +79,36 @@ export const handleJWTError = async (
           jwt: newTokens.accessToken,
         })
       case 'uploadUserAvatarFx':
-        return  uploadUserAvatarFx({
+        return uploadUserAvatarFx({
           ...(payload as IUploadUserAvatarFx),
           jwt: newTokens.accessToken,
         })
       case 'editUsernameFx':
-        return  editUsernameFx({
+        return editUsernameFx({
           ...(payload as IEditUsernameFx),
           jwt: newTokens.accessToken,
         })
+      case 'verifyCodeFx':
+        return verifyCodeFx({
+          ...(payload as IVerifyCodeFx),
+          jwt: newTokens.accessToken,
+        })
+      case 'verifyEmailFx':
+        return verifyEmailFx({
+          ...(payload as IVerifyEmailFx),
+          jwt: newTokens.accessToken,
+        })
+      case 'editUserEmailFx':
+        return editUserEmailFx({
+          ...(payload as IEditUserEmailFx),
+          jwt: newTokens.accessToken,
+        })
+      case 'deleteUserFx':
+        deleteUserFx({
+          ...(payload as IDeleteUserFx),
+          jwt: newTokens.accessToken,
+        })
+        break
       case 'getComparisonItemsFx':
         return getComparisonItemsFx({
           jwt: newTokens.accessToken,
@@ -89,7 +131,7 @@ export const handleJWTError = async (
       case 'makePaymentFx':
         makePaymentFx({
           ...(payload as IMakePaymentFx),
-          jwt: newTokens.accessToken
+          jwt: newTokens.accessToken,
         })
         break
       case 'deleteAllFromCartFx':

@@ -11,10 +11,11 @@ import {basePropsForMotion} from "@/constants/motion"
 import NameErrorMessage from "@/components/elements/NameErrorMessage/NameErrorMessage"
 import ProfileInfoActions from "@/components/modules/ProfilePage/ProfileInfoActions"
 import ProfileInfoBlock from "@/components/modules/ProfilePage/ProfileInfoBlock"
-import styles from "@/styles/profile/index.module.scss"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 import { loginCheckFx } from "@/context/user"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import styles from "@/styles/profile/index.module.scss"
+
 
 const ProfileName = () => {
   const user = useUnit($user)
@@ -52,8 +53,8 @@ const ProfileName = () => {
 
   const allowEdit = () => {
     handleEdit()
-    setValue("name", user.name)
-    trigger()
+    setValue(nameRegister.name, user.name)
+    trigger(nameRegister.name)
   }
 
   return (
