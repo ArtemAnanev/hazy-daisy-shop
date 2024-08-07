@@ -15,7 +15,7 @@ export const updateUsername = user.createEvent<string>()
 export const updateUserImage = user.createEvent<string>()
 export const updateUserEmail = user.createEvent<string>()
 
-export const loginCheckFx = createEffect(async ({ jwt }: ILoginCheckFx) => {
+export const loginCheckFx = createEffect(async ({ jwt, setShouldShowContent }: ILoginCheckFx) => {
   try {
     const { data } = await api.get('/api/users/login-check', {
       headers: { Authorization: `Bearer ${jwt}` },
@@ -24,11 +24,13 @@ export const loginCheckFx = createEffect(async ({ jwt }: ILoginCheckFx) => {
     if (data?.error) {
       await handleJWTError(data.error.name, {
         repeatRequestMethodName: 'loginCheckFx',
+        payload: setShouldShowContent
       })
       return
     }
 
     setIsAuth(true)
+    setShouldShowContent && setShouldShowContent(true)
     return data.user
   } catch (error) {
     toast.error((error as Error).message)
