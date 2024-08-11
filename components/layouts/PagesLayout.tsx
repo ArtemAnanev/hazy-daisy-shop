@@ -3,6 +3,8 @@ import { useUnit } from "effector-react"
 import { Toaster } from "react-hot-toast"
 import { EarthoOneProvider } from "@eartho/one-client-react"
 import { Next13ProgressBar } from "next13-progressbar"
+import { usePathname, useRouter } from "next/navigation"
+import { loginCheckFx } from "@/context/user"
 import { closeQuickViewModal } from "@/context/modals"
 import Layout from "./Layout"
 import {
@@ -25,8 +27,8 @@ import "@/context/favorites/init"
 import "@/context/user/init"
 import "@/context/order/init"
 import "@/context/profile/init"
-import { usePathname, useRouter } from "next/navigation"
-import { loginCheckFx } from "@/context/user"
+import "@/context/passwordRestore/init"
+
 
 const PagesLayout = ({ children }: { children: React.ReactNode }) => {
   const [isClient, setIsClient] = useState(false)
