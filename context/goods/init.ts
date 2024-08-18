@@ -1,17 +1,24 @@
-import { Effect, sample } from "effector"
+import { Effect, sample } from 'effector'
+import { Gate } from 'effector-react'
 import {
+  MainPageGate,
+  getBestsellerProductsFx,
+  getNewProductsFx,
   loadOneProduct,
   loadOneProductFx,
+  loadProductBySearch,
+  loadProductBySearchFx,
   loadProductsByFilter,
   loadProductsByFilterFx,
   loadWatchedProducts,
   loadWatchedProductsFx,
-  MainPageGate,
-  getBestsellerProductsFx,
-  getNewProductsFx
-} from "."
-import { $currentProduct, $products, $watchedProducts } from "@/context/goods/state"
-import { Gate } from "effector-react"
+} from '.'
+import {
+  $currentProduct,
+  $products,
+  $productsBySearch,
+  $watchedProducts,
+} from './state'
 
 const goodsSampleInstance = (
   effect: Effect<void, [], Error>,
@@ -44,4 +51,11 @@ sample({
   source: $watchedProducts,
   fn: (_, data) => data,
   target: loadWatchedProductsFx,
+})
+
+sample({
+  clock: loadProductBySearch,
+  source: $productsBySearch,
+  fn: (_, data) => data,
+  target: loadProductBySearchFx,
 })
