@@ -4,7 +4,7 @@ import { corsHeaders } from '@/constants/corsHeaders'
 import clientPromise from '@/lib/mongodb'
 import { getDbAndReqBody } from '@/lib/utils/api-routes'
 
-export async function GET(req: Request) {
+export async function DELETE(req: Request) {
   try {
     const { db } = await getDbAndReqBody(clientPromise, null)
     const url = new URL(req.url)
@@ -27,3 +27,7 @@ export async function GET(req: Request) {
 }
 
 export const dynamic = 'force-dynamic'
+
+export async function OPTIONS() {
+    return new NextResponse(null, {...corsHeaders, status: 200})
+}
