@@ -1,30 +1,27 @@
-import { IProductImagesItemProps } from "@/types/product"
-import Image from "next/image"
-import useImagePreloader from "@/hooks/useImagePreloader"
-import styles from "@/styles/product/index.module.scss"
+import { IProductImagesItemProps } from "@/types/product";
+import Image from "next/image";
+import useImagePreloader from "@/hooks/useImagePreloader";
+import styles from "@/styles/product/index.module.scss";
 
-const ProductImagesItem = ({
-  image,
-  imgSize,
-}: IProductImagesItemProps) => {
-  const {handleLoadingImageComplete, imgSpinner} = useImagePreloader()
+const ProductImagesItem = ({ image, imgSize }: IProductImagesItemProps) => {
+  const { handleLoadingImageComplete, imgSpinner } = useImagePreloader();
 
   return (
     <li
       className={`${styles.product__top__images__item} ${
-        imgSpinner ? styles.img_loading : ''
+        imgSpinner ? styles.img_loading : ""
       }`}
     >
       <Image
-        src={image.src}
-        alt={image.alt}
+        src={image.url}
+        alt={image.desc}
         width={imgSize}
         height={imgSize}
-        className='transition-opacity opacity-0 duration'
+        className="transition-opacity opacity-0 duration"
         onLoad={handleLoadingImageComplete}
       />
     </li>
-  )
-}
+  );
+};
 
-export default ProductImagesItem
+export default ProductImagesItem;

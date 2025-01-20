@@ -1,8 +1,8 @@
-import { getDbAndReqBody } from "../../../../lib/utils/api-routes";
+import { getDbAndReqBody } from "@/lib/utils/api-routes";
 import clientPromise from "../../../../lib/mongodb";
-import { sendMail } from "../../../../service/mailService";
+import { sendMail } from "@/service/mailService";
 import { NextResponse } from "next/server";
-import { corsHeaders } from "../../../../constants/corsHeaders";
+import { corsHeaders } from "@/constants/corsHeaders";
 
 export async function POST(req: Request) {
   try {

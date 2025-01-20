@@ -1,20 +1,13 @@
-import QuickViewModalSliderArrow from "@/components/elements/QuickViewModalSliderArrow/QuickViewModalSliderArrow"
-import Slider from "react-slick"
-import { useMediaQuery } from "@/hooks/useMediaQuery"
-import styles from '@/styles/quick-view-modal/index.module.scss'
-import React from "react"
+import QuickViewModalSliderArrow from "@/components/elements/QuickViewModalSliderArrow/QuickViewModalSliderArrow";
+import Slider from "react-slick";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
+import styles from "@/styles/quick-view-modal/index.module.scss";
+import React from "react";
+import { IProduct } from "@/types/common";
 
-const QuickViewModalSlider = ({
-  images
-}: {
-  images: {
-    src: string
-    alt: string
-    id: string
-  }[]
-}) => {
-  const isMedia1070 = useMediaQuery(1070)
-  const isMedia890 = useMediaQuery(890)
+const QuickViewModalSlider = ({ images }: { images: IProduct["images"] }) => {
+  const isMedia1070 = useMediaQuery(1070);
+  const isMedia890 = useMediaQuery(890);
 
   const settings = {
     dots: true,
@@ -31,21 +24,21 @@ const QuickViewModalSlider = ({
         className={`btn-reset ${styles.modal__left__slider__slide__dot}`}
       />
     ),
-  }
+  };
 
   return (
     <Slider {...settings} className={styles.modal__left__slider}>
-      {images.map((item) => (
+      {images.map((item, idx) => (
         <div
-          key={item.id}
+          key={idx}
           style={{ width: isMedia890 ? 270 : isMedia1070 ? 350 : 480 }}
           className={styles.modal__left__slider__slide}
         >
-          <img src={item.src} alt={item.alt} id={item.id} />
+          <img src={item.url} alt={item.desc} />
         </div>
       ))}
     </Slider>
-  )
-}
+  );
+};
 
-export default QuickViewModalSlider
+export default QuickViewModalSlider;

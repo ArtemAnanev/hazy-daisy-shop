@@ -1,27 +1,26 @@
-import Link from 'next/link'
-import { closeQuickViewModal } from '@/context/modals'
-import { formatPrice, removeOverflowHiddenFromBody } from '@/lib/utils/common'
-import QuickViewModalSlider from './QuickViewModalSlider'
-import { useCartAction } from '@/hooks/useCartAction'
-import { useProductImages } from '@/hooks/useProductImages'
-import ProductAvailable from '@/components/elements/ProductAvailable/ProductAvailable'
-import ProductColor from '../ProductsListItem/ProductColor'
-import ProductComposition from '../ProductsListItem/ProductComposition'
-import { useLang } from '@/hooks/useLang'
-import ProductSizeTableBtn from '../ProductsListItem/ProductSizeTableBtn'
-import ProductSizesItem from '../ProductsListItem/ProductSizesItem'
-import ProductCounter from '../ProductsListItem/ProductCounter'
-import AddToCartBtn from '../ProductsListItem/AddToCartBtn'
-import ProductItemActionBtn from '@/components/elements/ProductItemActionBtn/ProductItemActionBtn'
-import { ICartItem } from '@/types/cart'
-import { useComparisonAction } from '@/hooks/useComparisonAction'
-import { useFavoritesAction } from '@/hooks/useFavoritesAction'
-import { setIsAddToFavorites } from '@/context/favorites'
-import stylesForProduct from '@/styles/product-list-item/index.module.scss'
-import styles from '@/styles/quick-view-modal/index.module.scss'
+import Link from "next/link";
+import { closeQuickViewModal } from "@/context/modals";
+import { formatPrice, removeOverflowHiddenFromBody } from "@/lib/utils/common";
+import QuickViewModalSlider from "./QuickViewModalSlider";
+import { useCartAction } from "@/hooks/useCartAction";
+import ProductAvailable from "@/components/elements/ProductAvailable/ProductAvailable";
+import ProductColor from "../ProductsListItem/ProductColor";
+import ProductComposition from "../ProductsListItem/ProductComposition";
+import { useLang } from "@/hooks/useLang";
+import ProductSizeTableBtn from "../ProductsListItem/ProductSizeTableBtn";
+import ProductSizesItem from "../ProductsListItem/ProductSizesItem";
+import ProductCounter from "../ProductsListItem/ProductCounter";
+import AddToCartBtn from "../ProductsListItem/AddToCartBtn";
+import ProductItemActionBtn from "@/components/elements/ProductItemActionBtn/ProductItemActionBtn";
+import { ICartItem } from "@/types/cart";
+import { useComparisonAction } from "@/hooks/useComparisonAction";
+import { useFavoritesAction } from "@/hooks/useFavoritesAction";
+import { setIsAddToFavorites } from "@/context/favorites";
+import stylesForProduct from "@/styles/product-list-item/index.module.scss";
+import styles from "@/styles/quick-view-modal/index.module.scss";
 
 const QuickViewModal = () => {
-  const { lang, translations } = useLang()
+  const { lang, translations } = useLang();
   const {
     product,
     selectedSize,
@@ -34,28 +33,27 @@ const QuickViewModal = () => {
     setCount,
     existingItem,
     count,
-  } = useCartAction()
-  const images = useProductImages(product)
+  } = useCartAction();
   const {
     handleAddToComparison,
     isProductInComparison,
     addToComparisonSpinner,
-  } = useComparisonAction(product)
+  } = useComparisonAction(product);
   const {
     handleAddProductToFavorites,
     addToFavoritesSpinner,
     isProductInFavorites,
-  } = useFavoritesAction(product)
+  } = useFavoritesAction(product);
 
   const handleCloseModal = () => {
-    removeOverflowHiddenFromBody()
-    closeQuickViewModal()
-  }
+    removeOverflowHiddenFromBody();
+    closeQuickViewModal();
+  };
 
   const addToCart = () => {
-    setIsAddToFavorites(false)
-    handleAddToCart(count)
-  }
+    setIsAddToFavorites(false);
+    handleAddToCart(count);
+  };
 
   return (
     <div className={styles.modal}>
@@ -69,10 +67,10 @@ const QuickViewModal = () => {
           text={translations[lang].product.add_to_favorites}
           iconClass={`${
             addToFavoritesSpinner
-              ? 'actions__btn_spinner'
+              ? "actions__btn_spinner"
               : isProductInFavorites
-                ? 'actions__btn_favorite_checked'
-                : 'actions__btn_favorite'
+                ? "actions__btn_favorite_checked"
+                : "actions__btn_favorite"
           }`}
           withTooltip={false}
           callback={handleAddProductToFavorites}
@@ -82,17 +80,17 @@ const QuickViewModal = () => {
           text={translations[lang].product.add_to_comparison}
           iconClass={`${
             addToComparisonSpinner
-              ? 'actions__btn_spinner'
+              ? "actions__btn_spinner"
               : isProductInComparison
-                ? 'actions__btn_comparison_checked'
-                : 'actions__btn_comparison'
+                ? "actions__btn_comparison_checked"
+                : "actions__btn_comparison"
           }`}
           withTooltip={false}
           callback={handleAddToComparison}
         />
       </div>
       <div className={styles.modal__left}>
-        <QuickViewModalSlider images={images} />
+        <QuickViewModalSlider images={product.images} />
       </div>
       <div className={styles.modal__right}>
         <h3 className={styles.modal__right__title}>{product.name}</h3>
@@ -135,7 +133,7 @@ const QuickViewModal = () => {
               </ul>
             </div>
           ) : (
-            ''
+            ""
           )}
           <div className={styles.modal__right__bottom}>
             <span className={stylesForProduct.product__count_title}>
@@ -155,10 +153,10 @@ const QuickViewModal = () => {
               ) : (
                 <div
                   className={`counter ${styles.modal__right__bottom__counter}`}
-                  style={{ justifyContent: 'center' }}
+                  style={{ justifyContent: "center" }}
                 >
                   <span>
-                    {translations[lang].product.total_in_cart}{' '}
+                    {translations[lang].product.total_in_cart}{" "}
                     {allCurrentCartItemCount}
                   </span>
                 </div>
@@ -188,7 +186,7 @@ const QuickViewModal = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default QuickViewModal
+export default QuickViewModal;
