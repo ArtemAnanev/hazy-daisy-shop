@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { getDbAndReqBody } from "@/lib/utils/api-routes";
 import clientPromise from "@/lib/mongodb";
+import { getDbAndReqBody } from "@/lib/utils/api-routes";
 
 export async function GET(req: Request) {
   try {
@@ -24,3 +24,5 @@ export async function GET(req: Request) {
     throw new Error((error as Error).message);
   }
 }
+
+export const dynamic = "force-dynamic";
