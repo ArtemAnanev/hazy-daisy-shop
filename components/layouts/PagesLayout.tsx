@@ -27,7 +27,7 @@ import "@/context/user/init"
 import "@/context/order/init"
 import "@/context/profile/init"
 import "@/context/passwordRestore/init"
-
+import { AnalyticScripts } from "@/components/modules/Analytics";
 
 const PagesLayout = ({ children }: { children: React.ReactNode }) => {
   const [isClient, setIsClient] = useState(false)
@@ -120,7 +120,8 @@ const PagesLayout = ({ children }: { children: React.ReactNode }) => {
               <CookieAlert setCookieAlertOpen={setCookieAlertOpen} />
             </motion.div>
           )}
-          <Toaster position='top-center' reverseOrder={false} />
+            <Toaster position='top-center' reverseOrder={false} />
+            <AnalyticScripts />
           </body>
           </html>
       ) : (
