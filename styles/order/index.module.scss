@@ -55,7 +55,7 @@
 
       &__title {
         margin: 0;
-        color: #F1F3F5;
+        color: #16181b;;
         padding: 16px;
         background-color: #333A47;
         font-size: 22px;
@@ -97,7 +97,7 @@
 
         tbody {
           tr {
-            border-top: 1px solid #2A323F;
+            border-top: 1px solid #ffffff;
 
             &:last-child {
               border-bottom: 1px solid #2A323F;
@@ -125,7 +125,7 @@
 
           img {
             object-fit: contain;
-            background: radial-gradient(52.53% 52.53% at 50% 47.47%, #4E5D77 0%, rgba(42, 50, 63, 0.00) 100%), #2A323F;
+            background: radial-gradient(52.53% 52.53% at 50% 47.47%, #4E5D77 0%, rgba(42, 50, 63, 0.00) 100%), #ffffff;
             margin-right: 32px;
           }
 
@@ -195,7 +195,7 @@
             }
 
             img {
-              background: radial-gradient(52.53% 52.53% at 50% 47.47%, #4E5D77 0%, rgba(42, 50, 63, 0.00) 100%), #2A323F;
+              background: radial-gradient(52.53% 52.53% at 50% 47.47%, #4E5D77 0%, rgba(42, 50, 63, 0.00) 100%), #ffffff;
             }
           }
 

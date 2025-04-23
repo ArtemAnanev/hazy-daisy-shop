@@ -6,7 +6,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
-  background: #2A323F;
+  background: #ffffff;
   box-shadow: 0px 32px 32px 0px rgba(0, 0, 0, 0.20), 0px 0px 32px 0px rgba(0, 0, 0, 0.10);
   display: flex;
 
@@ -157,7 +157,7 @@
     }
 
     &__price {
-      color: #16D9A6;
+      color: #090a0a;
       font-size: 24px;
       font-weight: 500;
       margin-bottom: 9px;

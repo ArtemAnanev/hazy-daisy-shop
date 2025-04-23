@@ -149,7 +149,7 @@ const ProductsListItem = ({ item, title }: IProductsListItemProps) => {
             href={`/catalog/${item.category}/${item._id}`}
             className={styles.list__item__img}
           >
-            <Image src={item.images[0].url} alt={item.name} fill />
+            {/*<Image src={item.images[0].url} alt={item.name} fill />*/}
           </Link>
           <div className={styles.list__item__inner}>
             <h3 className={styles.list__item__title}>

@@ -46,7 +46,7 @@
 .cart-popup__title {
     padding-bottom: 16px;
     margin: 0 0 12px;
-    color: rgba(255, 255, 255, 0.90);
+    color: #16181b;;
     font-size: 16px;
     font-weight: 700;
     border-bottom: #565C66 1px solid;
@@ -67,7 +67,7 @@
 }
 
 .cart-popup__cart-list::-webkit-scrollbar-thumb {
-    background-color: #9466FF;
+    background-color: #8f3044;
     border-radius: 3px;
 }
 
@@ -174,7 +174,7 @@
     justify-content: space-between;
     width: 106px;
     border-radius: 16px;
-    background: #333A47;
+    background: rgba(255, 255, 255, 0.38);
     padding: 4px 6px;
 }
 

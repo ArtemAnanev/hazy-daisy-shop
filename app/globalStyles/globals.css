@@ -3,9 +3,9 @@
 }
 
 body {
-    font-family: Rostelecom Basis;
+    font-family:  MADE Barista;
     font-weight: 400;
-    background-color: #1D2533;
+    background-color: #ffffff;
     color: #E8E9EA;
     min-height: 100vh;
     display: flex;
@@ -21,12 +21,12 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-    background-color: #9466FF;
+    background-color: #ffffff;
     border-radius: 3px;
 }
 
 body::-webkit-scrollbar-thumb:hover {
-    background-color: #70F;
+    background-color: rgba(255, 255, 255, 0.18);
 }
 
 .container {
@@ -69,9 +69,9 @@ body::-webkit-scrollbar-thumb:hover {
 
 .site-title {
     margin: 0 0 40px;
-    color: #E8E9EA;
+    color: #16181b;
     font-size: 42px;
-    font-weight: 700;
+    font-weight: 400;
 }
 
 .header__search-overlay,
@@ -79,7 +79,7 @@ body::-webkit-scrollbar-thumb:hover {
 .size-table-overlay,
 .auth-overlay,
 .share-overlay {
-    background: #16181b;
+    background: #ffffff;
     height: 100%;
     left: 0;
     opacity: 0;
@@ -270,26 +270,26 @@ body::-webkit-scrollbar-thumb:hover {
 
 @font-face {
     font-display: swap;
-    font-family: Rostelecom Basis;
+    font-family: MADE Barista;
     font-style: normal;
     font-weight: 700;
-    src: url('../../public/fonts/Rostelecom-Basis-Bold.woff') format("woff");
+    src: url('../../public/fonts/MADE Barista.otf') format("otf");
 }
 
 @font-face {
     font-display: swap;
-    font-family: Rostelecom Basis;
+    font-family: MADE Barista;
     font-style: normal;
     font-weight: 500;
-    src: url('../../public/fonts/Rostelecom-Basis-Medium.woff') format("woff");
+    src: url('../../public/fonts/MADE Barista.otf') format("otf");
 }
 
 @font-face {
     font-display: swap;
-    font-family: Rostelecom Basis;
+    font-family: MADE Barista;
     font-style: normal;
     font-weight: 400;
-    src: url('../../public/fonts/Rostelecom-Basis-Regular.woff') format("woff");
+    src: url('../../public/fonts/MADE Barista.otf') format("otf");
 }
 
 .overflow-hidden {

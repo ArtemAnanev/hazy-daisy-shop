@@ -86,7 +86,7 @@
 }
 
 .nav-menu__close::before {
-    background-color: #E8E9EA;
+    background-color: #16181b;
     content: '';
     height: 100%;
     width: 100%;
@@ -126,7 +126,7 @@
 
 .nav-menu__lang__btn {
     border-radius: 32px;
-    border: 2px solid #565C66 !important;
+    border: 2px solid #16181b !important;
     padding: 12px 24px !important;
     font-size: 16px;
     font-weight: 500;
@@ -166,7 +166,7 @@
 }
 
 .nav-menu__list__item__btn {
-    color: #777C85;
+    color: #16181b;
     font-size: 28px;
     font-weight: 700;
     line-height: 32px;
@@ -175,7 +175,7 @@
 
 .nav-menu__list__item__btn:hover {
     transition: .2s ease-in-out;
-    color: #E8E9EA;
+    color: #16181b;
 }
 
 .nav-menu__accordion {
@@ -221,7 +221,7 @@
 
 .nav-menu__accordion__item__title:hover {
     transition: .2s ease-in-out color;
-    color: #E8E9EA;
+    color: #16181b;
 }
 
 .nav-menu__accordion__item__list__item:not(:last-child) {
@@ -229,7 +229,7 @@
 }
 
 .nav-menu__accordion__item__list__item__link {
-    color: #E8E9EA;
+    color: #16181b;
     font-size: 16px;
     font-weight: 400;
     transition: .2s ease-in-out color;
@@ -237,7 +237,7 @@
 }
 
 .nav-menu__accordion__item__link {
-    color: #777C85;
+    color: #16181b;
     font-size: 16px;
     font-weight: 400;
     transition: .2s ease-in-out color;
@@ -246,7 +246,7 @@
 
 .nav-menu__accordion__item__link:hover {
     transition: .2s ease-in-out color;
-    color: #E8E9EA;
+    color: #16181b;
 }
 
 .nav-menu__accordion__item__list__item__link:hover {
