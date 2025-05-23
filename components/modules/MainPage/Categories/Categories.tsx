@@ -4,7 +4,7 @@ import Link from "next/link";
 import kids from "@/public/img/categories/kids_kategory.png";
 import man from "@/public/img/categories/man_category.png";
 import women from "@/public/img/categories/women category.png";
-import love from "@/public/img/with-love.png";
+import love from "@/public/img/BannerS.png";
 import { useLang } from "@/hooks/useLang";
 import useImagePreloader from "@/hooks/useImagePreloader";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
@@ -34,6 +34,7 @@ const Categories = () => {
         <h2 className={`site-title ${styles.categories__title}`}>
           {translations[lang].main_page.category_title}
         </h2>
+
         <div className={styles.categories__inner}>
           <AllLink />
           {!isMedia490 && (
@@ -41,7 +42,7 @@ const Categories = () => {
               <div className={styles.categories__left}>
                 <div className={styles.categories__left__top}>
                   <Link
-                    href="/catalog/clothes"
+                    href="/catalog/women"
                     className={`${styles.categories__left__top__right} ${styles.categories__img} ${imgSpinnerClass}`}
                   >
                     <Image
@@ -56,7 +57,7 @@ const Categories = () => {
                 </div>
                 <div className={styles.categories__left__top}>
                   <Link
-                    href="/catalog/accessories"
+                    href="/catalog/kids"
                     className={`${styles.categories__left__top__right} ${styles.categories__img} ${imgSpinnerClass}`}
                   >
                     <Image
@@ -72,7 +73,7 @@ const Categories = () => {
                 </div>
                 <div className={styles.categories__left__top}>
                   <Link
-                    href="/catalog/accessories"
+                    href="/catalog/man"
                     className={`${styles.categories__left__top__right} ${styles.categories__img} ${imgSpinnerClass}`}
                   >
                     <Image

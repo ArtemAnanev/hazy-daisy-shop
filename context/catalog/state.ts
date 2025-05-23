@@ -1,5 +1,9 @@
-'use client'
-import { ICatalogCategoryOptions, IColorOption, ISizeOption } from "@/types/catalog"
+"use client";
+import {
+  ICatalogCategoryOptions,
+  IColorOption,
+  ISizeOption,
+} from "@/types/catalog";
 import {
   catalog,
   setCatalogCategoryOptions,
@@ -10,50 +14,54 @@ import {
   setSizes,
   setColors,
   setFiltersPopup,
-} from "."
+} from ".";
 
 export const $catalogCategoryOptions = catalog
   .createStore<ICatalogCategoryOptions>({})
-  .on(setCatalogCategoryOptions, (_, options) => ({ ...options }))
+  .on(setCatalogCategoryOptions, (_, options) => ({ ...options }));
 
 export const $sizesOptions = catalog
   .createStore<ISizeOption[]>([
-    { id: 1, size: 'S', checked: false },
-    { id: 2, size: 'L', checked: false },
-    { id: 3, size: 'M', checked: false },
-    { id: 4, size: 'XL', checked: false },
-    { id: 5, size: 'XXL', checked: false },
+    { id: 1, size: "S", checked: false },
+    { id: 2, size: "L", checked: false },
+    { id: 3, size: "M", checked: false },
+    { id: 4, size: "XL", checked: false },
+    { id: 5, size: "XXL", checked: false },
   ])
   .on(setSizesOptions, (_, options) => options)
   .on(updateSizesOptionBySize, (state, size) =>
     state.map((item) =>
-      item.size === size ? { ...item, checked: true } : item
-    )
-  )
+      item.size === size ? { ...item, checked: true } : item,
+    ),
+  );
 
 export const $colorsOptions = catalog
   .createStore<IColorOption[]>([
-    { id: 1, colorCode: 'purple', checked: false, colorText: '' },
-    { id: 2, colorCode: 'yellow', checked: false, colorText: '' },
-    { id: 3, colorCode: 'orange', checked: false, colorText: '' },
-    { id: 4, colorCode: 'black', checked: false, colorText: '' },
-    { id: 5, colorCode: 'white', checked: false, colorText: '' },
+    { id: 1, colorCode: "purple", checked: false, colorText: "" },
+    { id: 2, colorCode: "yellow", checked: false, colorText: "" },
+    { id: 3, colorCode: "orange", checked: false, colorText: "" },
+    { id: 4, colorCode: "black", checked: false, colorText: "" },
+    { id: 5, colorCode: "white", checked: false, colorText: "" },
+    { id: 6, colorCode: "пудровая", checked: false, colorText: "" },
+    { id: 7, colorCode: "мятная", checked: false, colorText: "" },
+    { id: 8, colorCode: "графит", checked: false, colorText: "" },
+    { id: 9, colorCode: "бежевая", checked: false, colorText: "" },
   ])
   .on(setColorsOptions, (_, options) => options)
   .on(updateColorsOptionByCode, (state, color) =>
     state.map((item) =>
-      item.colorCode === color ? { ...item, checked: true } : item
-    )
-  )
+      item.colorCode === color ? { ...item, checked: true } : item,
+    ),
+  );
 
 export const $sizes = catalog
   .createStore<string[]>([])
-  .on(setSizes, (_, sizes) => sizes)
+  .on(setSizes, (_, sizes) => sizes);
 
 export const $colors = catalog
   .createStore<string[]>([])
-  .on(setColors, (_, colors) => colors)
+  .on(setColors, (_, colors) => colors);
 
 export const $filtersPopup = catalog
   .createStore(false)
-  .on(setFiltersPopup, (_, value) => value)
+  .on(setFiltersPopup, (_, value) => value);

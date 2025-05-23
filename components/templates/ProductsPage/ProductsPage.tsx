@@ -1,24 +1,24 @@
 /* eslint-disable indent */
-"use client"
-import ReactPaginate from "react-paginate"
-import { useEffect } from "react"
-import { motion } from "framer-motion"
-import { useProductFilters } from "@/hooks/useProductFilters"
-import { IProductsPage } from "@/types/catalog"
-import { basePropsForMotion } from "@/constants/motion"
-import { useLang } from "@/hooks/useLang"
-import HeadingWithCount from "@/components/elements/HeadingWithCount/HeadingWithCount"
-import { setCatalogCategoryOptions } from "@/context/catalog"
-import CatalogFilters from "@/components/modules/CatalogFilters/CatalogFilters"
-import ProductsListItem from "@/components/modules/ProductsListItem/ProductListItem"
-import { IProduct } from "@/types/common"
-import WatchedProducts from "@/components/modules/WatchedProducts/WatchedProducts"
-import { useWatchedProducts } from "@/hooks/useWatchedProducts"
-import styles from "@/styles/catalog/index.module.scss"
-import skeletonStyles from "@/styles/skeleton/index.module.scss"
+"use client";
+import ReactPaginate from "react-paginate";
+import { useEffect } from "react";
+import { motion } from "framer-motion";
+import { useProductFilters } from "@/hooks/useProductFilters";
+import { IProductsPage } from "@/types/catalog";
+import { basePropsForMotion } from "@/constants/motion";
+import { useLang } from "@/hooks/useLang";
+import HeadingWithCount from "@/components/elements/HeadingWithCount/HeadingWithCount";
+import { setCatalogCategoryOptions } from "@/context/catalog";
+import CatalogFilters from "@/components/modules/CatalogFilters/CatalogFilters";
+import ProductsListItem from "@/components/modules/ProductsListItem/ProductListItem";
+import { IProduct } from "@/types/common";
+import WatchedProducts from "@/components/modules/WatchedProducts/WatchedProducts";
+import { useWatchedProducts } from "@/hooks/useWatchedProducts";
+import styles from "@/styles/catalog/index.module.scss";
+import skeletonStyles from "@/styles/skeleton/index.module.scss";
 
 const ProductsPage = ({ searchParams, pageName }: IProductsPage) => {
-  const { lang, translations } = useLang()
+  const { lang, translations } = useLang();
   const {
     products,
     productsSpinner,
@@ -29,80 +29,94 @@ const ProductsPage = ({ searchParams, pageName }: IProductsPage) => {
     handleApplyFiltersWithSizes,
     handleApplyFiltersWithColors,
     handleApplyFiltersBySort,
-  } = useProductFilters(searchParams, pageName, pageName === 'catalog')
-  const { watchedProducts } = useWatchedProducts()
-
+  } = useProductFilters(searchParams, pageName, pageName === "catalog");
+  const { watchedProducts } = useWatchedProducts();
 
   useEffect(() => {
     switch (pageName) {
-    case 'catalog':
-      setCatalogCategoryOptions({
-        rootCategoryOptions: [
-          {
-            id: 1,
-            title: translations[lang].main_menu.clothes,
-            href: '/catalog/clothes',
-          },
-          {
-            id: 2,
-            title: translations[lang].main_menu.accessories,
-            href: '/catalog/accessories',
-          },
-        ],
-      })
-      break
-    case 'accessories':
-      setCatalogCategoryOptions({
-        accessoryCategoryOptions: [
-          {
-            id: 1,
-            title: translations[lang].comparison.bags,
-            filterHandler: () => handleApplyFiltersWithCategory('bags'),
-          },
-          {
-            id: 2,
-            title: translations[lang].comparison.headdress,
-            filterHandler: () => handleApplyFiltersWithCategory('headdress'),
-          },
-          {
-            id: 3,
-            title: translations[lang].comparison.umbrella,
-            filterHandler: () => handleApplyFiltersWithCategory('umbrella'),
-          },
-        ],
-      })
-      break
-    case 'clothes':
-      setCatalogCategoryOptions({
-        clothesCategoryOptions: [
-          {
-            id: 1,
-            title: translations[lang].comparison['t-shirts'],
-            filterHandler: () => handleApplyFiltersWithCategory('t-shirts'),
-          },
-          {
-            id: 2,
-            title: translations[lang].comparison['long-sleeves'],
-            filterHandler: () =>
-              handleApplyFiltersWithCategory('long-sleeves'),
-          },
-          {
-            id: 3,
-            title: translations[lang].comparison.hoodie,
-            filterHandler: () => handleApplyFiltersWithCategory('hoodie'),
-          },
-          {
-            id: 4,
-            title: translations[lang].comparison.outerwear,
-            filterHandler: () => handleApplyFiltersWithCategory('outerwear'),
-          },
-        ],
-      })
-      break
-    default:
-      break
+      case "catalog":
+        setCatalogCategoryOptions({
+          rootCategoryOptions: [
+            {
+              id: 1,
+              title: translations[lang].main_menu.clothes,
+              href: "/catalog/clothes",
+            },
+            {
+              id: 2,
+              title: translations[lang].main_menu.accessories,
+              href: "/catalog/accessories",
+            },
+            {
+              id: 3,
+              title: translations[lang].main_menu.clothes,
+              href: "/catalog/women",
+            },
+            {
+              id: 4,
+              title: translations[lang].main_menu.accessories,
+              href: "/catalog/man",
+            },
+            {
+              id: 5,
+              title: translations[lang].main_menu.accessories,
+              href: "/catalog/kids",
+            },
+          ],
+        });
+        break;
+      case "accessories":
+        setCatalogCategoryOptions({
+          accessoryCategoryOptions: [
+            {
+              id: 1,
+              title: translations[lang].comparison.bags,
+              filterHandler: () => handleApplyFiltersWithCategory("bags"),
+            },
+            {
+              id: 2,
+              title: translations[lang].comparison.headdress,
+              filterHandler: () => handleApplyFiltersWithCategory("headdress"),
+            },
+            {
+              id: 3,
+              title: translations[lang].comparison.umbrella,
+              filterHandler: () => handleApplyFiltersWithCategory("umbrella"),
+            },
+          ],
+        });
+        break;
+      case "clothes":
+        setCatalogCategoryOptions({
+          clothesCategoryOptions: [
+            {
+              id: 1,
+              title: translations[lang].comparison["t-shirts"],
+              filterHandler: () => handleApplyFiltersWithCategory("t-shirts"),
+            },
+            {
+              id: 2,
+              title: translations[lang].comparison["long-sleeves"],
+              filterHandler: () =>
+                handleApplyFiltersWithCategory("long-sleeves"),
+            },
+            {
+              id: 3,
+              title: translations[lang].comparison.hoodie,
+              filterHandler: () => handleApplyFiltersWithCategory("hoodie"),
+            },
+            {
+              id: 4,
+              title: translations[lang].comparison.outerwear,
+              filterHandler: () => handleApplyFiltersWithCategory("outerwear"),
+            },
+          ],
+        });
+        break;
+      default:
+        break;
     }
-  }, [lang])
+  }, [lang]);
 
   return (
     <>
@@ -111,7 +125,7 @@ const ProductsPage = ({ searchParams, pageName }: IProductsPage) => {
         title={
           (translations[lang].breadcrumbs as { [index: string]: string })[
             pageName
-            ]
+          ]
         }
         spinner={productsSpinner}
       />
@@ -163,7 +177,7 @@ const ProductsPage = ({ searchParams, pageName }: IProductsPage) => {
         <WatchedProducts watchedProducts={watchedProducts} />
       )}
     </>
-  )
-}
+  );
+};
 
-export default ProductsPage
+export default ProductsPage;

@@ -7,6 +7,7 @@ import NewGoods from "@/components/modules/MainPage/NewGoods";
 import BrandLife from "@/components/modules/MainPage/BrandLife";
 import { usePageTitle } from "@/hooks/usePageTitle";
 import BestsellersGoods from "@/components/modules/MainPage/BestsellersGoods";
+import AboutUs from "@/components/modules/MainPage/AboutUs/AboutUs";
 
 const MainPage = () => {
   useGate(MainPageGate);
@@ -14,11 +15,12 @@ const MainPage = () => {
 
   return (
     <main>
-      {/*<Hero />*/}
+      <Hero />
       <Categories />
       {/*<NewGoods />*/}
       {/*<BestsellersGoods />*/}
       {/*<BrandLife />*/}
+      <AboutUs />
     </main>
   );
 };

@@ -57,8 +57,7 @@ const ProductsListItem = ({ item, title }: IProductsListItemProps) => {
 
   return (
     <>
-      {item.characteristics.collection === "line" &&
-      item.type === "t-shirts" ? (
+      {item.type === "man" ? (
         <li className={styles.list__item_ad}>
           <Link
             href={`/catalog/${item.category}/${item._id}`}
